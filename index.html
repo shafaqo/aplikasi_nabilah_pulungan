@@ -716,7 +716,7 @@
             selectedPayMethod: 'Tunai',  
             editingTrxId: null,          
             users: [
-                { id: 'u1', nama: 'admin', pin: '112211', role: 'admin' },
+                { id: 'u1', nama: 'admin', pin: 'admin', role: 'admin' },
                 { id: 'u2', nama: 'Siti', pin: 'Siti', role: 'terapis' }  
             ],
             products: [
@@ -1687,7 +1687,7 @@
         function resetAllData() {
             showDialog("Hapus Seluruh Data?", "INI AKAN MENGHAPUS SEMUA transaksi, produk, karyawan, kas, dan log selamanya (Hanya menyisakan 1 Akun Admin default). Anda yakin?", "YAKIN, HAPUS", false, "", (confirm) => {
                 if(confirm) {
-                    state.users = [{ id: 'u1', nama: 'admin', pin: '112211', role: 'admin' }];
+                    state.users = [{ id: 'u1', nama: 'admin', pin: 'admin', role: 'admin' }];
                     state.products = [];
                     state.transactions = [];
                     state.cashFlow = [];
