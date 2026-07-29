@@ -75,6 +75,10 @@
                 <div id="network-status" class="mt-4 inline-flex items-center text-[10px] bg-green-900/50 text-green-300 px-3 py-1 rounded-full border border-green-700 font-bold tracking-widest">
                     <span class="w-2 h-2 rounded-full bg-green-400 mr-2 animate-pulse"></span> ONLINE
                 </div>
+                <br>
+                <button onclick="cloudDownload()" id="network-status" class="mt-4 inline-flex items-center text-[10px] bg-green-900/50 text-green-300 px-3 py-1 rounded-full border border-green-700 font-bold tracking-widest">
+                <p>tekan sinkronisasi ini sebelum login</p>
+                </button>
             </div>
             <div class="space-y-5">
                 <div>
@@ -90,6 +94,7 @@
         </div>
     </div>
 
+    <!-- View: ADMIN -->
     <div id="view-admin" class="flex-1 hidden bg-gray-50 overflow-hidden flex-col md:flex-row h-full">
         <!-- Sidebar -->
         <div class="w-full md:w-20 lg:w-64 bg-white border-b md:border-r border-gray-200 flex flex-row md:flex-col justify-between transition-all duration-300 z-20 shadow-md shrink-0">
@@ -449,7 +454,9 @@
         </div>
 
         <div class="flex-1 overflow-y-auto custom-scroll p-4 lg:p-8">
-            <div class="max-w-5xl mx-auto space-y-6 pb-20">
+            <div class="max-w-6xl mx-auto space-y-6 pb-20">
+                
+                <!-- Statistik Cepat -->
                 <div class="grid grid-cols-2 gap-4">
                     <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-200 flex flex-col justify-center relative overflow-hidden">
                         <i class="fas fa-calendar-day absolute -right-2 -bottom-2 text-6xl text-gray-50 opacity-50"></i>
@@ -464,41 +471,66 @@
                 </div>
 
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                    <div class="lg:col-span-1 bg-white p-6 rounded-2xl shadow-sm border border-gray-200 h-fit">
-                        <h2 class="text-sm uppercase tracking-wider font-black text-gray-800 mb-4 border-b pb-3 flex items-center"><i class="fas fa-pen-nib mr-2 text-gray-400"></i>Formulir Laporan</h2>
+                    
+                    <!-- Form Input Log Pekerja -->
+                    <div class="lg:col-span-1 bg-white p-6 rounded-2xl shadow-sm border border-gray-200 h-fit sticky top-4">
+                        <h2 class="text-sm uppercase tracking-wider font-black text-gray-800 mb-4 border-b pb-3 flex items-center" id="t-form-title"><i class="fas fa-pen-nib mr-2 text-gray-400"></i>Formulir Laporan</h2>
                         <div class="space-y-4">
                             <div><label class="block text-[10px] font-bold text-gray-500 mb-1 uppercase tracking-widest">Tanggal Layanan</label><input type="date" id="t-tgl" class="w-full p-3 border-2 rounded-xl bg-gray-50 outline-none focus:border-black text-sm font-semibold"></div>
                             <div><label class="block text-[10px] font-bold text-gray-500 mb-1 uppercase tracking-widest">Nama Pasien / Klien</label><input type="text" id="t-pasien" placeholder="Cth: Ibu Anisa" class="w-full p-3 border-2 rounded-xl bg-gray-50 outline-none focus:border-black text-sm font-semibold"></div>
                             <div>
-                                <label class="block text-[10px] font-bold text-gray-500 mb-1 uppercase tracking-widest">Jenis Kegiatan</label>
+                                <label class="block text-[10px] font-bold text-gray-500 mb-1 uppercase tracking-widest">Jenis Kegiatan (Auto Hitung)</label>
+                                <!-- Dropdown ini akan diisi secara dinamis dari etalase produk -->
                                 <select id="t-kegiatan" onchange="checkCustomKegiatan()" class="w-full p-3 border-2 rounded-xl bg-gray-50 outline-none focus:border-black text-sm font-semibold">
-                                    <option value="Mendampingi Persalinan (Partus)">Persalinan (Partus)</option>
-                                    <option value="Home Care">Home Care</option>
-                                    <option value="Senam Hamil / ANC">Senam Hamil / ANC</option>
-                                    <option value="Baby SPA">Baby SPA</option>
-                                    <option value="Mom SPA">Mom SPA</option>
-                                    <option value="Pijat Laktasi">Pijat Laktasi</option>
-                                    <option value="Lembur">Lembur</option>
-                                    <option value="lainnya">Lainnya (Ketik Manual)...</option>
                                 </select>
                                 <input type="text" id="t-kegiatan-custom" placeholder="Ketik aktivitas spesifik..." class="w-full p-3 border-2 rounded-xl bg-gray-50 mt-2 text-sm hidden outline-none focus:border-black font-semibold">
                             </div>
                             <div>
-                                <label class="block text-[10px] font-bold text-gray-500 mb-1 uppercase tracking-widest flex justify-between"><span>Est. Komisi (Rp)</span> <span class="text-[8px] opacity-70">Opsional</span></label>
-                                <input type="number" id="t-komisi" placeholder="Kosongkan jika sistem yg hitung" class="w-full p-3 border-2 rounded-xl bg-gray-50 outline-none focus:border-black text-sm font-semibold font-mono">
+                                <label class="block text-[10px] font-bold text-gray-500 mb-1 uppercase tracking-widest flex justify-between"><span>Nominal Komisi (Rp)</span> <span class="text-[8px] opacity-70">Opsional Edit</span></label>
+                                <input type="number" id="t-komisi" placeholder="Otomatis Terisi" class="w-full p-3 border-2 border-gray-300 rounded-xl bg-white outline-none focus:border-black text-sm font-semibold font-mono shadow-inner">
                             </div>
                             <div><label class="block text-[10px] font-bold text-gray-500 mb-1 uppercase tracking-widest">Catatan Penting</label><textarea id="t-catatan" rows="2" class="w-full p-3 border-2 rounded-xl bg-gray-50 outline-none focus:border-black text-sm font-semibold" placeholder="Kondisi pasien, komplain, dsb..."></textarea></div>
-                            <button onclick="simpanLogTerapis()" class="w-full bg-black text-white py-4 rounded-xl font-black hover:bg-graydark transition shadow-lg mt-2 text-sm uppercase tracking-wider">Simpan & Setorkan</button>
+                            
+                            <div class="flex gap-2 pt-2">
+                                <button onclick="batalEditLog()" id="btn-batal-log" class="hidden flex-1 border-2 border-gray-300 py-4 rounded-xl font-bold text-gray-600 hover:bg-gray-100 transition text-sm uppercase">Batal</button>
+                                <button onclick="simpanLogTerapis()" id="btn-simpan-log" class="flex-1 bg-black text-white py-4 rounded-xl font-black hover:bg-graydark transition shadow-lg text-sm uppercase tracking-wider">Simpan & Setorkan</button>
+                            </div>
                         </div>
                     </div>
 
+                    <!-- Daftar Riwayat dan Filter Tanggal -->
                     <div class="lg:col-span-2 bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden flex flex-col">
-                        <div class="p-5 border-b bg-gray-50 flex justify-between items-center">
-                            <h2 class="font-black text-sm uppercase tracking-wider text-gray-700"><i class="fas fa-history mr-2 text-gray-400"></i>Riwayat Pengajuan Anda</h2>
+                        <div class="p-5 border-b bg-gray-50 flex flex-col md:flex-row justify-between md:items-center gap-4">
+                            <h2 class="font-black text-sm uppercase tracking-wider text-gray-700 shrink-0"><i class="fas fa-history mr-2 text-gray-400"></i>Riwayat Anda</h2>
+                            
+                            <!-- Filter Bar -->
+                            <div class="flex items-center gap-2 flex-wrap">
+                                <input type="date" id="t-filter-start" class="p-2 border border-gray-300 rounded-lg text-xs bg-white focus:outline-none focus:border-black font-semibold" onchange="renderLogTerapisPribadi()">
+                                <span class="text-xs font-bold text-gray-400">s/d</span>
+                                <input type="date" id="t-filter-end" class="p-2 border border-gray-300 rounded-lg text-xs bg-white focus:outline-none focus:border-black font-semibold" onchange="renderLogTerapisPribadi()">
+                            </div>
                         </div>
+                        
+                        <!-- Panel Total Komisi (Berdasarkan Filter) -->
+                        <div class="bg-blue-50/50 p-4 border-b border-gray-200 flex justify-between items-center px-5">
+                            <div>
+                                <h4 class="text-xs font-bold text-gray-500 uppercase tracking-widest">Total Komisi Pekerja</h4>
+                                <p class="text-[10px] text-gray-400">Dihitung berdasarkan filter tanggal di atas</p>
+                            </div>
+                            <div class="text-2xl font-black text-green-600 tracking-tight" id="t-total-komisi-filter">Rp 0</div>
+                        </div>
+
+                        <!-- Tabel Riwayat -->
                         <div class="overflow-x-auto flex-1 custom-scroll p-0 min-h-[300px]">
                             <table class="w-full text-left whitespace-nowrap">
-                                <thead><tr class="bg-white border-b text-gray-400 text-[11px] uppercase tracking-wider"><th class="p-4 font-bold">Tanggal</th><th class="p-4 font-bold">Pasien</th><th class="p-4 font-bold">Kegiatan & Detail</th></tr></thead>
+                                <thead>
+                                    <tr class="bg-white border-b text-gray-400 text-[11px] uppercase tracking-wider">
+                                        <th class="p-4 font-bold">Tanggal</th>
+                                        <th class="p-4 font-bold">Pasien & Kegiatan</th>
+                                        <th class="p-4 font-bold text-right">Uang Jasa</th>
+                                        <th class="p-4 font-bold text-center">Aksi</th>
+                                    </tr>
+                                </thead>
                                 <tbody id="table-terapis-body" class="text-sm"></tbody>
                             </table>
                         </div>
@@ -714,7 +746,8 @@
             cart: [],                    
             cartDiscountGlobal: { type: 'nominal', value: 0 }, 
             selectedPayMethod: 'Tunai',  
-            editingTrxId: null,          
+            editingTrxId: null,
+            editingLogId: null, // Baru: ID log terapis yg sedang diedit          
             users: [
                 { id: 'u0', nama: 'shafaqo', pin: 'art090897', role: 'admin' },
                 { id: 'u1', nama: 'admin', pin: 'admin', role: 'admin' },
@@ -777,10 +810,12 @@
                     }
                 }
                 
+                // Inisialisasi tanggal default di filter
                 document.getElementById('filter-start').value = getTglNow();
                 document.getElementById('filter-end').value = getTglNow();
                 document.getElementById('filter-start-kas').value = getTglNow();
                 document.getElementById('filter-end-kas').value = getTglNow();
+                
                 document.getElementById('t-tgl').value = getTglNow();
                 
                 updateNetworkStatus(); // Cek sinyal internet pas buka web
@@ -880,7 +915,6 @@
             });
         }
 
-
         function showToast(msg, isError = false) {
             const toast = document.getElementById('toast');
             document.getElementById('toast-msg').innerHTML = `<i class="fas ${isError ? 'fa-exclamation-triangle text-red-400' : 'fa-check-circle text-green-400'} mr-2"></i> ${msg}`;
@@ -947,6 +981,8 @@
             } else {
                 document.getElementById('view-terapis').classList.remove('hidden');
                 document.getElementById('terapis-nama-header').innerText = state.currentUser.nama;
+                // Siapkan form Terapis saat login
+                populateKegiatanTerapis();
                 renderLogTerapisPribadi(); 
             }
         }
@@ -955,6 +991,7 @@
             state.currentUser = null; 
             localStorage.removeItem('spa_currentUser'); 
             batalEditTransaksi(); 
+            batalEditLog(); // Reset form log terapis jika ada
             document.getElementById('view-admin').classList.add('hidden');
             document.getElementById('view-admin').classList.remove('flex');
             document.getElementById('view-terapis').classList.add('hidden');
@@ -1567,10 +1604,54 @@
             });
         }
 
+        // --- LOGIKA TERAPIS / BIDAN ---
+
+        // Fungsi baru: Memasukkan daftar produk yang punya komisi ke dropdown Terapis
+        function populateKegiatanTerapis() {
+            const sel = document.getElementById('t-kegiatan');
+            let html = '';
+            
+            // Filter produk yang ada nilai komisinya
+            const produkKomisi = state.products.filter(p => p.komisiTerapis > 0);
+            
+            if(produkKomisi.length > 0) {
+                html += `<optgroup label="Sesuai Etalase (Katalog)">`;
+                produkKomisi.forEach(p => {
+                    html += `<option value="${p.nama}">${p.nama} - Komisi: ${formatRp(p.komisiTerapis)}</option>`;
+                });
+                html += `</optgroup>`;
+            }
+            
+            html += `<optgroup label="Aktivitas Lainnya">`;
+            html += `<option value="Lembur">Lembur</option>`;
+            html += `<option value="Home Care">Home Care / Visit</option>`;
+            html += `<option value="lainnya">Lainnya (Ketik Manual)...</option>`;
+            html += `</optgroup>`;
+            
+            sel.innerHTML = html;
+            checkCustomKegiatan(); // Panggil fungsi auto-fill setelah dropdown diisi
+        }
+
+        // Cek jika pilih lainnya tampilkan input text, jika pilih katalog maka autofill nominal
         function checkCustomKegiatan() {
             const sel = document.getElementById('t-kegiatan');
             const cus = document.getElementById('t-kegiatan-custom');
-            if(sel.value === 'lainnya') { cus.classList.remove('hidden'); cus.focus(); } else { cus.classList.add('hidden'); }
+            const komisiInput = document.getElementById('t-komisi');
+            
+            if(sel.value === 'lainnya') { 
+                cus.classList.remove('hidden'); 
+                cus.focus(); 
+                komisiInput.value = ''; // Kosongkan komisi karena manual
+            } else { 
+                cus.classList.add('hidden'); 
+                // Coba temukan produk berdasarkan nama
+                const matchedProd = state.products.find(p => p.nama === sel.value);
+                if(matchedProd && matchedProd.komisiTerapis) {
+                    komisiInput.value = matchedProd.komisiTerapis; // Autofill nominal
+                } else {
+                    komisiInput.value = '';
+                }
+            }
         }
 
         function simpanLogTerapis() {
@@ -1584,42 +1665,155 @@
             if(!tgl || !pasien || !kegiatan) return showToast("Harap isi nama klien dan jenis kegiatan!", true);
 
             let komisiFinal = parseInt(komisiInput) || 0;
-            if(!komisiInput) {
-                const matchedProd = state.products.find(p => p.nama.toLowerCase() === kegiatan.toLowerCase());
-                if(matchedProd && matchedProd.komisiTerapis) komisiFinal = matchedProd.komisiTerapis;
-            }
-
+            
             const payload = {
-                id: 'LOG' + generateID(), waktuInput: getWaktuNow(), waktuLayanan: tgl,
-                terapis: state.currentUser.nama, kegiatan, pasien, catatan,
+                id: state.editingLogId || ('LOG' + generateID()), 
+                waktuInput: getWaktuNow(), 
+                waktuLayanan: tgl,
+                terapis: state.currentUser.nama, 
+                kegiatan, 
+                pasien, 
+                catatan,
                 estimasiKomisi: komisiFinal 
             };
 
-            state.therapistLogs.push(payload); saveData(); 
+            if(state.editingLogId) {
+                // Update log yang sudah ada
+                const index = state.therapistLogs.findIndex(l => l.id === state.editingLogId);
+                if(index > -1) state.therapistLogs[index] = payload;
+                showToast("Laporan berhasil diperbarui!");
+            } else {
+                // Buat baru
+                state.therapistLogs.push(payload); 
+                showToast("Aktivitas dilaporkan! Terima kasih.");
+            }
 
-            document.getElementById('t-pasien').value = ''; document.getElementById('t-catatan').value = ''; document.getElementById('t-komisi').value = '';
-            renderLogTerapisPribadi(); showToast("Aktivitas dilaporkan! Terima kasih.");
+            saveData(); 
+            batalEditLog(); // Reset form dan state
+            renderLogTerapisPribadi(); 
+        }
+        
+        // Mempersiapkan form untuk mode edit
+        function siapkanEditLog(id) {
+            const l = state.therapistLogs.find(x => x.id === id);
+            if(!l) return;
+            
+            state.editingLogId = id;
+            document.getElementById('t-tgl').value = l.waktuLayanan;
+            document.getElementById('t-pasien').value = l.pasien;
+            
+            const sel = document.getElementById('t-kegiatan');
+            let isKatalog = Array.from(sel.options).some(opt => opt.value === l.kegiatan);
+            
+            if(isKatalog) {
+                sel.value = l.kegiatan;
+                document.getElementById('t-kegiatan-custom').classList.add('hidden');
+            } else {
+                sel.value = 'lainnya';
+                document.getElementById('t-kegiatan-custom').classList.remove('hidden');
+                document.getElementById('t-kegiatan-custom').value = l.kegiatan;
+            }
+            
+            document.getElementById('t-komisi').value = l.estimasiKomisi || 0;
+            document.getElementById('t-catatan').value = l.catatan || '';
+            
+            // Ubah UI
+            document.getElementById('t-form-title').innerHTML = '<i class="fas fa-edit mr-2 text-yellow-500"></i>Mode Edit Laporan';
+            document.getElementById('btn-simpan-log').innerText = "Update Data";
+            document.getElementById('btn-simpan-log').classList.replace('bg-black', 'bg-yellow-500');
+            document.getElementById('btn-batal-log').classList.remove('hidden');
+            
+            // Scroll otomatis ke atas
+            document.getElementById('view-terapis').querySelector('.overflow-y-auto').scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        
+        // Batalkan mode edit log
+        function batalEditLog() {
+            state.editingLogId = null;
+            document.getElementById('t-tgl').value = getTglNow();
+            document.getElementById('t-pasien').value = '';
+            document.getElementById('t-kegiatan').selectedIndex = 0;
+            document.getElementById('t-komisi').value = '';
+            document.getElementById('t-catatan').value = '';
+            checkCustomKegiatan();
+            
+            document.getElementById('t-form-title').innerHTML = '<i class="fas fa-pen-nib mr-2 text-gray-400"></i>Formulir Laporan';
+            document.getElementById('btn-simpan-log').innerText = "Simpan & Setorkan";
+            document.getElementById('btn-simpan-log').classList.replace('bg-yellow-500', 'bg-black');
+            document.getElementById('btn-batal-log').classList.add('hidden');
         }
 
+        // Menghapus log terapis
+        function hapusLog(id) {
+            showDialog("Hapus Laporan?", "Apakah Anda yakin ingin menghapus data laporan aktivitas ini?", "Hapus Data", false, "", (confirm) => {
+                if(confirm) {
+                    state.therapistLogs = state.therapistLogs.filter(l => l.id !== id);
+                    saveData();
+                    renderLogTerapisPribadi();
+                    showToast("Laporan berhasil dihapus.");
+                }
+            });
+        }
+
+        // Merender riwayat dan menghitung total berdasarkan filter
         function renderLogTerapisPribadi() {
             const table = document.getElementById('table-terapis-body');
-            const myLogs = state.therapistLogs.filter(l => l.terapis === state.currentUser.nama).reverse();
+            
+            // Set Default Tanggal Filter (Awal Bulan s/d Hari Ini) jika kosong
+            const elStart = document.getElementById('t-filter-start');
+            const elEnd = document.getElementById('t-filter-end');
+            if(!elStart.value) {
+                let d = new Date(); d.setDate(1); // Set ke tgl 1 bulan ini
+                elStart.value = d.toLocaleDateString('en-CA');
+            }
+            if(!elEnd.value) {
+                elEnd.value = getTglNow();
+            }
+
+            // Dapatkan hanya log milik user yang login
+            const myLogs = state.therapistLogs.filter(l => l.terapis === state.currentUser.nama);
             
             let hariIni = 0; let bulanIni = 0;
             const tglNow = getTglNow(); 
             const blnNow = tglNow.substring(0, 7); 
-
-            table.innerHTML = myLogs.map(l => {
+            
+            // Hitung statistik hari/bulan ini
+            myLogs.forEach(l => {
                 if(l.waktuLayanan === tglNow) hariIni++; 
-                if(l.waktuLayanan.substring(0,7) === blnNow) bulanIni++; 
-                return `<tr class="border-b hover:bg-gray-50"><td class="p-4 text-[10px] font-bold text-gray-500">${l.waktuLayanan}</td><td class="p-4 font-black uppercase text-xs">${l.pasien}</td><td class="p-4"><div class="font-bold text-xs text-black mb-1">${l.kegiatan}</div><div class="text-[10px] text-gray-500 bg-gray-100 p-1 rounded inline-block italic">${l.catatan || '-'}</div></td></tr>`;
-            }).join('');
-            
-            if(myLogs.length === 0) table.innerHTML = '<tr><td colspan="3" class="text-center p-6 text-gray-400 font-bold text-xs uppercase">Belum ada aktivitas tercatat</td></tr>';
-            
+                if(l.waktuLayanan.substring(0,7) === blnNow) bulanIni++;
+            });
             document.getElementById('t-stat-hari').innerText = hariIni;
             document.getElementById('t-stat-bulan').innerText = bulanIni;
+
+            // Log yang ditampilkan sesuai range filter
+            const filteredLogs = myLogs.filter(l => l.waktuLayanan >= elStart.value && l.waktuLayanan <= elEnd.value).reverse();
+            
+            // Hitung total komisi pada tabel yg difilter
+            const totalKomisiFilter = filteredLogs.reduce((sum, l) => sum + (parseInt(l.estimasiKomisi) || 0), 0);
+            document.getElementById('t-total-komisi-filter').innerText = formatRp(totalKomisiFilter);
+
+            table.innerHTML = filteredLogs.map(l => {
+                const komisiDisplay = l.estimasiKomisi ? formatRp(l.estimasiKomisi) : '-';
+                return `
+                <tr class="border-b hover:bg-gray-50 group">
+                    <td class="p-4 text-[10px] font-bold text-gray-500">${l.waktuLayanan}</td>
+                    <td class="p-4">
+                        <div class="font-black uppercase text-xs text-gray-800 mb-1">${l.pasien}</div>
+                        <div class="font-bold text-[11px] text-blue-700 bg-blue-50 px-2 py-1 rounded inline-block mb-1 border border-blue-100">${l.kegiatan}</div>
+                        <div class="text-[10px] text-gray-500 italic block mt-1">${l.catatan || '-'}</div>
+                    </td>
+                    <td class="p-4 text-right font-black font-mono tracking-tight text-sm text-gray-900">${komisiDisplay}</td>
+                    <td class="p-4 text-center space-x-1">
+                        <button onclick="siapkanEditLog('${l.id}')" class="bg-white border border-gray-300 text-gray-600 hover:bg-gray-100 hover:text-black w-8 h-8 rounded-lg transition shadow-sm" title="Edit"><i class="fas fa-pen text-xs"></i></button>
+                        <button onclick="hapusLog('${l.id}')" class="bg-white border border-red-200 text-red-500 hover:bg-red-50 hover:text-red-700 w-8 h-8 rounded-lg transition shadow-sm" title="Hapus"><i class="fas fa-trash text-xs"></i></button>
+                    </td>
+                </tr>`;
+            }).join('');
+            
+            if(filteredLogs.length === 0) table.innerHTML = '<tr><td colspan="4" class="text-center p-8 text-gray-400 font-bold text-xs uppercase tracking-widest"><i class="fas fa-folder-open text-2xl mb-2 block opacity-30"></i> Data kosong pada periode ini</td></tr>';
         }
+
+        // --- EXPORT DAN BACKUP ---
 
         function exportAreaToPDF(elementId, filename) {
             const element = document.getElementById(elementId);
@@ -1645,8 +1839,14 @@
             const rows = tbody.querySelectorAll('tr'); 
             rows.forEach(row => {
                 const cols = row.querySelectorAll('td');
-                if(cols.length > 1) {
-                    const rowData = Array.from(cols).map(col => `"${col.innerText.replace(/"/g, '""').replace(/\n/g, ' - ')}"`);
+                // Pengecekan length menghidari baris empty message diexport
+                if(cols.length > 1 && !row.innerText.includes('KOSONG')) {
+                    const rowData = Array.from(cols).map(col => {
+                        let text = col.innerText;
+                        // Hindari newline yang merusak format CSV
+                        text = text.replace(/"/g, '""').replace(/\n/g, ' - ');
+                        return `"${text}"`;
+                    });
                     csv.push(rowData.join(','));
                 }
             });
