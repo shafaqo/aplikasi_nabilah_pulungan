@@ -1691,6 +1691,37 @@
             saveData(); 
             batalEditLog(); // Reset form dan state
             renderLogTerapisPribadi(); 
+            if (!navigator.onLine) return showToast("Gagal: Anda sedang offline!", true);
+            if (GAS_URL.includes('XXXXXXXXXXXXXXXXXXXXXXXXX')) return showToast("Gagal: URL Google Script belum disetting!", true);
+            
+            showToast("Mengunggah data ke Cloud... Harap Tunggu.");
+            const btn = document.getElementById('btn-cloud-upload');
+            const stat = document.getElementById('sync-status');
+            btn.innerHTML = `<i class="fas fa-spinner fa-spin text-2xl mb-1"></i><span>UPLOADING...</span>`;
+            stat.innerText = "Status: Uploading...";
+            
+            try {
+                // Mengirim payload ke Server Google Sheet
+                const response = await fetch(GAS_URL, {
+                    method: 'POST',
+                    body: JSON.stringify(state)
+                });
+                const result = await response.json();
+                
+                if (result.status === 'success') {
+                    showToast("Upload ke Database Cloud Sukses!");
+                    stat.innerText = "Status: Upload Sukses " + getWaktuNow().split(' ')[1];
+                } else {
+                    showToast("Server menolak: " + result.message, true);
+                    stat.innerText = "Status: Gagal";
+                }
+            } catch (e) {
+                showToast("Terjadi kesalahan jaringan/CORS", true);
+                stat.innerText = "Status: Error";
+            } finally {
+                btn.innerHTML = `<i class="fas fa-cloud-upload-alt text-2xl mb-1"></i><span>SIMPAN KE CLOUD</span><span class="text-[9px] font-normal opacity-80 mt-1">(Timpa DB dengan data Lokal)</span>`;
+            }
+
         }
         
         // Mempersiapkan form untuk mode edit
