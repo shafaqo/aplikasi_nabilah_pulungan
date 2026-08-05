@@ -47,7 +47,6 @@
 
     <div id="toast" class="toast"><span id="toast-msg"></span></div>
 
-    <!-- Modal Dialog Kustom (Reusable untuk Konfirmasi) -->
     <div id="custom-dialog" class="modal-overlay fixed inset-0 bg-black/70 z-[9998] hidden flex justify-center items-center backdrop-blur-sm px-4">
         <div class="bg-white rounded-2xl p-6 w-full max-w-sm shadow-2xl animate-slide-up">
             <h3 class="text-lg font-bold mb-2" id="dialog-title">Judul</h3>
@@ -63,7 +62,6 @@
         </div>
     </div>
 
-    <!-- Halaman Login -->
     <div id="view-login" class="flex-1 flex items-center justify-center bg-cover bg-center transition-opacity p-4 relative" style="background-image: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1544161515-4ab6ce6db874?q=80&w=2000&auto=format&fit=crop');">
         <!-- Tombol Portal Reservasi Publik (Diletakkan di atas Form Login) -->
         <button onclick="bukaHomecarePublic()" class="absolute top-6 right-6 bg-brand text-white px-5 py-3 rounded-full font-bold shadow-2xl hover:bg-yellow-600 transition flex items-center z-10 border border-yellow-400">
@@ -76,7 +74,6 @@
                 <i class="fas fa-spa text-5xl mb-4 text-gray-200"></i>
                 <h2 class="text-2xl sm:text-3xl font-light tracking-widest uppercase">Nabilah Pulungan</h2>
                 <p class="text-[10px] text-gray-400 mt-2 tracking-widest leading-relaxed">SMART MANAGEMENT (OFFLINE)<br>Silahkan login berdasarkan nama masing masing <br>(contoh: kak Sarina) berarti <br>username/id : sarina <br>pin/sandi : sarina</p>
-                <!-- Indikator Status Internet -->
                 <div id="network-status" class="mt-4 inline-flex items-center text-[10px] bg-green-900/50 text-green-300 px-3 py-1 rounded-full border border-green-700 font-bold tracking-widest">
                     <span class="w-2 h-2 rounded-full bg-green-400 mr-2 animate-pulse"></span> ONLINE
                 </div>
@@ -99,7 +96,6 @@
         </div>
     </div>
 
-    <!-- View: RESERVASI PUBLIC (Tanpa Login) -->
     <div id="view-homecare-public" class="flex-1 hidden bg-gray-50 flex-col overflow-y-auto custom-scroll relative">
         <div class="bg-brand text-white p-4 sm:p-6 shadow-md flex justify-between items-center sticky top-0 z-40">
             <div>
@@ -156,7 +152,6 @@
         </div>
     </div>
 
-    <!-- View: ADMIN -->
     <div id="view-admin" class="flex-1 hidden bg-gray-50 overflow-hidden flex-col md:flex-row h-full">
         <!-- Sidebar -->
         <div class="w-full md:w-20 lg:w-64 bg-white border-b md:border-r border-gray-200 flex flex-row md:flex-col justify-between transition-all duration-300 z-20 shadow-md shrink-0">
@@ -172,7 +167,6 @@
                     <button onclick="navAdmin('keuangan')" class="admin-nav-btn shrink-0 flex items-center p-2 md:p-3 rounded-xl text-gray-600 hover:bg-gray-100 transition group" data-target="keuangan">
                         <i class="fas fa-wallet w-6 text-center"></i><span class="hidden lg:block ml-3 font-semibold text-sm whitespace-nowrap">Arus Kas</span>
                     </button>
-                    <!-- Tambahan Menu Homecare di Sidebar -->
                     <button onclick="navAdmin('homecare')" class="admin-nav-btn shrink-0 flex items-center p-2 md:p-3 rounded-xl text-gray-600 hover:bg-gray-100 transition group relative" data-target="homecare">
                         <i class="fas fa-home w-6 text-center"></i><span class="hidden lg:block ml-3 font-semibold text-sm whitespace-nowrap">Homecare</span>
                     </button>
@@ -200,7 +194,6 @@
         </div>
 
         <div class="flex-1 flex flex-col h-full overflow-hidden relative bg-gray-100">
-            <!-- MODUL POS -->
             <div id="module-pos" class="admin-module flex-1 flex flex-col lg:flex-row h-full animate-fade-in relative">
                 <div id="banner-edit-trx" class="absolute top-0 left-0 right-0 bg-yellow-400 text-black font-bold p-2 text-center text-sm z-30 hidden shadow-md flex justify-center items-center gap-4">
                     <span><i class="fas fa-edit mr-2"></i>MODE EDIT TRANSAKSI: <span id="edit-trx-id"></span></span>
@@ -211,7 +204,7 @@
                     <div class="p-3 sm:p-4 bg-white border-b border-gray-200 flex flex-col sm:flex-row justify-between items-start sm:items-center shadow-sm z-10 gap-3 mt-0 lg:mt-0">
                         <h2 class="text-lg sm:text-xl font-bold flex items-center gap-2"><i class="fas fa-th-large text-gray-400"></i> Etalase</h2>
                         <div class="flex gap-2 w-full sm:w-auto items-center flex-wrap">
-                            <!-- TOMBOL TOGGLE VIEW -->
+                            <!-- TOMBOL TOGGLE VIEW (Grid/List) -->
                             <div class="flex bg-gray-100 rounded-lg p-1 shrink-0">
                                 <button onclick="setPosViewMode('grid')" id="btn-view-grid" class="p-1.5 bg-white rounded shadow-sm text-black transition" title="Tampilan Grid"><i class="fas fa-th-large w-4 sm:w-5"></i></button>
                                 <button onclick="setPosViewMode('list')" id="btn-view-list" class="p-1.5 text-gray-400 hover:text-black transition" title="Tampilan Daftar"><i class="fas fa-list w-4 sm:w-5"></i></button>
@@ -263,7 +256,6 @@
                 </div>
             </div>
 
-            <!-- MODUL KEUANGAN -->
             <div id="module-keuangan" class="admin-module flex-1 hidden flex-col p-4 sm:p-6 overflow-y-auto custom-scroll animate-fade-in pb-32">
                 <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
                     <h2 class="text-xl sm:text-2xl font-black tracking-tight">Manajemen Arus Kas</h2>
@@ -341,43 +333,55 @@
                 </div>
             </div>
 
-            <!-- MODUL HOMECARE (ADMIN VIEW) -->
             <div id="module-homecare" class="admin-module flex-1 hidden flex-col p-4 sm:p-6 overflow-y-auto custom-scroll animate-fade-in pb-32">
-                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-4">
                     <h2 class="text-xl sm:text-2xl font-black tracking-tight">Reservasi Homecare</h2>
-                    <div class="flex gap-2">
-                        <input type="month" id="filter-bulan-hc" onchange="renderAdminHomecare()" class="p-2 border-2 border-gray-200 rounded-xl font-bold bg-white outline-none focus:border-black">
+                    
+                    <!-- Filter Rentang Waktu Baru untuk Homecare -->
+                    <div class="flex items-center gap-2 bg-white p-2 rounded-xl shadow-sm border border-gray-200 flex-wrap w-full sm:w-auto">
+                        <input type="date" id="filter-start-hc" onchange="renderAdminHomecare()" class="p-2 border border-gray-100 rounded-lg text-xs bg-gray-50 focus:outline-none focus:border-black font-semibold flex-1 sm:flex-none">
+                        <span class="text-xs font-bold text-gray-400">s/d</span>
+                        <input type="date" id="filter-end-hc" onchange="renderAdminHomecare()" class="p-2 border border-gray-100 rounded-lg text-xs bg-gray-50 focus:outline-none focus:border-black font-semibold flex-1 sm:flex-none">
                     </div>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                <!-- Dashboard Statistik Ekstra Homecare -->
+                <div class="grid grid-cols-2 md:grid-cols-5 gap-3 mb-6">
                     <div class="bg-white p-4 rounded-2xl shadow-sm border border-gray-200">
-                        <h3 class="text-[10px] uppercase tracking-widest font-bold text-gray-500 mb-1">Total Reservasi (Bulan)</h3>
-                        <p class="text-3xl font-black" id="stat-hc-total">0</p>
+                        <h3 class="text-[10px] uppercase tracking-widest font-bold text-gray-500 mb-1">Total Reservasi</h3>
+                        <p class="text-2xl font-black" id="hc-stat-total">0</p>
+                    </div>
+                    <div class="bg-yellow-50 p-4 rounded-2xl shadow-sm border border-yellow-200">
+                        <h3 class="text-[10px] uppercase tracking-widest font-bold text-yellow-700 mb-1">Menunggu</h3>
+                        <p class="text-2xl font-black text-yellow-800" id="hc-stat-menunggu">0</p>
+                    </div>
+                    <div class="bg-green-50 p-4 rounded-2xl shadow-sm border border-green-200">
+                        <h3 class="text-[10px] uppercase tracking-widest font-bold text-green-700 mb-1">Selesai</h3>
+                        <p class="text-2xl font-black text-green-800" id="hc-stat-selesai">0</p>
                     </div>
                     <div class="bg-white p-4 rounded-2xl shadow-sm border border-gray-200">
                         <h3 class="text-[10px] uppercase tracking-widest font-bold text-gray-500 mb-1">Layanan Teramai</h3>
-                        <p class="text-lg font-black text-brand truncate" id="stat-hc-layanan">-</p>
+                        <p class="text-sm sm:text-base font-black text-brand truncate mt-1" id="hc-stat-layanan">-</p>
                     </div>
                     <div class="bg-white p-4 rounded-2xl shadow-sm border border-gray-200">
                         <h3 class="text-[10px] uppercase tracking-widest font-bold text-gray-500 mb-1">Hari Teramai</h3>
-                        <p class="text-lg font-black truncate" id="stat-hc-hari">-</p>
+                        <p class="text-sm sm:text-base font-black truncate mt-1" id="hc-stat-hari">-</p>
                     </div>
                 </div>
 
                 <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden flex-1 flex flex-col">
                     <div class="p-4 border-b bg-gray-50">
-                        <h3 class="font-bold text-sm uppercase tracking-wider text-gray-600">Daftar Antrean & Riwayat</h3>
+                        <h3 class="font-bold text-sm uppercase tracking-wider text-gray-600">Daftar Antrean & Riwayat Terfilter</h3>
                     </div>
                     <div class="overflow-x-auto flex-1 custom-scroll p-0">
-                        <table class="w-full text-left whitespace-nowrap min-w-[900px]">
+                        <table class="w-full text-left whitespace-nowrap min-w-[950px]">
                             <thead>
                                 <tr class="bg-white border-b text-gray-400 text-[10px] uppercase tracking-wider">
                                     <th class="p-3 font-bold">Tgl. Submit</th>
                                     <th class="p-3 font-bold">Klien & Kontak</th>
                                     <th class="p-3 font-bold">Jadwal & Layanan</th>
-                                    <th class="p-3 font-bold">Lokasi</th>
-                                    <th class="p-3 font-bold text-center">Status Aksi</th>
+                                    <th class="p-3 font-bold">Lokasi & Catatan</th>
+                                    <th class="p-3 font-bold text-center">Status & Aksi</th>
                                 </tr>
                             </thead>
                             <tbody id="table-hc-body" class="text-sm"></tbody>
@@ -386,7 +390,6 @@
                 </div>
             </div>
 
-            <!-- MODUL LAPORAN -->
             <div id="module-laporan" class="admin-module flex-1 hidden flex-col p-4 sm:p-6 overflow-y-auto custom-scroll animate-fade-in pb-32">
                 <h2 class="text-xl sm:text-2xl font-black tracking-tight mb-4 sm:mb-6">Laporan & Visualisasi</h2>
 
@@ -461,7 +464,6 @@
                 </div>
             </div>
 
-            <!-- MODUL KARYAWAN -->
             <div id="module-karyawan" class="admin-module flex-1 hidden flex-col p-4 sm:p-6 overflow-y-auto custom-scroll animate-fade-in pb-32">
                 <h2 class="text-xl sm:text-2xl font-black tracking-tight mb-4 sm:mb-6">Manajemen Pengguna & Akses</h2>
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -495,7 +497,6 @@
                 </div>
             </div>
 
-            <!-- MODUL PENGATURAN -->
             <div id="module-pengaturan" class="admin-module flex-1 hidden flex-col p-4 sm:p-6 overflow-y-auto custom-scroll animate-fade-in pb-32">
                 <h2 class="text-xl sm:text-2xl font-black tracking-tight mb-4 sm:mb-6">Pengaturan Sistem & Database</h2>
                 
@@ -553,7 +554,6 @@
         </div>
     </div>
 
-    <!-- VIEW: TERAPIS / BIDAN -->
     <div id="view-terapis" class="flex-1 flex hidden flex-col bg-gray-100 h-full overflow-hidden relative">
         <div class="bg-black text-white p-3 sm:p-4 flex justify-between items-center shadow-lg z-50 shrink-0">
             <div class="flex items-center">
@@ -645,7 +645,6 @@
 
     <!-- ================= KUMPULAN MODAL ================= -->
 
-    <!-- Modal Pembayaran (Checkout) Admin POS -->
     <div id="modal-payment" class="modal-overlay fixed inset-0 bg-black/70 z-[60] hidden flex justify-center items-end sm:items-center backdrop-blur-sm">
         <div class="bg-white w-full sm:w-[500px] rounded-t-3xl sm:rounded-3xl flex flex-col max-h-[90vh] sm:max-h-[95vh] shadow-2xl animate-slide-up relative">
             <div class="p-4 sm:p-5 border-b flex justify-between items-center bg-white rounded-t-3xl shrink-0">
@@ -688,7 +687,6 @@
         </div>
     </div>
 
-    <!-- Modal Form Tambah/Edit Produk -->
     <div id="modal-form-produk" class="modal-overlay fixed inset-0 bg-black/70 z-[70] hidden flex justify-center items-center backdrop-blur-sm p-4">
         <div class="bg-white w-full max-w-md rounded-3xl p-5 sm:p-6 shadow-2xl animate-slide-up max-h-[90vh] sm:max-h-[95vh] overflow-y-auto custom-scroll relative">
             <button onclick="closeModal('modal-form-produk')" class="absolute top-3 right-3 sm:top-4 sm:right-4 text-gray-400 hover:text-black bg-gray-100 w-8 h-8 rounded-full flex items-center justify-center"><i class="fas fa-times"></i></button>
@@ -736,7 +734,6 @@
         </div>
     </div>
     
-    <!-- Modal Tutup Buku (Akhiri Shift Kasir) -->
     <div id="modal-tutup-buku" class="modal-overlay fixed inset-0 bg-black/80 z-[80] hidden flex justify-center items-center backdrop-blur-sm p-4">
         <div class="bg-white w-full max-w-sm rounded-3xl p-5 sm:p-6 shadow-2xl animate-slide-up">
             <div class="text-center mb-5 sm:mb-6">
@@ -775,6 +772,30 @@
             <div class="flex gap-2 mt-4 sm:mt-6">
                 <button onclick="closeModal('modal-tutup-buku')" class="flex-1 py-3 sm:py-4 border-2 border-gray-200 rounded-xl font-bold hover:bg-gray-50 text-gray-600 text-xs sm:text-sm">BATAL</button>
                 <button onclick="prosesTutupBuku()" class="flex-1 py-3 sm:py-4 bg-black text-white rounded-xl font-black hover:bg-graydark shadow-xl text-xs sm:text-sm">PROSES TUTUP</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-edit-hc" class="modal-overlay fixed inset-0 bg-black/70 z-[75] hidden flex justify-center items-center backdrop-blur-sm p-4">
+        <div class="bg-white w-full max-w-2xl rounded-3xl p-5 sm:p-6 shadow-2xl animate-slide-up max-h-[90vh] sm:max-h-[95vh] overflow-y-auto custom-scroll relative">
+            <button onclick="closeModal('modal-edit-hc')" class="absolute top-3 right-3 sm:top-4 sm:right-4 text-gray-400 hover:text-black bg-gray-100 w-8 h-8 rounded-full flex items-center justify-center"><i class="fas fa-times"></i></button>
+            <h3 class="font-black text-base sm:text-lg uppercase tracking-wider mb-4 sm:mb-5 flex items-center border-b pb-2 sm:pb-3"><i class="fas fa-edit mr-2 text-brand"></i> Edit Data Reservasi</h3>
+            
+            <input type="hidden" id="ehc-id">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div><label class="text-[9px] sm:text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1 block">Nama Pasien</label><input type="text" id="ehc-nama" class="w-full border-2 p-2.5 rounded-xl text-sm outline-none focus:border-black bg-gray-50 font-bold"></div>
+                <div><label class="text-[9px] sm:text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1 block">Kontak / WA</label><input type="text" id="ehc-kontak" class="w-full border-2 p-2.5 rounded-xl text-sm outline-none focus:border-black bg-gray-50 font-bold"></div>
+                
+                <div><label class="text-[9px] sm:text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1 block">Tanggal Reservasi</label><input type="date" id="ehc-tglres" class="w-full border-2 p-2.5 rounded-xl text-sm outline-none focus:border-black bg-gray-50 font-bold"></div>
+                <div><label class="text-[9px] sm:text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1 block">Prakiraan Jam</label><input type="time" id="ehc-jamres" class="w-full border-2 p-2.5 rounded-xl text-sm outline-none focus:border-black bg-gray-50 font-bold"></div>
+                
+                <div class="sm:col-span-2"><label class="text-[9px] sm:text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1 block">Layanan (Ketik manual/sesuaikan)</label><input type="text" id="ehc-layanan" class="w-full border-2 p-2.5 rounded-xl text-sm outline-none focus:border-black bg-gray-50 font-bold"></div>
+                <div class="sm:col-span-2"><label class="text-[9px] sm:text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1 block">Alamat Lengkap</label><textarea id="ehc-alamat" rows="2" class="w-full border-2 p-2.5 rounded-xl text-sm outline-none focus:border-black bg-gray-50 font-bold"></textarea></div>
+                <div class="sm:col-span-2"><label class="text-[9px] sm:text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1 block">Catatan Keluhan</label><textarea id="ehc-catatan" rows="2" class="w-full border-2 p-2.5 rounded-xl text-sm outline-none focus:border-black bg-gray-50 font-bold"></textarea></div>
+            </div>
+
+            <div class="flex mt-6 pt-4 border-t">
+                <button onclick="simpanEditHC()" class="flex-1 py-3 sm:py-4 bg-brand text-white rounded-xl hover:bg-yellow-600 font-black text-xs sm:text-sm tracking-widest uppercase shadow-lg">Simpan Perubahan</button>
             </div>
         </div>
     </div>
@@ -836,12 +857,9 @@
     </div>
 
     <script>
-        // ============================================================================
-        // CONFIGURASI BACKEND CLOUD (GOOGLE APPS SCRIPT)
-        // ============================================================================
+        // CONFIGURASI BACKEND CLOUD
         const GAS_URL = 'https://script.google.com/macros/s/AKfycbxDOkArpuVp0dZ_O8OKAxVS7MGSB5cupC4yP8rXuSANCZPMtdo3AhUjKMKFylqMxajF9A/exec';
         
-        // Variabel global penampung seluruh data
         let state = {
             currentUser: null,           
             cart: [],                    
@@ -866,20 +884,20 @@
             cashFlow: [],      
             therapistLogs: [], 
             tutupBukuLogs: [],
-            reservasi: [] // Array khusus penampung pesanan Homecare
+            reservasi: [] 
         };
 
         let chart1, chart2;  
-        let posViewMode = 'grid'; // Status tampilan etalase (Grid / List)
+        let posViewMode = 'grid'; 
 
-        // FUNGSI PEMBERSIH DATA LAMA (Memperbaiki data yang terlanjur corrupt akibat isu Tanggal Apps Script)
+        // AUTO-CLEANER untuk format tanggal corrupt akibat timezone JS lawas
         function bersihkanDataWaktuCorrupt() {
             const cleanTgl = (d) => d && d.includes('T') ? d.split('T')[0] : d;
             const cleanWaktu = (w) => {
                 if(!w) return w;
                 if(w.includes('T')) {
-                    let jam = w.split('T')[1].split('.')[0]; // Pisahkan zona waktu dan milidetik
-                    return w.split('T')[0] + ' ' + jam; // Kembalikan ke format YYYY-MM-DD HH:MM:SS
+                    let jam = w.split('T')[1].split('.')[0]; 
+                    return w.split('T')[0] + ' ' + jam; 
                 }
                 return w;
             };
@@ -905,7 +923,7 @@
             const el = document.getElementById('network-status');
             if (navigator.onLine) {
                 el.className = "mt-4 inline-flex items-center text-[10px] bg-green-900/50 text-green-300 px-3 py-1 rounded-full border border-green-700 font-bold tracking-widest";
-                el.innerHTML = '<span class="w-2 h-2 rounded-full bg-green-400 mr-2 animate-pulse"></span> ONLINE (BISA SYNC)';
+                el.innerHTML = '<span class="w-2 h-2 rounded-full bg-green-400 mr-2 animate-pulse"></span> ONLINE';
             } else {
                 el.className = "mt-4 inline-flex items-center text-[10px] bg-red-900/50 text-red-300 px-3 py-1 rounded-full border border-red-700 font-bold tracking-widest";
                 el.innerHTML = '<span class="w-2 h-2 rounded-full bg-red-400 mr-2"></span> OFFLINE (MODE LOKAL)';
@@ -923,7 +941,7 @@
                 if(localStorage.getItem('spa_tutup')) state.tutupBukuLogs = JSON.parse(localStorage.getItem('spa_tutup'));
                 if(localStorage.getItem('spa_reservasi')) state.reservasi = JSON.parse(localStorage.getItem('spa_reservasi'));
                 
-                bersihkanDataWaktuCorrupt(); // Cuci bug tanggal saat app dimuat
+                bersihkanDataWaktuCorrupt(); 
 
                 if(localStorage.getItem('spa_currentUser')) {
                     const savedUser = JSON.parse(localStorage.getItem('spa_currentUser'));
@@ -936,15 +954,19 @@
                     }
                 }
                 
+                // Set default tanggal filter
                 document.getElementById('filter-start').value = getTglNow();
                 document.getElementById('filter-end').value = getTglNow();
                 
-                // Set default tanggal filter kas untuk bulan ini
-                let dKas = new Date(); dKas.setDate(1); 
-                document.getElementById('filter-start-kas').value = dKas.toLocaleDateString('en-CA');
+                let dAwalBln = new Date(); dAwalBln.setDate(1); 
+                const tglAwalBlnStr = dAwalBln.toLocaleDateString('en-CA');
+                
+                document.getElementById('filter-start-kas').value = tglAwalBlnStr;
                 document.getElementById('filter-end-kas').value = getTglNow();
                 
-                document.getElementById('filter-bulan-hc').value = getTglNow().substring(0, 7); // Set admin homecare ke bulan ini
+                document.getElementById('filter-start-hc').value = tglAwalBlnStr; 
+                document.getElementById('filter-end-hc').value = getTglNow(); 
+                
                 document.getElementById('t-tgl').value = getTglNow();
                 
                 updateNetworkStatus(); 
@@ -967,13 +989,12 @@
             const userDiSistem = state.users.find(u => u.id === state.currentUser.id && u.pin === state.currentUser.pin);
             if(!userDiSistem) { 
                 logout(); 
-                showToast("Sesi kedaluwarsa atau dibatalkan sistem. Harap login kembali.", true);
+                showToast("Sesi kedaluwarsa atau dibatalkan sistem.", true);
                 return false;
             }
             return true;
         }
 
-        // --- FUNGSI SINKRONISASI CLOUD (GOOGLE SHEETS) ---
         function mergeArrays(cloudArr, localArr) {
             const map = new Map();
             if (cloudArr && Array.isArray(cloudArr)) cloudArr.forEach(item => map.set(item.id, item));
@@ -985,7 +1006,7 @@
             if (!navigator.onLine) return showToast("Gagal: Anda sedang offline!", true);
             if (GAS_URL.includes('XXXXXXXXXXXXXXXXXXXXXXXXX')) return showToast("Gagal: URL Google Script belum disetting!", true);
             
-            showToast("Mensinkronisasikan data dengan Cloud... Harap Tunggu.");
+            showToast("Mensinkronisasikan data dengan Cloud...");
             const btn = document.getElementById('btn-cloud-upload');
             const stat = document.getElementById('sync-status');
             
@@ -1066,7 +1087,7 @@
                             state.tutupBukuLogs = result.data.tutupBukuLogs || [];
                             state.reservasi = result.data.reservasi || [];
                             
-                            bersihkanDataWaktuCorrupt(); // Penting: Eksekusi script cuci di sini.
+                            bersihkanDataWaktuCorrupt(); 
 
                             saveData(); 
                             showToast("Download Sukses! Aplikasi dimuat ulang...");
@@ -1193,19 +1214,16 @@
             if(moduleName === 'karyawan') renderSDM();
         }
 
-        // --- PORTAL HOMECARE PUBLIK ---
         function bukaHomecarePublic() {
             document.getElementById('view-login').classList.add('hidden');
             document.getElementById('view-homecare-public').classList.remove('hidden');
             document.getElementById('view-homecare-public').classList.add('flex');
             
-            // Render pilihan layanan dari etalase produk ke dropdown Homecare
             const sel = document.getElementById('hc-layanan');
             sel.innerHTML = '<option value="">-- Pilih Layanan Tersedia --</option>' + 
                             state.products.map(p => `<option value="${p.nama}">${p.nama} (${formatRp(p.harga)})</option>`).join('') + 
                             '<option value="lainnya">Lainnya (Ketik Manual)...</option>';
                             
-            // Reset fields
             document.getElementById('hc-nama').value = ''; document.getElementById('hc-tgllahir').value = '';
             document.getElementById('hc-umur').value = ''; document.getElementById('hc-kontak').value = '';
             document.getElementById('hc-alamat').value = ''; document.getElementById('hc-maps').value = '';
@@ -1272,14 +1290,12 @@
             state.reservasi.push(payload);
             saveData();
             
-            showDialog("Permintaan Terkirim!", "Reservasi Anda telah masuk ke sistem kami. Tim klinik akan segera menghubungi nomor " + kontak + " untuk konfirmasi lebih lanjut.", "Tutup & Kembali", false, "", () => {
-                cloudUpload(); // Trigger sinkronisasi berjalan otomatis di latar belakang
+            showDialog("Permintaan Terkirim!", "Reservasi Anda telah masuk ke sistem kami. Tim klinik akan segera menghubungi nomor " + kontak + " untuk konfirmasi.", "Tutup & Kembali", false, "", () => {
+                cloudUpload(); 
                 tutupHomecarePublic();
             });
         }
 
-        // --- MODUL POS KASIR ---
-        
         function setPosViewMode(mode) {
             posViewMode = mode;
             const btnGrid = document.getElementById('btn-view-grid');
@@ -1298,10 +1314,9 @@
             renderProducts();
         }
 
-        // FUNGSI BARU: Mencetak Daftar Etalase/Katalog sebagai dokumen A4 via HTML2PDF
+        // FUNGSI BARU CETAK PDF DENGAN FIX POTONGAN TABEL (Page-Break)
         function cetakKatalogA4() {
             if(state.products.length === 0) return showToast("Etalase masih kosong!", true);
-            
             showToast("Menyusun PDF Katalog A4...");
             
             const opt = {
@@ -1309,11 +1324,19 @@
                 filename:     `Katalog_Klinik_${getTglNow()}.pdf`,
                 image:        { type: 'jpeg', quality: 0.98 },
                 html2canvas:  { scale: 2, useCORS: true },
-                jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+                jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' },
+                // FIX: Menambahkan proteksi potong halaman untuk tag 'tr'
+                pagebreak:    { mode: 'css', avoid: 'tr' } 
             };
 
-            // Menyusun String HTML untuk dokumen PDF
+            // Menambahkan style break-inside untuk melindungi baris tabel (tr)
             let htmlContent = `
+                <style>
+                    table { page-break-inside: auto; }
+                    tr { page-break-inside: avoid; page-break-after: auto; }
+                    thead { display: table-header-group; }
+                    tfoot { display: table-footer-group; }
+                </style>
                 <div style="font-family: 'Segoe UI', Tahoma, sans-serif; color: #111;">
                     <div style="text-align: center; border-bottom: 3px solid #000; padding-bottom: 15px; margin-bottom: 25px;">
                         <h1 style="margin: 0; font-size: 24px; font-weight: 900; letter-spacing: 2px; text-transform: uppercase;">Katalog Layanan & Produk</h1>
@@ -1332,7 +1355,6 @@
                         <tbody>
             `;
 
-            // Urutkan Katalog Berdasarkan abjad kategori supaya rapi dipandang.
             let sortedProducts = [...state.products].sort((a, b) => a.kategori.localeCompare(b.kategori));
 
             sortedProducts.forEach((p, index) => {
@@ -1361,11 +1383,9 @@
             const wrapper = document.createElement('div');
             wrapper.innerHTML = htmlContent;
 
-            // Trigger library PDF ke Browser
             html2pdf().set(opt).from(wrapper).save();
         }
 
-        // Render List Barang POS
         function renderProducts() {
             const grid = document.getElementById('product-grid');
             grid.innerHTML = '';
@@ -1390,7 +1410,7 @@
                             </div>
                         </div>
                     `;
-                } else { // LIST MODE
+                } else { 
                     const listKonsinyasiBadge = p.konsinyasi ? `<span class="text-[7px] sm:text-[8px] bg-gray-200 text-gray-700 px-1.5 py-0.5 rounded font-black uppercase tracking-widest border border-gray-300 shadow-sm">Titip Jual</span>` : '';
                     grid.innerHTML += `
                         <div class="bg-white p-3 rounded-xl border-2 border-gray-100 shadow-sm hover:shadow-md hover:border-black transition cursor-pointer relative group flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 sm:gap-0 editable-hover" onclick="addToCart('${p.id}')">
@@ -1671,7 +1691,6 @@
                 const kasIndex = state.cashFlow.findIndex(k => k.refId === idTrx);
                 if(kasIndex > -1) {
                     state.cashFlow[kasIndex].nominal = transaksiData.totalAkhir; 
-                    // BUG FIX: Kategori/metodeBayar update disesuaikan dengan skema tipe CashFlow
                     state.cashFlow[kasIndex].kategori = `POS - ${transaksiData.metodeBayar}`; 
                 }
                 
@@ -1762,7 +1781,6 @@
             clearCart(); 
         }
 
-        // MODUL: ARUS KAS KEUANGAN
         function renderKeuangan() {
             const table = document.getElementById('table-kas-body');
             table.innerHTML = '';
@@ -1770,20 +1788,16 @@
             let totalKasMasukPOS = 0; let totalKasMasukLainnya = 0; let totalKasKeluar = 0;
             let kasMasukFilter = 0; let kasKeluarFilter = 0; 
             
-            // 1. Kalkulasi SALDO LACI GLOBAL (Berjalan/Seluruh Waktu)
-            // Laci Fisik nyata = Seluruh penerimaan uang tunai/kas - seluruh penarikan uang/keluar sejak hari pertama
             state.cashFlow.forEach(k => {
                 const isMasuk = k.tipe === 'Masuk';
-                // Hanya hitung POS metode 'Tunai' sebagai fisik laci (QRIS & Transfer dipisah karena uangnya ke bank)
                 if (isMasuk && k.kategori.includes('POS - Tunai')) totalKasMasukPOS += parseInt(k.nominal);
                 if (isMasuk && !k.kategori.includes('POS')) totalKasMasukLainnya += parseInt(k.nominal);
                 if (!isMasuk) totalKasKeluar += parseInt(k.nominal);
             });
-            // Total laci = Uang Tunai POS + Uang Masuk Manual - Uang Keluar Keseluruhan (Termasuk Penarikan Setoran Tutup Buku)
+            
             state.estimasiKasSekarang = (totalKasMasukPOS + totalKasMasukLainnya) - totalKasKeluar;
             document.getElementById('estimasi-kas-sistem').innerText = formatRp(state.estimasiKasSekarang);
 
-            // 2. Kalkulasi Data Table & Big Card berdasarkan RENTANG FILTER TANGGAL
             const startKas = document.getElementById('filter-start-kas').value || '1970-01-01';
             const endKas = document.getElementById('filter-end-kas').value || '2099-12-31';
             
@@ -1847,15 +1861,12 @@
             const payload = { id: 'TB' + generateID(), waktu: getWaktuNow(), tgl: getTglNow(), admin: state.currentUser.nama, totalSistem: state.estimasiKasSekarang, uangAktual: aktual, selisih: selisih, uangDitarik: diambil, modalEsok: sisaModal };
             state.tutupBukuLogs.push(payload); 
             
-            // PENYELESAIAN BUG SELISIH KAS (Adjuster): 
-            // Jika ada selisih kurang/lebih hitung fisik, buatkan rekaman fiktif koreksi agar nominal sistem sinkron dengan fisik saat ini.
             if(selisih < 0) {
                  state.cashFlow.push({ id: 'KAS' + generateID(), waktu: getWaktuNow(), tgl: getTglNow(), tipe: 'Keluar', kategori: 'Penyesuaian Selisih', nominal: Math.abs(selisih), keterangan: `Penyesuaian kas minus/hilang saat tutup buku.`, refId: payload.id });
             } else if(selisih > 0) {
                  state.cashFlow.push({ id: 'KAS' + generateID(), waktu: getWaktuNow(), tgl: getTglNow(), tipe: 'Masuk', kategori: 'Penyesuaian Selisih', nominal: selisih, keterangan: `Penyesuaian kas lebih saat tutup buku.`, refId: payload.id });
             }
 
-            // Catat uang yang dibawa pulang Admin/Toko sebagai pengeluaran/Setoran
             if(diambil > 0) { 
                 state.cashFlow.push({ id: 'KAS' + generateID(), waktu: getWaktuNow(), tgl: getTglNow(), tipe: 'Keluar', kategori: 'Setoran Tutup Buku', nominal: diambil, keterangan: `Uang disetorkan/ditarik saat tutup buku kasir.`, refId: payload.id });
             }
@@ -1863,28 +1874,28 @@
             saveData(); renderKeuangan(); showToast("Tutup Buku Selesai & Sukses Tersimpan."); closeModal('modal-tutup-buku');
         }
 
-        // --- MODUL ADMIN HOMECARE ---
         function renderAdminHomecare() {
             const tbody = document.getElementById('table-hc-body');
             tbody.innerHTML = '';
             
-            const filterBln = document.getElementById('filter-bulan-hc').value;
+            const start = document.getElementById('filter-start-hc').value || '1970-01-01';
+            const end = document.getElementById('filter-end-hc').value || '2099-12-31';
+            
             const resData = state.reservasi || [];
+            let filtered = resData.filter(r => r.tglReservasi >= start && r.tglReservasi <= end);
             
-            let filtered = resData.filter(r => r.tglReservasi.substring(0, 7) === filterBln);
-            
-            // Stats Variables
-            let layananCount = {}; let hariCount = {};
+            let layananCount = {}; 
+            let hariCount = {};
+            let stMenunggu = 0, stSelesai = 0;
             
             filtered.reverse().forEach(r => {
-                // Populate stats
                 layananCount[r.layanan] = (layananCount[r.layanan] || 0) + 1;
                 hariCount[r.tglReservasi] = (hariCount[r.tglReservasi] || 0) + 1;
 
                 let statusBadge = '';
-                if(r.status === 'Menunggu') statusBadge = '<span class="bg-yellow-100 text-yellow-800 border border-yellow-300 px-2 py-1 rounded font-bold text-[10px]">MENUNGGU</span>';
-                else if(r.status === 'Selesai') statusBadge = '<span class="bg-green-100 text-green-800 border border-green-300 px-2 py-1 rounded font-bold text-[10px]">SELESAI</span>';
-                else statusBadge = '<span class="bg-red-100 text-red-800 border border-red-300 px-2 py-1 rounded font-bold text-[10px]">BATAL</span>';
+                if(r.status === 'Menunggu') { statusBadge = '<span class="bg-yellow-100 text-yellow-800 border border-yellow-300 px-2 py-1 rounded font-bold text-[10px]">MENUNGGU</span>'; stMenunggu++; }
+                else if(r.status === 'Selesai') { statusBadge = '<span class="bg-green-100 text-green-800 border border-green-300 px-2 py-1 rounded font-bold text-[10px]">SELESAI</span>'; stSelesai++; }
+                else { statusBadge = '<span class="bg-red-100 text-red-800 border border-red-300 px-2 py-1 rounded font-bold text-[10px]">BATAL</span>'; }
 
                 tbody.innerHTML += `
                 <tr class="border-b hover:bg-gray-50">
@@ -1899,13 +1910,18 @@
                     </td>
                     <td class="p-3 min-w-[200px] whitespace-normal">
                         <div class="text-[10px] italic text-gray-600 mb-1 line-clamp-2">${r.alamat}</div>
-                        <a href="${r.maps}" target="_blank" class="text-[10px] text-blue-600 hover:underline font-bold flex items-center"><i class="fas fa-map-marker-alt mr-1"></i> Buka Peta</a>
+                        <div class="flex gap-2">
+                            <a href="${r.maps}" target="_blank" class="text-[10px] text-blue-600 hover:underline font-bold flex items-center"><i class="fas fa-map-marker-alt mr-1"></i> Buka Maps</a>
+                            <span class="text-[10px] text-gray-400">|</span>
+                            <span class="text-[10px] text-gray-500 font-semibold" title="${r.catatan||'-'}"><i class="fas fa-comment-dots mr-1"></i> ${r.catatan ? 'Ada Catatan' : '-'}</span>
+                        </div>
                     </td>
-                    <td class="p-3 text-center">
+                    <td class="p-3 text-center align-middle">
                         <div class="mb-2">${statusBadge}</div>
                         <div class="flex justify-center gap-1">
                             <button onclick="ubahStatusHC('${r.id}', 'Selesai')" class="bg-green-500 hover:bg-green-600 text-white w-7 h-7 rounded-lg shadow-sm" title="Tandai Selesai"><i class="fas fa-check text-[10px]"></i></button>
                             <button onclick="ubahStatusHC('${r.id}', 'Batal')" class="bg-red-500 hover:bg-red-600 text-white w-7 h-7 rounded-lg shadow-sm" title="Batalkan"><i class="fas fa-times text-[10px]"></i></button>
+                            <button onclick="siapkanEditHC('${r.id}')" class="bg-blue-500 hover:bg-blue-600 text-white w-7 h-7 rounded-lg shadow-sm" title="Edit Data"><i class="fas fa-pen text-[10px]"></i></button>
                         </div>
                     </td>
                 </tr>
@@ -1914,13 +1930,14 @@
 
             if(tbody.innerHTML === '') tbody.innerHTML = '<tr><td colspan="5" class="text-center p-6 text-gray-400 font-bold text-xs uppercase tracking-widest">Belum ada data reservasi</td></tr>';
 
-            // Hitung Layanan Terlaris & Hari Teramai (Sorting the Object arrays)
             let topLayanan = Object.keys(layananCount).sort((a,b)=>layananCount[b]-layananCount[a])[0] || '-';
             let topHari = Object.keys(hariCount).sort((a,b)=>hariCount[b]-hariCount[a])[0] || '-';
             
-            document.getElementById('stat-hc-total').innerText = filtered.length;
-            document.getElementById('stat-hc-layanan').innerText = topLayanan;
-            document.getElementById('stat-hc-hari').innerText = topHari;
+            document.getElementById('hc-stat-total').innerText = filtered.length;
+            document.getElementById('hc-stat-menunggu').innerText = stMenunggu;
+            document.getElementById('hc-stat-selesai').innerText = stSelesai;
+            document.getElementById('hc-stat-layanan').innerText = topLayanan;
+            document.getElementById('hc-stat-hari').innerText = topHari;
         }
 
         function ubahStatusHC(id, statusBaru) {
@@ -1932,7 +1949,39 @@
             }
         }
 
-        // MODUL LAPORAN 
+        function siapkanEditHC(id) {
+            const r = state.reservasi.find(x => x.id === id);
+            if(!r) return;
+            
+            document.getElementById('ehc-id').value = r.id;
+            document.getElementById('ehc-nama').value = r.nama;
+            document.getElementById('ehc-kontak').value = r.kontak;
+            document.getElementById('ehc-tglres').value = r.tglReservasi;
+            document.getElementById('ehc-jamres').value = r.jamReservasi;
+            document.getElementById('ehc-layanan').value = r.layanan;
+            document.getElementById('ehc-alamat').value = r.alamat;
+            document.getElementById('ehc-catatan').value = r.catatan;
+            
+            openModal('modal-edit-hc');
+        }
+
+        function simpanEditHC() {
+            const id = document.getElementById('ehc-id').value;
+            const idx = state.reservasi.findIndex(x => x.id === id);
+            if(idx > -1) {
+                state.reservasi[idx].nama = document.getElementById('ehc-nama').value;
+                state.reservasi[idx].kontak = document.getElementById('ehc-kontak').value;
+                state.reservasi[idx].tglReservasi = document.getElementById('ehc-tglres').value;
+                state.reservasi[idx].jamReservasi = document.getElementById('ehc-jamres').value;
+                state.reservasi[idx].layanan = document.getElementById('ehc-layanan').value;
+                state.reservasi[idx].alamat = document.getElementById('ehc-alamat').value;
+                state.reservasi[idx].catatan = document.getElementById('ehc-catatan').value;
+                
+                saveData(); renderAdminHomecare(); closeModal('modal-edit-hc');
+                showToast("Data Reservasi berhasil dikoreksi.");
+            }
+        }
+
         function populateTerapisFilter() {
             const select = document.getElementById('filter-terapis-nama');
             const terapisNames = [...new Set(state.users.filter(u=>u.role==='terapis').map(u=>u.nama))]; 
@@ -2084,7 +2133,6 @@
             });
         }
 
-        // --- LOGIKA TERAPIS / BIDAN ---
         function populateKegiatanTerapis() {
             const sel = document.getElementById('t-kegiatan');
             let html = '';
@@ -2273,18 +2321,18 @@
             if(filteredLogs.length === 0) table.innerHTML = '<tr><td colspan="4" class="text-center p-6 sm:p-8 text-gray-400 font-bold text-[10px] sm:text-xs uppercase tracking-widest"><i class="fas fa-folder-open text-xl sm:text-2xl mb-1 sm:mb-2 block opacity-30"></i> Data kosong pada periode ini</td></tr>';
         }
 
-        // --- EXPORT DAN BACKUP ---
         function exportAreaToPDF(elementId, filename) {
             const element = document.getElementById(elementId);
             const opt = { 
                 margin: 10, filename: filename, image: { type: 'jpeg', quality: 0.98 }, 
                 html2canvas: { scale: 2, useCORS: true },  
-                jsPDF: { unit: 'mm', format: 'a4', orientation: 'landscape' }  
+                jsPDF: { unit: 'mm', format: 'a4', orientation: 'landscape' },
+                pagebreak: { mode: 'css', avoid: 'tr' }
             };
             const wrapper = document.createElement('div');
             wrapper.style.padding = '20px';
             wrapper.style.background = 'white';
-            wrapper.innerHTML = `<h2 style="font-family:sans-serif; text-align:center; margin-bottom: 20px; text-transform:uppercase;">Klinik SPA Laporan - ${filename.replace('.pdf','')}</h2>` + element.innerHTML;
+            wrapper.innerHTML = `<style>tr{page-break-inside:avoid;}</style><h2 style="font-family:sans-serif; text-align:center; margin-bottom: 20px; text-transform:uppercase;">Klinik SPA Laporan - ${filename.replace('.pdf','')}</h2>` + element.innerHTML;
             
             html2pdf().set(opt).from(wrapper).save(); 
         }
