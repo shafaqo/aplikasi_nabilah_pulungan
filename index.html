@@ -40,6 +40,13 @@
         .toast.show { bottom: 30px; }
         #print-receipt-container { width: 80mm; background: white; padding: 5mm; color: black; font-family: 'Courier New', Courier, monospace; margin: 0 auto; line-height: 1.2;}
         .modal-overlay { transition: opacity 0.3s ease; }
+        
+        /* CSS Khusus Export PDF untuk Mencegah Terpotong */
+        .pdf-export-table { width: 100%; border-collapse: collapse; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 11px; }
+        .pdf-export-table th, .pdf-export-table td { padding: 8px 10px; border: 1px solid #e5e7eb; text-align: left; }
+        .pdf-export-table th { background-color: #f3f4f6; font-weight: bold; color: #374151; text-transform: uppercase; letter-spacing: 0.05em; font-size: 10px; }
+        .pdf-export-table tbody tr { page-break-inside: avoid; }
+        .pdf-export-table tbody tr:nth-child(even) { background-color: #f9fafb; }
     </style>
 </head>
 
@@ -62,8 +69,9 @@
         </div>
     </div>
 
+    <!-- VIEW LOGIN -->
     <div id="view-login" class="flex-1 flex items-center justify-center bg-cover bg-center transition-opacity p-4 relative" style="background-image: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1544161515-4ab6ce6db874?q=80&w=2000&auto=format&fit=crop');">
-        <!-- Tombol Portal Reservasi Publik (Diletakkan di atas Form Login) -->
+        <!-- Tombol Portal Reservasi Publik -->
         <button onclick="bukaHomecarePublic()" class="absolute top-6 right-6 bg-brand text-white px-5 py-3 rounded-full font-bold shadow-2xl hover:bg-yellow-600 transition flex items-center z-10 border border-yellow-400">
             <i class="fas fa-calendar-check mr-2"></i> RESERVASI HOMECARE
         </button>
@@ -96,6 +104,7 @@
         </div>
     </div>
 
+    <!-- VIEW HOMECARE PORTAL (PUBLIC) -->
     <div id="view-homecare-public" class="flex-1 hidden bg-gray-50 flex-col overflow-y-auto custom-scroll relative">
         <div class="bg-brand text-white p-4 sm:p-6 shadow-md flex justify-between items-center sticky top-0 z-40">
             <div>
@@ -112,7 +121,6 @@
                 </div>
                 <div class="p-5 sm:p-8 space-y-5">
                     
-                    <!-- Data Pasien -->
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div class="sm:col-span-2"><label class="block text-xs font-bold text-gray-500 uppercase mb-1">Nama Pasien / Pemesan *</label><input type="text" id="hc-nama" class="w-full p-3 border-2 border-gray-200 rounded-xl focus:border-black outline-none bg-gray-50" placeholder="Ketik nama lengkap"></div>
                         <div><label class="block text-xs font-bold text-gray-500 uppercase mb-1">Tanggal Lahir *</label><input type="date" id="hc-tgllahir" class="w-full p-3 border-2 border-gray-200 rounded-xl focus:border-black outline-none bg-gray-50" onchange="hitungUmur()"></div>
@@ -122,7 +130,6 @@
                     
                     <hr class="border-gray-200">
                     
-                    <!-- Lokasi & Waktu -->
                     <div class="space-y-4">
                         <div><label class="block text-xs font-bold text-gray-500 uppercase mb-1">Alamat Lengkap (Manual) *</label><textarea id="hc-alamat" rows="2" class="w-full p-3 border-2 border-gray-200 rounded-xl focus:border-black outline-none bg-gray-50" placeholder="Nama Jalan, RT/RW, Desa, Patokan Rumah"></textarea></div>
                         <div><label class="block text-xs font-bold text-gray-500 uppercase mb-1 flex justify-between"><span>Link Google Maps</span> <span class="text-[10px] text-blue-500 font-normal">Buka Maps > Bagikan Lokasi > Salin Link</span></label><input type="text" id="hc-maps" class="w-full p-3 border-2 border-gray-200 rounded-xl focus:border-black outline-none bg-gray-50 text-sm" placeholder="https://maps.app.goo.gl/..."></div>
@@ -135,7 +142,6 @@
                     
                     <hr class="border-gray-200">
                     
-                    <!-- Layanan & Keluhan -->
                     <div class="space-y-4">
                         <div>
                             <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Pilih Layanan *</label>
@@ -152,6 +158,7 @@
         </div>
     </div>
 
+    <!-- VIEW ADMIN PANEL -->
     <div id="view-admin" class="flex-1 hidden bg-gray-50 overflow-hidden flex-col md:flex-row h-full">
         <!-- Sidebar -->
         <div class="w-full md:w-20 lg:w-64 bg-white border-b md:border-r border-gray-200 flex flex-row md:flex-col justify-between transition-all duration-300 z-20 shadow-md shrink-0">
@@ -170,6 +177,9 @@
                     <button onclick="navAdmin('homecare')" class="admin-nav-btn shrink-0 flex items-center p-2 md:p-3 rounded-xl text-gray-600 hover:bg-gray-100 transition group relative" data-target="homecare">
                         <i class="fas fa-home w-6 text-center"></i><span class="hidden lg:block ml-3 font-semibold text-sm whitespace-nowrap">Homecare</span>
                     </button>
+                    <button onclick="navAdmin('inventory')" class="admin-nav-btn shrink-0 flex items-center p-2 md:p-3 rounded-xl text-gray-600 hover:bg-gray-100 transition group relative" data-target="inventory">
+                        <i class="fas fa-boxes w-6 text-center"></i><span class="hidden lg:block ml-3 font-semibold text-sm whitespace-nowrap">Stok Barang</span>
+                    </button>
                     <button onclick="navAdmin('laporan')" class="admin-nav-btn shrink-0 flex items-center p-2 md:p-3 rounded-xl text-gray-600 hover:bg-gray-100 transition group" data-target="laporan">
                         <i class="fas fa-chart-pie w-6 text-center"></i><span class="hidden lg:block ml-3 font-semibold text-sm whitespace-nowrap">Laporan Data</span>
                     </button>
@@ -178,7 +188,6 @@
                     </button>
                     <button onclick="navAdmin('pengaturan')" class="admin-nav-btn shrink-0 flex items-center p-2 md:p-3 rounded-xl text-gray-600 hover:bg-gray-100 transition group relative" data-target="pengaturan">
                         <i class="fas fa-cog w-6 text-center"></i><span class="hidden lg:block ml-3 font-semibold text-sm whitespace-nowrap">Pengaturan</span>
-                        <span class="absolute top-2 right-2 w-2 h-2 bg-blue-500 rounded-full hidden lg:block"></span>
                     </button>
                 </nav>
             </div>
@@ -194,6 +203,7 @@
         </div>
 
         <div class="flex-1 flex flex-col h-full overflow-hidden relative bg-gray-100">
+            <!-- MODULE: POS -->
             <div id="module-pos" class="admin-module flex-1 flex flex-col lg:flex-row h-full animate-fade-in relative">
                 <div id="banner-edit-trx" class="absolute top-0 left-0 right-0 bg-yellow-400 text-black font-bold p-2 text-center text-sm z-30 hidden shadow-md flex justify-center items-center gap-4">
                     <span><i class="fas fa-edit mr-2"></i>MODE EDIT TRANSAKSI: <span id="edit-trx-id"></span></span>
@@ -204,12 +214,10 @@
                     <div class="p-3 sm:p-4 bg-white border-b border-gray-200 flex flex-col sm:flex-row justify-between items-start sm:items-center shadow-sm z-10 gap-3 mt-0 lg:mt-0">
                         <h2 class="text-lg sm:text-xl font-bold flex items-center gap-2"><i class="fas fa-th-large text-gray-400"></i> Etalase</h2>
                         <div class="flex gap-2 w-full sm:w-auto items-center flex-wrap">
-                            <!-- TOMBOL TOGGLE VIEW (Grid/List) -->
                             <div class="flex bg-gray-100 rounded-lg p-1 shrink-0">
                                 <button onclick="setPosViewMode('grid')" id="btn-view-grid" class="p-1.5 bg-white rounded shadow-sm text-black transition" title="Tampilan Grid"><i class="fas fa-th-large w-4 sm:w-5"></i></button>
                                 <button onclick="setPosViewMode('list')" id="btn-view-list" class="p-1.5 text-gray-400 hover:text-black transition" title="Tampilan Daftar"><i class="fas fa-list w-4 sm:w-5"></i></button>
                             </div>
-                            <!-- TOMBOL CETAK KATALOG A4 -->
                             <button onclick="cetakKatalogA4()" class="bg-white border-2 border-gray-200 text-gray-700 hover:text-black hover:border-black px-3 py-1.5 rounded-xl text-xs font-bold shadow-sm transition shrink-0 flex items-center" title="Cetak Katalog PDF"><i class="fas fa-file-pdf sm:mr-1 text-red-500"></i> <span class="hidden sm:inline">Cetak A4</span></button>
                             
                             <div class="relative flex-1 sm:w-56 min-w-[150px]">
@@ -219,13 +227,10 @@
                             <button onclick="bukaModalTambahProduk()" class="bg-black text-white px-4 py-2 rounded-xl text-sm font-bold shadow hover:bg-graydark whitespace-nowrap"><i class="fas fa-plus mr-1"></i> Baru</button>
                         </div>
                     </div>
-                    <!-- Area Render Produk Etalase -->
                     <div class="flex-1 overflow-y-auto p-3 sm:p-4 custom-scroll grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 sm:gap-4 content-start pb-24 lg:pb-4" id="product-grid">
-                        <!-- Katalog diinjeksi via JS -->
                     </div>
                 </div>
 
-                <!-- Modul Keranjang POS Samping -->
                 <div class="w-full lg:w-[400px] bg-white border-t lg:border-l lg:border-t-0 border-gray-200 flex flex-col shadow-[0_-10px_20px_rgba(0,0,0,0.1)] lg:shadow-2xl z-20 h-[50vh] lg:h-full shrink-0 relative">
                     <div class="p-3 sm:p-4 border-b border-gray-200 flex justify-between items-center bg-gray-50 shrink-0">
                         <h3 class="font-bold text-base sm:text-lg"><i class="fas fa-shopping-cart mr-2 text-gray-500"></i>Keranjang</h3>
@@ -256,6 +261,7 @@
                 </div>
             </div>
 
+            <!-- MODULE: KEUANGAN -->
             <div id="module-keuangan" class="admin-module flex-1 hidden flex-col p-4 sm:p-6 overflow-y-auto custom-scroll animate-fade-in pb-32">
                 <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
                     <h2 class="text-xl sm:text-2xl font-black tracking-tight">Manajemen Arus Kas</h2>
@@ -297,7 +303,7 @@
                             <i class="fas fa-wallet absolute -right-4 -bottom-4 text-8xl opacity-10"></i>
                             <p class="text-gray-400 text-[10px] sm:text-xs uppercase tracking-widest mb-1 font-bold">Saldo Aktual Laci (Sistem Berjalan)</p>
                             <p class="text-3xl sm:text-4xl font-black mb-1 truncate tracking-tight" id="estimasi-kas-sistem">Rp 0</p>
-                            <p class="text-[10px] text-gray-400">Total akumulasi mutlak uang laci dari seluruh riwayat kas & tarik tunai (Tutup Buku).</p>
+                            <p class="text-[10px] text-gray-400">Total akumulasi uang mutlak laci dari seluruh riwayat kas & tarik tunai (Tutup Buku).</p>
                         </div>
                         <div class="bg-white p-5 rounded-2xl border border-gray-200 shadow-sm flex flex-col justify-center">
                             <p class="text-[10px] sm:text-xs text-gray-500 font-bold mb-1"><i class="fas fa-arrow-down text-green-500 mr-1"></i>Kas Masuk Terfilter (Non-POS)</p>
@@ -321,23 +327,23 @@
                         </div>
                         <div class="flex gap-2 w-full md:w-auto">
                             <button onclick="exportTableToCSV('table-kas-body', 'ArusKas')" class="flex-1 md:flex-none bg-white border border-gray-300 text-xs font-bold px-3 py-2 rounded-lg shadow-sm hover:bg-gray-100 justify-center flex items-center"><i class="fas fa-file-csv mr-1"></i> CSV</button>
-                            <button onclick="exportAreaToPDF('area-tabel-kas', 'Laporan_Arus_Kas.pdf')" class="flex-1 md:flex-none bg-white border border-gray-300 text-xs font-bold px-3 py-2 rounded-lg shadow-sm hover:bg-gray-100 justify-center flex items-center"><i class="fas fa-file-pdf mr-1 text-red-500"></i> PDF</button>
+                            <button onclick="exportAreaToPDF('area-tabel-kas', 'Laporan_Arus_Kas.pdf', 'table-kas-body')" class="flex-1 md:flex-none bg-white border border-gray-300 text-xs font-bold px-3 py-2 rounded-lg shadow-sm hover:bg-gray-100 justify-center flex items-center"><i class="fas fa-file-pdf mr-1 text-red-500"></i> PDF</button>
                         </div>
                     </div>
                     <div class="overflow-x-auto flex-1 p-0 custom-scroll" id="area-tabel-kas">
-                        <table class="w-full text-left whitespace-nowrap min-w-[600px]">
-                            <thead><tr class="bg-white border-b text-gray-400 text-[10px] sm:text-[11px] uppercase tracking-wider"><th class="p-3 sm:p-4 font-bold">Tanggal/Waktu</th><th class="p-3 sm:p-4 font-bold">Tipe & Kategori</th><th class="p-3 sm:p-4 font-bold">Keterangan / Ref</th><th class="p-3 sm:p-4 font-bold text-right">Nominal (Rp)</th></tr></thead>
+                        <table class="w-full text-left whitespace-nowrap min-w-[600px] pdf-export-table">
+                            <thead><tr class="bg-white border-b text-gray-400 text-[10px] sm:text-[11px] uppercase tracking-wider"><th class="p-3 sm:p-4 font-bold w-40">Tanggal/Waktu</th><th class="p-3 sm:p-4 font-bold w-48">Tipe & Kategori</th><th class="p-3 sm:p-4 font-bold">Keterangan / Ref</th><th class="p-3 sm:p-4 font-bold text-right w-40">Nominal (Rp)</th></tr></thead>
                             <tbody id="table-kas-body" class="text-sm"></tbody>
                         </table>
                     </div>
                 </div>
             </div>
 
+            <!-- MODULE: HOMECARE -->
             <div id="module-homecare" class="admin-module flex-1 hidden flex-col p-4 sm:p-6 overflow-y-auto custom-scroll animate-fade-in pb-32">
                 <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-4">
                     <h2 class="text-xl sm:text-2xl font-black tracking-tight">Reservasi Homecare</h2>
                     
-                    <!-- Filter Rentang Waktu Baru untuk Homecare -->
                     <div class="flex items-center gap-2 bg-white p-2 rounded-xl shadow-sm border border-gray-200 flex-wrap w-full sm:w-auto">
                         <input type="date" id="filter-start-hc" onchange="renderAdminHomecare()" class="p-2 border border-gray-100 rounded-lg text-xs bg-gray-50 focus:outline-none focus:border-black font-semibold flex-1 sm:flex-none">
                         <span class="text-xs font-bold text-gray-400">s/d</span>
@@ -345,7 +351,6 @@
                     </div>
                 </div>
 
-                <!-- Dashboard Statistik Ekstra Homecare -->
                 <div class="grid grid-cols-2 md:grid-cols-5 gap-3 mb-6">
                     <div class="bg-white p-4 rounded-2xl shadow-sm border border-gray-200">
                         <h3 class="text-[10px] uppercase tracking-widest font-bold text-gray-500 mb-1">Total Reservasi</h3>
@@ -370,18 +375,19 @@
                 </div>
 
                 <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden flex-1 flex flex-col">
-                    <div class="p-4 border-b bg-gray-50">
-                        <h3 class="font-bold text-sm uppercase tracking-wider text-gray-600">Daftar Antrean & Riwayat Terfilter</h3>
+                    <div class="p-4 border-b bg-gray-50 flex justify-between items-center">
+                        <h3 class="font-bold text-sm uppercase tracking-wider text-gray-600">Daftar Antrean & Riwayat</h3>
+                        <button onclick="exportAreaToPDF('area-tabel-hc', 'Laporan_Reservasi_Homecare.pdf', 'table-hc-body')" class="text-[10px] bg-white border border-gray-300 font-bold px-3 py-1.5 rounded-lg shadow-sm hover:bg-gray-100 flex items-center"><i class="fas fa-file-pdf mr-1 text-red-500"></i> Cetak PDF</button>
                     </div>
-                    <div class="overflow-x-auto flex-1 custom-scroll p-0">
-                        <table class="w-full text-left whitespace-nowrap min-w-[950px]">
+                    <div class="overflow-x-auto flex-1 custom-scroll p-0" id="area-tabel-hc">
+                        <table class="w-full text-left whitespace-nowrap min-w-[950px] pdf-export-table">
                             <thead>
                                 <tr class="bg-white border-b text-gray-400 text-[10px] uppercase tracking-wider">
-                                    <th class="p-3 font-bold">Tgl. Submit</th>
-                                    <th class="p-3 font-bold">Klien & Kontak</th>
-                                    <th class="p-3 font-bold">Jadwal & Layanan</th>
+                                    <th class="p-3 font-bold w-24">Tgl. Submit</th>
+                                    <th class="p-3 font-bold w-48">Klien & Kontak</th>
+                                    <th class="p-3 font-bold w-48">Jadwal & Layanan</th>
                                     <th class="p-3 font-bold">Lokasi & Catatan</th>
-                                    <th class="p-3 font-bold text-center">Status & Aksi</th>
+                                    <th class="p-3 font-bold text-center w-32 pdf-exclude">Status & Aksi</th>
                                 </tr>
                             </thead>
                             <tbody id="table-hc-body" class="text-sm"></tbody>
@@ -389,7 +395,62 @@
                     </div>
                 </div>
             </div>
+            
+            <!-- MODULE: MANAJEMEN STOK (INVENTORY) -->
+            <div id="module-inventory" class="admin-module flex-1 hidden flex-col p-4 sm:p-6 overflow-y-auto custom-scroll animate-fade-in pb-32">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
+                    <h2 class="text-xl sm:text-2xl font-black tracking-tight">Manajemen Stok Gudang</h2>
+                    <div class="flex gap-2 w-full sm:w-auto">
+                        <button onclick="bukaModalInventory()" class="bg-black text-white px-5 py-3 rounded-xl font-bold hover:bg-graydark shadow-lg w-full sm:w-auto flex items-center justify-center">
+                            <i class="fas fa-plus mr-2"></i>BARANG BARU
+                        </button>
+                    </div>
+                </div>
 
+                <div class="grid grid-cols-3 gap-4 mb-6">
+                    <div class="bg-white p-4 rounded-2xl shadow-sm border border-gray-200">
+                        <h3 class="text-[10px] sm:text-xs uppercase tracking-widest font-bold text-gray-500 mb-1">Total Item Master</h3>
+                        <p class="text-2xl sm:text-3xl font-black text-gray-800" id="inv-stat-total">0</p>
+                    </div>
+                    <div class="bg-yellow-50 p-4 rounded-2xl shadow-sm border border-yellow-200">
+                        <h3 class="text-[10px] sm:text-xs uppercase tracking-widest font-bold text-yellow-700 mb-1">Stok Menipis (Warning)</h3>
+                        <p class="text-2xl sm:text-3xl font-black text-yellow-700" id="inv-stat-menipis">0</p>
+                    </div>
+                    <div class="bg-red-50 p-4 rounded-2xl shadow-sm border border-red-200">
+                        <h3 class="text-[10px] sm:text-xs uppercase tracking-widest font-bold text-red-700 mb-1">Barang Rusak/Expired</h3>
+                        <p class="text-2xl sm:text-3xl font-black text-red-700" id="inv-stat-rusak">0</p>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden flex-1 flex flex-col">
+                    <div class="p-3 sm:p-4 border-b bg-gray-50 flex flex-col md:flex-row justify-between md:items-center gap-3">
+                        <h3 class="font-bold text-xs sm:text-sm uppercase tracking-wider text-gray-600">Daftar Barang & Stok</h3>
+                        <div class="flex gap-2 w-full md:w-auto">
+                            <div class="relative flex-1 sm:w-56">
+                                <i class="fas fa-search absolute left-3 top-2.5 text-gray-400"></i>
+                                <input type="text" id="search-inventory" onkeyup="renderInventory()" class="pl-10 pr-4 py-2 border border-gray-300 rounded-lg text-xs focus:outline-none focus:border-black w-full bg-white" placeholder="Cari nama barang...">
+                            </div>
+                            <button onclick="exportAreaToPDF('area-tabel-inv', 'Laporan_Stok_Barang.pdf', 'table-inv-body')" class="bg-white border border-gray-300 text-xs font-bold px-3 py-2 rounded-lg shadow-sm hover:bg-gray-100 flex items-center shrink-0"><i class="fas fa-file-pdf mr-1 text-red-500"></i> Cetak A4</button>
+                        </div>
+                    </div>
+                    <div class="overflow-x-auto flex-1 p-0 custom-scroll" id="area-tabel-inv">
+                        <table class="w-full text-left whitespace-nowrap min-w-[800px] pdf-export-table">
+                            <thead>
+                                <tr class="bg-white border-b text-gray-400 text-[10px] sm:text-[11px] uppercase tracking-wider">
+                                    <th class="p-3 sm:p-4 font-bold">Informasi Barang</th>
+                                    <th class="p-3 sm:p-4 font-bold text-center">Stok (Sisa)</th>
+                                    <th class="p-3 sm:p-4 font-bold">Kondisi & Lokasi</th>
+                                    <th class="p-3 sm:p-4 font-bold">Update Terakhir</th>
+                                    <th class="p-3 sm:p-4 font-bold text-center pdf-exclude">Aksi / Mutasi</th>
+                                </tr>
+                            </thead>
+                            <tbody id="table-inv-body" class="text-sm"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MODULE: LAPORAN -->
             <div id="module-laporan" class="admin-module flex-1 hidden flex-col p-4 sm:p-6 overflow-y-auto custom-scroll animate-fade-in pb-32">
                 <h2 class="text-xl sm:text-2xl font-black tracking-tight mb-4 sm:mb-6">Laporan & Visualisasi</h2>
 
@@ -403,6 +464,28 @@
                         <input type="date" id="filter-end" class="w-full p-2 sm:p-3 border-2 border-gray-100 rounded-xl bg-gray-50 text-sm outline-none focus:border-black font-semibold">
                     </div>
                     <button onclick="renderTabelLaporan()" class="w-full sm:w-auto bg-black text-white px-6 sm:px-8 py-3 rounded-xl text-sm font-bold shadow-lg hover:bg-graydark transition flex items-center justify-center"><i class="fas fa-search mr-2"></i> Tampilkan</button>
+                </div>
+
+                <!-- NEW: Summary Cards Perhitungan Uang Digital, Fisik, Homecare -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6" id="laporan-summary-cards">
+                    <div class="bg-white p-4 rounded-2xl shadow-sm border border-gray-200 relative overflow-hidden">
+                        <div class="absolute top-0 right-0 p-3 opacity-10"><i class="fas fa-money-bill-wave text-5xl"></i></div>
+                        <h3 class="text-[10px] sm:text-xs uppercase tracking-widest font-bold text-gray-500 mb-1">Total Pendapatan Fisik (Tunai)</h3>
+                        <p class="text-2xl font-black text-gray-900" id="lap-uang-fisik">Rp 0</p>
+                        <p class="text-[9px] text-gray-400 mt-1">Hanya dari transaksi Tunai</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-2xl shadow-sm border border-gray-200 relative overflow-hidden">
+                        <div class="absolute top-0 right-0 p-3 opacity-10"><i class="fas fa-credit-card text-5xl"></i></div>
+                        <h3 class="text-[10px] sm:text-xs uppercase tracking-widest font-bold text-blue-600 mb-1">Total Pendapatan Digital</h3>
+                        <p class="text-2xl font-black text-gray-900" id="lap-uang-digital">Rp 0</p>
+                        <p class="text-[9px] text-gray-400 mt-1">Dari QRIS & Transfer Bank</p>
+                    </div>
+                    <div class="bg-brand/10 p-4 rounded-2xl shadow-sm border border-brand/20 relative overflow-hidden">
+                        <div class="absolute top-0 right-0 p-3 opacity-10"><i class="fas fa-home text-5xl text-brand"></i></div>
+                        <h3 class="text-[10px] sm:text-xs uppercase tracking-widest font-bold text-brand mb-1">Est. Bonus Homecare Terapis</h3>
+                        <p class="text-2xl font-black text-brand" id="lap-bonus-homecare">Rp 0</p>
+                        <p class="text-[9px] text-brand/70 mt-1">Total komisi aktivitas tag "Homecare"</p>
+                    </div>
                 </div>
 
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
@@ -424,11 +507,11 @@
                     
                     <div id="tab-trx" class="p-0 overflow-x-auto flex-1 flex flex-col custom-scroll">
                         <div class="p-2 sm:p-3 border-b flex justify-end bg-white">
-                            <button onclick="exportAreaToPDF('area-tabel-trx', 'Riwayat_Transaksi_POS.pdf')" class="text-[10px] sm:text-xs bg-gray-100 font-bold px-3 py-2 rounded-lg border border-gray-300 shadow-sm hover:bg-gray-200"><i class="fas fa-download mr-1"></i> Cetak Laporan PDF</button>
+                            <button onclick="exportAreaToPDF('area-tabel-trx', 'Riwayat_Transaksi_POS.pdf', 'table-laporan-trx')" class="text-[10px] sm:text-xs bg-gray-100 font-bold px-3 py-2 rounded-lg border border-gray-300 shadow-sm hover:bg-gray-200"><i class="fas fa-download mr-1"></i> Cetak Laporan PDF</button>
                         </div>
                         <div id="area-tabel-trx" class="flex-1">
-                            <table class="w-full text-left text-sm whitespace-nowrap min-w-[600px]">
-                                <thead><tr class="bg-white border-b text-gray-400 text-[10px] sm:text-[11px] uppercase tracking-wider"><th class="p-3 sm:p-4 font-bold">Waktu & ID</th><th class="p-3 sm:p-4 font-bold">Rincian Produk & Qty</th><th class="p-3 sm:p-4 font-bold">Total & Metode</th><th class="p-3 sm:p-4 font-bold text-center">Aksi</th></tr></thead>
+                            <table class="w-full text-left text-sm whitespace-nowrap min-w-[600px] pdf-export-table">
+                                <thead><tr class="bg-white border-b text-gray-400 text-[10px] sm:text-[11px] uppercase tracking-wider"><th class="p-3 sm:p-4 font-bold w-40">Waktu & ID</th><th class="p-3 sm:p-4 font-bold">Rincian Produk & Qty</th><th class="p-3 sm:p-4 font-bold w-40">Total & Metode</th><th class="p-3 sm:p-4 font-bold text-center w-24 pdf-exclude">Aksi</th></tr></thead>
                                 <tbody id="table-laporan-trx"></tbody>
                             </table>
                         </div>
@@ -444,7 +527,7 @@
                             </div>
                             <div class="flex gap-2 w-full sm:w-auto">
                                 <button onclick="exportTableToCSV('table-laporan-terapis', 'Log_Terapis')" class="flex-1 sm:flex-none text-[10px] sm:text-xs bg-white border border-gray-300 font-bold px-3 py-2 rounded-lg shadow-sm hover:bg-gray-50 justify-center flex items-center"><i class="fas fa-file-csv mr-1"></i> CSV</button>
-                                <button onclick="exportAreaToPDF('area-tabel-terapis', 'Laporan_Kinerja_Terapis.pdf')" class="flex-1 sm:flex-none text-[10px] sm:text-xs bg-white border border-gray-300 font-bold px-3 py-2 rounded-lg shadow-sm hover:bg-gray-50 justify-center flex items-center"><i class="fas fa-file-pdf mr-1 text-red-500"></i> PDF</button>
+                                <button onclick="exportAreaToPDF('area-tabel-terapis', 'Laporan_Kinerja_Terapis.pdf', 'table-laporan-terapis')" class="flex-1 sm:flex-none text-[10px] sm:text-xs bg-white border border-gray-300 font-bold px-3 py-2 rounded-lg shadow-sm hover:bg-gray-50 justify-center flex items-center"><i class="fas fa-file-pdf mr-1 text-red-500"></i> PDF</button>
                             </div>
                         </div>
                         <div class="bg-blue-50 p-3 sm:p-4 border-b border-blue-100 flex justify-between items-center">
@@ -455,8 +538,8 @@
                             <div class="text-xl sm:text-2xl font-black text-blue-900 tracking-tight" id="total-komisi-terapis">Rp 0</div>
                         </div>
                         <div id="area-tabel-terapis" class="flex-1">
-                            <table class="w-full text-left text-sm whitespace-nowrap min-w-[500px]">
-                                <thead><tr class="bg-white border-b text-gray-400 text-[10px] sm:text-[11px] uppercase tracking-wider"><th class="p-3 sm:p-4 font-bold">Tanggal</th><th class="p-3 sm:p-4 font-bold">Terapis</th><th class="p-3 sm:p-4 font-bold">Pasien & Kegiatan</th><th class="p-3 sm:p-4 font-bold text-right">Est. Komisi (Rp)</th></tr></thead>
+                            <table class="w-full text-left text-sm whitespace-nowrap min-w-[500px] pdf-export-table">
+                                <thead><tr class="bg-white border-b text-gray-400 text-[10px] sm:text-[11px] uppercase tracking-wider"><th class="p-3 sm:p-4 font-bold w-32">Tanggal</th><th class="p-3 sm:p-4 font-bold w-40">Terapis</th><th class="p-3 sm:p-4 font-bold">Pasien & Kegiatan</th><th class="p-3 sm:p-4 font-bold text-right w-32">Est. Komisi (Rp)</th></tr></thead>
                                 <tbody id="table-laporan-terapis"></tbody>
                             </table>
                         </div>
@@ -464,6 +547,7 @@
                 </div>
             </div>
 
+            <!-- MODULE: KARYAWAN -->
             <div id="module-karyawan" class="admin-module flex-1 hidden flex-col p-4 sm:p-6 overflow-y-auto custom-scroll animate-fade-in pb-32">
                 <h2 class="text-xl sm:text-2xl font-black tracking-tight mb-4 sm:mb-6">Manajemen Pengguna & Akses</h2>
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -497,6 +581,7 @@
                 </div>
             </div>
 
+            <!-- MODULE: PENGATURAN -->
             <div id="module-pengaturan" class="admin-module flex-1 hidden flex-col p-4 sm:p-6 overflow-y-auto custom-scroll animate-fade-in pb-32">
                 <h2 class="text-xl sm:text-2xl font-black tracking-tight mb-4 sm:mb-6">Pengaturan Sistem & Database</h2>
                 
@@ -520,7 +605,7 @@
                         <button onclick="cloudDownload()" id="btn-cloud-download" class="bg-white text-blue-800 border-2 border-blue-300 py-3 sm:py-4 rounded-xl font-bold hover:bg-blue-50 transition flex flex-col items-center justify-center shadow-sm">
                             <i class="fas fa-cloud-download-alt text-xl sm:text-2xl mb-1"></i>
                             <span class="text-sm sm:text-base">TARIK DARI CLOUD</span>
-                            <span class="text-[8px] sm:text-[9px] font-normal opacity-80 mt-1">(Timpa Lokal & Cuci Bug Tgl)</span>
+                            <span class="text-[8px] sm:text-[9px] font-normal opacity-80 mt-1">(Timpa Lokal dengan DB Cloud)</span>
                         </button>
                     </div>
                 </div>
@@ -554,6 +639,7 @@
         </div>
     </div>
 
+    <!-- VIEW TERAPIS / BIDAN -->
     <div id="view-terapis" class="flex-1 flex hidden flex-col bg-gray-100 h-full overflow-hidden relative">
         <div class="bg-black text-white p-3 sm:p-4 flex justify-between items-center shadow-lg z-50 shrink-0">
             <div class="flex items-center">
@@ -643,8 +729,9 @@
         </div>
     </div>
 
-    <!-- ================= KUMPULAN MODAL ================= -->
+    <!-- ================= MODALS ================= -->
 
+    <!-- Modal Pembayaran (Checkout) Admin POS -->
     <div id="modal-payment" class="modal-overlay fixed inset-0 bg-black/70 z-[60] hidden flex justify-center items-end sm:items-center backdrop-blur-sm">
         <div class="bg-white w-full sm:w-[500px] rounded-t-3xl sm:rounded-3xl flex flex-col max-h-[90vh] sm:max-h-[95vh] shadow-2xl animate-slide-up relative">
             <div class="p-4 sm:p-5 border-b flex justify-between items-center bg-white rounded-t-3xl shrink-0">
@@ -687,6 +774,7 @@
         </div>
     </div>
 
+    <!-- Modal Form Tambah/Edit Produk POS -->
     <div id="modal-form-produk" class="modal-overlay fixed inset-0 bg-black/70 z-[70] hidden flex justify-center items-center backdrop-blur-sm p-4">
         <div class="bg-white w-full max-w-md rounded-3xl p-5 sm:p-6 shadow-2xl animate-slide-up max-h-[90vh] sm:max-h-[95vh] overflow-y-auto custom-scroll relative">
             <button onclick="closeModal('modal-form-produk')" class="absolute top-3 right-3 sm:top-4 sm:right-4 text-gray-400 hover:text-black bg-gray-100 w-8 h-8 rounded-full flex items-center justify-center"><i class="fas fa-times"></i></button>
@@ -734,16 +822,17 @@
         </div>
     </div>
     
+    <!-- Modal Tutup Buku (Akhiri Shift Kasir) -->
     <div id="modal-tutup-buku" class="modal-overlay fixed inset-0 bg-black/80 z-[80] hidden flex justify-center items-center backdrop-blur-sm p-4">
         <div class="bg-white w-full max-w-sm rounded-3xl p-5 sm:p-6 shadow-2xl animate-slide-up">
             <div class="text-center mb-5 sm:mb-6">
                 <div class="w-12 h-12 sm:w-16 sm:h-16 bg-black text-white rounded-full flex items-center justify-center text-xl sm:text-2xl mx-auto mb-2 sm:mb-3 shadow-lg"><i class="fas fa-lock"></i></div>
                 <h3 class="font-black text-xl sm:text-2xl text-black tracking-tight uppercase">Tutup Kasir</h3>
-                <p class="text-[9px] sm:text-[10px] font-bold text-gray-500 mt-1 uppercase tracking-widest">Selesaikan periode kas dan rekap saldo</p>
+                <p class="text-[9px] sm:text-[10px] font-bold text-gray-500 mt-1 uppercase tracking-widest">Selesaikan shift dan rekap harian</p>
             </div>
             
             <div class="bg-gray-50 p-3 sm:p-4 rounded-2xl mb-4 sm:mb-5 text-center border-2 border-gray-200">
-                <p class="text-[9px] sm:text-[10px] text-gray-500 font-bold uppercase tracking-widest mb-1 sm:mb-2">Saldo Laci Berjalan Saat Ini</p>
+                <p class="text-[9px] sm:text-[10px] text-gray-500 font-bold uppercase tracking-widest mb-1 sm:mb-2">Estimasi Total Uang di Laci</p>
                 <h4 class="text-2xl sm:text-3xl font-black font-mono tracking-tight text-gray-800" id="tb-sistem">Rp 0</h4>
             </div>
 
@@ -764,7 +853,7 @@
                 </div>
 
                 <div class="flex justify-between items-center p-3 sm:p-4 bg-black text-white rounded-xl shadow-inner mt-2">
-                    <span class="text-[8px] sm:text-[10px] font-bold text-gray-300 uppercase tracking-widest">Sisa di Laci (Modal Berjalan):</span>
+                    <span class="text-[8px] sm:text-[10px] font-bold text-gray-300 uppercase tracking-widest">Sisa di Laci (Modal Esok Hari):</span>
                     <span id="tb-modal" class="font-black text-lg sm:text-xl text-white">Rp 0</span>
                 </div>
             </div>
@@ -776,6 +865,7 @@
         </div>
     </div>
 
+    <!-- Modal Edit Reservasi Homecare -->
     <div id="modal-edit-hc" class="modal-overlay fixed inset-0 bg-black/70 z-[75] hidden flex justify-center items-center backdrop-blur-sm p-4">
         <div class="bg-white w-full max-w-2xl rounded-3xl p-5 sm:p-6 shadow-2xl animate-slide-up max-h-[90vh] sm:max-h-[95vh] overflow-y-auto custom-scroll relative">
             <button onclick="closeModal('modal-edit-hc')" class="absolute top-3 right-3 sm:top-4 sm:right-4 text-gray-400 hover:text-black bg-gray-100 w-8 h-8 rounded-full flex items-center justify-center"><i class="fas fa-times"></i></button>
@@ -796,6 +886,88 @@
 
             <div class="flex mt-6 pt-4 border-t">
                 <button onclick="simpanEditHC()" class="flex-1 py-3 sm:py-4 bg-brand text-white rounded-xl hover:bg-yellow-600 font-black text-xs sm:text-sm tracking-widest uppercase shadow-lg">Simpan Perubahan</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Form Tambah/Edit Master Barang (Gudang) -->
+    <div id="modal-form-inventory" class="modal-overlay fixed inset-0 bg-black/70 z-[70] hidden flex justify-center items-center backdrop-blur-sm p-4">
+        <div class="bg-white w-full max-w-md rounded-3xl p-5 sm:p-6 shadow-2xl animate-slide-up max-h-[90vh] sm:max-h-[95vh] overflow-y-auto custom-scroll relative">
+            <button onclick="closeModal('modal-form-inventory')" class="absolute top-3 right-3 sm:top-4 sm:right-4 text-gray-400 hover:text-black bg-gray-100 w-8 h-8 rounded-full flex items-center justify-center"><i class="fas fa-times"></i></button>
+            <h3 class="font-black text-base sm:text-lg uppercase tracking-wider mb-4 sm:mb-5 flex items-center border-b pb-2 sm:pb-3" id="fi-title"><i class="fas fa-box mr-2 text-gray-400"></i> Kelola Master Barang</h3>
+            
+            <input type="hidden" id="fi-id">
+            <div class="space-y-3 sm:space-y-4">
+                <div><label class="text-[9px] sm:text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1 block">Nama Barang</label><input type="text" id="fi-nama" class="w-full border-2 p-2.5 sm:p-3 rounded-xl text-xs sm:text-sm outline-none focus:border-black bg-gray-50 font-bold" placeholder="Cth: Minyak Zaitun"></div>
+                
+                <div class="grid grid-cols-2 gap-3 sm:gap-4">
+                    <div><label class="text-[9px] sm:text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1 block">Kategori</label><input type="text" id="fi-kategori" class="w-full border-2 p-2.5 sm:p-3 rounded-xl text-xs sm:text-sm outline-none focus:border-black bg-gray-50 font-bold" placeholder="Cth: Bahan SPA"></div>
+                    <div><label class="text-[9px] sm:text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1 block">Satuan</label><input type="text" id="fi-satuan" class="w-full border-2 p-2.5 sm:p-3 rounded-xl text-xs sm:text-sm outline-none focus:border-black bg-gray-50 font-bold" placeholder="Pcs/Botol/Liter..."></div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3 sm:gap-4">
+                    <div>
+                        <label class="text-[9px] sm:text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1 block">Stok Awal (Qty)</label>
+                        <input type="number" id="fi-qty" class="w-full border-2 p-2.5 sm:p-3 rounded-xl text-xs sm:text-sm outline-none focus:border-black bg-gray-50 font-mono font-bold" placeholder="0">
+                    </div>
+                    <div>
+                        <label class="text-[9px] sm:text-[10px] font-bold text-black uppercase tracking-widest mb-1 block">Batas Peringatan (Min)</label>
+                        <input type="number" id="fi-batas" class="w-full border-2 border-red-200 p-2.5 sm:p-3 rounded-xl text-xs sm:text-sm outline-none focus:border-red-500 bg-red-50 font-mono font-bold" placeholder="Cth: 5">
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-3 sm:gap-4">
+                    <div>
+                        <label class="text-[9px] sm:text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1 block">Kondisi</label>
+                        <select id="fi-kondisi" class="w-full border-2 p-2.5 sm:p-3 rounded-xl text-xs sm:text-sm outline-none focus:border-black bg-gray-50 font-bold">
+                            <option value="Baik">Baik</option>
+                            <option value="Rusak">Rusak / Expired</option>
+                        </select>
+                    </div>
+                    <div><label class="text-[9px] sm:text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1 block">Lokasi Simpan</label><input type="text" id="fi-lokasi" class="w-full border-2 p-2.5 sm:p-3 rounded-xl text-xs sm:text-sm outline-none focus:border-black bg-gray-50 font-bold" placeholder="Cth: Lemari 1"></div>
+                </div>
+            </div>
+
+            <div class="flex gap-2 sm:gap-3 mt-4 sm:mt-6 pt-3 sm:pt-4 border-t">
+                <button onclick="hapusInventory()" id="btn-hapus-inv" class="hidden w-12 sm:w-14 bg-white text-red-600 border-2 border-red-100 rounded-xl hover:bg-red-50 hover:border-red-300 transition flex items-center justify-center shadow-sm"><i class="fas fa-trash"></i></button>
+                <button onclick="simpanFormInventory()" class="flex-1 py-3 sm:py-4 bg-black text-white rounded-xl hover:bg-graydark font-black text-xs sm:text-sm tracking-widest uppercase shadow-lg">Simpan Data</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Form Mutasi Barang (Gudang) -->
+    <div id="modal-mutasi-inventory" class="modal-overlay fixed inset-0 bg-black/70 z-[75] hidden flex justify-center items-center backdrop-blur-sm p-4">
+        <div class="bg-white w-full max-w-sm rounded-3xl p-5 sm:p-6 shadow-2xl animate-slide-up relative">
+            <button onclick="closeModal('modal-mutasi-inventory')" class="absolute top-3 right-3 sm:top-4 sm:right-4 text-gray-400 hover:text-black bg-gray-100 w-8 h-8 rounded-full flex items-center justify-center"><i class="fas fa-times"></i></button>
+            <h3 class="font-black text-base sm:text-lg uppercase tracking-wider mb-2 flex items-center" id="fm-title"><i class="fas fa-exchange-alt mr-2 text-blue-500"></i> Mutasi Stok</h3>
+            <p class="text-[10px] text-gray-500 font-bold mb-4 border-b pb-3" id="fm-nama-barang">Nama Barang</p>
+            
+            <input type="hidden" id="fm-id">
+            <div class="space-y-4">
+                <div class="flex gap-2 p-1 bg-gray-100 rounded-xl">
+                    <label class="flex-1 relative text-center">
+                        <input type="radio" name="mutasi_tipe" value="Masuk" class="peer hidden" checked>
+                        <div class="py-2 rounded-lg font-bold text-xs sm:text-sm text-gray-500 peer-checked:bg-white peer-checked:text-green-600 peer-checked:shadow transition cursor-pointer">Stok Masuk</div>
+                    </label>
+                    <label class="flex-1 relative text-center">
+                        <input type="radio" name="mutasi_tipe" value="Keluar" class="peer hidden">
+                        <div class="py-2 rounded-lg font-bold text-xs sm:text-sm text-gray-500 peer-checked:bg-white peer-checked:text-red-600 peer-checked:shadow transition cursor-pointer">Terpakai/Keluar</div>
+                    </label>
+                </div>
+                
+                <div>
+                    <label class="text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1 block">Jumlah (Qty)</label>
+                    <input type="number" id="fm-qty" class="w-full border-2 p-3 rounded-xl text-lg outline-none focus:border-black bg-white font-mono font-bold text-center shadow-inner" placeholder="0">
+                </div>
+                
+                <div>
+                    <label class="text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1 block">Keterangan / Alasan</label>
+                    <input type="text" id="fm-ket" class="w-full border-2 p-2.5 rounded-xl text-xs sm:text-sm outline-none focus:border-black bg-gray-50 font-bold" placeholder="Cth: Belanja bulanan / Dipakai terapi">
+                </div>
+            </div>
+
+            <div class="flex mt-6 pt-4 border-t">
+                <button onclick="simpanMutasi()" class="flex-1 py-3 sm:py-4 bg-blue-600 text-white rounded-xl hover:bg-blue-700 font-black text-xs sm:text-sm tracking-widest uppercase shadow-lg">Simpan Mutasi</button>
             </div>
         </div>
     </div>
@@ -857,7 +1029,9 @@
     </div>
 
     <script>
-        // CONFIGURASI BACKEND CLOUD
+        // ============================================================================
+        // CONFIGURASI BACKEND CLOUD (GOOGLE APPS SCRIPT)
+        // ============================================================================
         const GAS_URL = 'https://script.google.com/macros/s/AKfycbxDOkArpuVp0dZ_O8OKAxVS7MGSB5cupC4yP8rXuSANCZPMtdo3AhUjKMKFylqMxajF9A/exec';
         
         let state = {
@@ -884,13 +1058,15 @@
             cashFlow: [],      
             therapistLogs: [], 
             tutupBukuLogs: [],
-            reservasi: [] 
+            reservasi: [],
+            inventory: [],     
+            inventoryLogs: []  
         };
 
         let chart1, chart2;  
         let posViewMode = 'grid'; 
 
-        // AUTO-CLEANER untuk format tanggal corrupt akibat timezone JS lawas
+        // Pembersih Bug Tanggal Z (Timezone) dari data lama yang terlanjur corrupt
         function bersihkanDataWaktuCorrupt() {
             const cleanTgl = (d) => d && d.includes('T') ? d.split('T')[0] : d;
             const cleanWaktu = (w) => {
@@ -930,7 +1106,6 @@
             }
         }
 
-        // --- MANAJEMEN DATABASE LOKAL (OFFLINE) ---
         function initData() {
             try {
                 if(localStorage.getItem('spa_users')) state.users = JSON.parse(localStorage.getItem('spa_users'));
@@ -940,6 +1115,8 @@
                 if(localStorage.getItem('spa_logs')) state.therapistLogs = JSON.parse(localStorage.getItem('spa_logs'));
                 if(localStorage.getItem('spa_tutup')) state.tutupBukuLogs = JSON.parse(localStorage.getItem('spa_tutup'));
                 if(localStorage.getItem('spa_reservasi')) state.reservasi = JSON.parse(localStorage.getItem('spa_reservasi'));
+                if(localStorage.getItem('spa_inventory')) state.inventory = JSON.parse(localStorage.getItem('spa_inventory'));
+                if(localStorage.getItem('spa_inventoryLogs')) state.inventoryLogs = JSON.parse(localStorage.getItem('spa_inventoryLogs'));
                 
                 bersihkanDataWaktuCorrupt(); 
 
@@ -954,7 +1131,6 @@
                     }
                 }
                 
-                // Set default tanggal filter
                 document.getElementById('filter-start').value = getTglNow();
                 document.getElementById('filter-end').value = getTglNow();
                 
@@ -981,6 +1157,8 @@
             localStorage.setItem('spa_logs', JSON.stringify(state.therapistLogs));
             localStorage.setItem('spa_tutup', JSON.stringify(state.tutupBukuLogs));
             localStorage.setItem('spa_reservasi', JSON.stringify(state.reservasi));
+            localStorage.setItem('spa_inventory', JSON.stringify(state.inventory));
+            localStorage.setItem('spa_inventoryLogs', JSON.stringify(state.inventoryLogs));
             if(state.currentUser) localStorage.setItem('spa_currentUser', JSON.stringify(state.currentUser));
         }
 
@@ -1025,6 +1203,8 @@
                     const mergedLogs = mergeArrays(getResult.data.therapistLogs, state.therapistLogs);
                     const mergedTutup = mergeArrays(getResult.data.tutupBukuLogs, state.tutupBukuLogs);
                     const mergedRes = mergeArrays(getResult.data.reservasi, state.reservasi);
+                    const mergedInv = mergeArrays(getResult.data.inventory, state.inventory);
+                    const mergedInvLogs = mergeArrays(getResult.data.inventoryLogs, state.inventoryLogs);
                     
                     dataToUpload = {
                         users: state.users,
@@ -1033,7 +1213,9 @@
                         cashFlow: mergedCashFlow,
                         therapistLogs: mergedLogs,
                         tutupBukuLogs: mergedTutup,
-                        reservasi: mergedRes
+                        reservasi: mergedRes,
+                        inventory: mergedInv,
+                        inventoryLogs: mergedInvLogs
                     };
 
                     state = dataToUpload;
@@ -1086,6 +1268,8 @@
                             state.therapistLogs = result.data.therapistLogs || [];
                             state.tutupBukuLogs = result.data.tutupBukuLogs || [];
                             state.reservasi = result.data.reservasi || [];
+                            state.inventory = result.data.inventory || [];
+                            state.inventoryLogs = result.data.inventoryLogs || [];
                             
                             bersihkanDataWaktuCorrupt(); 
 
@@ -1100,7 +1284,7 @@
                         showToast("Terjadi kesalahan jaringan/CORS", true);
                         if(stat) stat.innerText = "Status: Error";
                     } finally {
-                        if(btn) btn.innerHTML = `<i class="fas fa-cloud-download-alt text-xl sm:text-2xl mb-1"></i><span class="text-sm sm:text-base">TARIK DARI CLOUD</span><span class="text-[8px] sm:text-[9px] font-normal opacity-80 mt-1">(Timpa Lokal & Cuci Bug Tgl)</span>`;
+                        if(btn) btn.innerHTML = `<i class="fas fa-cloud-download-alt text-xl sm:text-2xl mb-1"></i><span class="text-sm sm:text-base">TARIK DARI CLOUD</span><span class="text-[8px] sm:text-[9px] font-normal opacity-80 mt-1">(Timpa Lokal dengan DB Cloud)</span>`;
                     }
                 }
             });
@@ -1210,6 +1394,7 @@
             if(moduleName === 'pos') renderProducts();
             if(moduleName === 'keuangan') renderKeuangan();
             if(moduleName === 'homecare') renderAdminHomecare();
+            if(moduleName === 'inventory') renderInventory();
             if(moduleName === 'laporan') { populateTerapisFilter(); renderTabelLaporan(); }
             if(moduleName === 'karyawan') renderSDM();
         }
@@ -1314,7 +1499,6 @@
             renderProducts();
         }
 
-        // FUNGSI BARU CETAK PDF DENGAN FIX POTONGAN TABEL (Page-Break)
         function cetakKatalogA4() {
             if(state.products.length === 0) return showToast("Etalase masih kosong!", true);
             showToast("Menyusun PDF Katalog A4...");
@@ -1325,11 +1509,9 @@
                 image:        { type: 'jpeg', quality: 0.98 },
                 html2canvas:  { scale: 2, useCORS: true },
                 jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' },
-                // FIX: Menambahkan proteksi potong halaman untuk tag 'tr'
                 pagebreak:    { mode: 'css', avoid: 'tr' } 
             };
 
-            // Menambahkan style break-inside untuk melindungi baris tabel (tr)
             let htmlContent = `
                 <style>
                     table { page-break-inside: auto; }
@@ -1916,7 +2098,7 @@
                             <span class="text-[10px] text-gray-500 font-semibold" title="${r.catatan||'-'}"><i class="fas fa-comment-dots mr-1"></i> ${r.catatan ? 'Ada Catatan' : '-'}</span>
                         </div>
                     </td>
-                    <td class="p-3 text-center align-middle">
+                    <td class="p-3 text-center align-middle pdf-exclude">
                         <div class="mb-2">${statusBadge}</div>
                         <div class="flex justify-center gap-1">
                             <button onclick="ubahStatusHC('${r.id}', 'Selesai')" class="bg-green-500 hover:bg-green-600 text-white w-7 h-7 rounded-lg shadow-sm" title="Tandai Selesai"><i class="fas fa-check text-[10px]"></i></button>
@@ -1982,10 +2164,175 @@
             }
         }
 
+        // --- MANAJEMEN INVENTORY GUDANG ---
+        function renderInventory() {
+            const tbody = document.getElementById('table-inv-body');
+            tbody.innerHTML = '';
+            const q = document.getElementById('search-inventory').value.toLowerCase();
+            
+            let statTotal = 0; let statMenipis = 0; let statRusak = 0;
+            
+            state.inventory.filter(i => i.nama.toLowerCase().includes(q) || (i.kategori||'').toLowerCase().includes(q)).forEach(i => {
+                statTotal++;
+                
+                let isMenipis = i.qty <= (i.batasMinimum || 0);
+                if(isMenipis) statMenipis++;
+                if(i.kondisi === 'Rusak') statRusak++;
+                
+                let badgeKondisi = i.kondisi === 'Baik' ? `<span class="text-green-600 bg-green-50 px-2 py-0.5 rounded font-bold text-[10px] border border-green-200">BAIK</span>` : `<span class="text-red-600 bg-red-50 px-2 py-0.5 rounded font-bold text-[10px] border border-red-200">RUSAK</span>`;
+                let textColorQty = isMenipis ? 'text-red-600' : 'text-gray-900';
+                
+                tbody.innerHTML += `
+                <tr class="border-b hover:bg-gray-50">
+                    <td class="p-3 sm:p-4">
+                        <div class="font-black text-sm text-gray-800">${i.nama}</div>
+                        <div class="text-[10px] font-bold text-gray-500 uppercase tracking-widest mt-1">${i.kategori}</div>
+                    </td>
+                    <td class="p-3 sm:p-4 text-center">
+                        <div class="text-xl sm:text-2xl font-black font-mono tracking-tight ${textColorQty}">${i.qty} <span class="text-[10px] text-gray-400 font-sans">${i.satuan}</span></div>
+                        ${isMenipis ? '<div class="text-[9px] text-red-500 font-bold mt-1 bg-red-50 inline-block px-1 rounded animate-pulse"><i class="fas fa-exclamation-triangle"></i> STOK MENIPIS</div>' : ''}
+                    </td>
+                    <td class="p-3 sm:p-4">
+                        <div class="mb-1">${badgeKondisi}</div>
+                        <div class="text-[10px] text-gray-600 font-semibold"><i class="fas fa-map-marker-alt text-gray-400"></i> ${i.lokasi || '-'}</div>
+                    </td>
+                    <td class="p-3 sm:p-4 text-[10px] font-bold text-gray-400">${i.lastUpdate || '-'}</td>
+                    <td class="p-3 sm:p-4 text-center align-middle pdf-exclude">
+                        <div class="flex justify-center gap-1.5 flex-wrap w-full">
+                            <button onclick="bukaModalMutasi('${i.id}')" class="bg-blue-600 text-white hover:bg-blue-700 px-2 py-1 rounded text-[10px] font-bold shadow-sm" title="Tambah/Kurangi Stok"><i class="fas fa-exchange-alt mr-1"></i>Mutasi</button>
+                            <button onclick="siapkanEditInventory('${i.id}')" class="bg-white border-2 border-gray-300 hover:bg-gray-100 text-gray-700 w-7 h-7 rounded shadow-sm flex items-center justify-center"><i class="fas fa-pen text-[10px]"></i></button>
+                        </div>
+                    </td>
+                </tr>
+                `;
+            });
+            
+            if(tbody.innerHTML === '') tbody.innerHTML = '<tr><td colspan="5" class="text-center p-6 text-gray-400 font-bold text-xs uppercase tracking-widest">Barang tidak ditemukan</td></tr>';
+            
+            document.getElementById('inv-stat-total').innerText = statTotal;
+            document.getElementById('inv-stat-menipis').innerText = statMenipis;
+            document.getElementById('inv-stat-rusak').innerText = statRusak;
+        }
+
+        function bukaModalInventory() {
+            document.getElementById('fi-id').value = '';
+            document.getElementById('fi-nama').value = '';
+            document.getElementById('fi-kategori').value = '';
+            document.getElementById('fi-satuan').value = '';
+            document.getElementById('fi-qty').value = '';
+            document.getElementById('fi-qty').readOnly = false; 
+            document.getElementById('fi-batas').value = '';
+            document.getElementById('fi-kondisi').value = 'Baik';
+            document.getElementById('fi-lokasi').value = '';
+            
+            document.getElementById('btn-hapus-inv').classList.add('hidden');
+            document.getElementById('fi-title').innerHTML = '<i class="fas fa-box mr-2 text-black"></i> Tambah Master Barang';
+            openModal('modal-form-inventory');
+        }
+
+        function siapkanEditInventory(id) {
+            const item = state.inventory.find(i => i.id === id);
+            if(!item) return;
+            
+            document.getElementById('fi-id').value = item.id;
+            document.getElementById('fi-nama').value = item.nama;
+            document.getElementById('fi-kategori').value = item.kategori || '';
+            document.getElementById('fi-satuan').value = item.satuan || '';
+            document.getElementById('fi-qty').value = item.qty;
+            document.getElementById('fi-qty').readOnly = true; 
+            document.getElementById('fi-batas').value = item.batasMinimum || 0;
+            document.getElementById('fi-kondisi').value = item.kondisi || 'Baik';
+            document.getElementById('fi-lokasi').value = item.lokasi || '';
+            
+            document.getElementById('btn-hapus-inv').classList.remove('hidden');
+            document.getElementById('fi-title').innerHTML = '<i class="fas fa-pen mr-2 text-black"></i> Edit Data Barang';
+            openModal('modal-form-inventory');
+        }
+
+        function simpanFormInventory() {
+            const id = document.getElementById('fi-id').value;
+            const nama = document.getElementById('fi-nama').value;
+            const qty = parseInt(document.getElementById('fi-qty').value) || 0;
+            const payload = {
+                id: id || ('INV' + generateID()),
+                nama: nama,
+                kategori: document.getElementById('fi-kategori').value,
+                satuan: document.getElementById('fi-satuan').value,
+                qty: qty, 
+                batasMinimum: parseInt(document.getElementById('fi-batas').value) || 0,
+                kondisi: document.getElementById('fi-kondisi').value,
+                lokasi: document.getElementById('fi-lokasi').value,
+                lastUpdate: getWaktuNow()
+            };
+            
+            if(!nama) return showToast("Nama barang wajib diisi!", true);
+
+            if(id) {
+                const idx = state.inventory.findIndex(i => i.id === id);
+                if(idx > -1) {
+                    payload.qty = state.inventory[idx].qty; 
+                    state.inventory[idx] = payload;
+                }
+                showToast("Informasi barang diperbarui.");
+            } else {
+                state.inventory.push(payload);
+                state.inventoryLogs.push({ id: 'LOG'+generateID(), waktu: getWaktuNow(), tgl: getTglNow(), idBarang: payload.id, namaBarang: payload.nama, jenisMutasi: 'Input Awal Master', qtyPerubahan: qty, keterangan: 'Pencatatan data barang pertama kali.', userOtoritas: state.currentUser.nama });
+                showToast("Barang baru ditambahkan ke gudang.");
+            }
+            saveData(); renderInventory(); closeModal('modal-form-inventory');
+        }
+
+        function hapusInventory() {
+            const id = document.getElementById('fi-id').value;
+            showDialog("Hapus Barang?", "Data riwayat log mutasinya tetap ada, tapi barang dihapus dari daftar master. Yakin?", "Hapus", false, "", (confirm) => {
+                if(confirm) {
+                    state.inventory = state.inventory.filter(i => i.id !== id);
+                    saveData(); renderInventory(); closeModal('modal-form-inventory'); showToast("Barang dihapus dari Master.");
+                }
+            });
+        }
+
+        function bukaModalMutasi(id) {
+            const item = state.inventory.find(i => i.id === id);
+            if(!item) return;
+            document.getElementById('fm-id').value = item.id;
+            document.getElementById('fm-nama-barang').innerText = `${item.nama} (Stok Saat Ini: ${item.qty} ${item.satuan})`;
+            document.getElementById('fm-qty').value = '';
+            document.getElementById('fm-ket').value = '';
+            document.querySelector('input[name="mutasi_tipe"][value="Masuk"]').checked = true;
+            openModal('modal-mutasi-inventory');
+        }
+
+        function simpanMutasi() {
+            const id = document.getElementById('fm-id').value;
+            const tipe = document.querySelector('input[name="mutasi_tipe"]:checked').value;
+            const qtyUbah = parseInt(document.getElementById('fm-qty').value) || 0;
+            const ket = document.getElementById('fm-ket').value;
+            
+            if(qtyUbah <= 0) return showToast("Jumlah mutasi harus lebih dari 0", true);
+            
+            const idx = state.inventory.findIndex(i => i.id === id);
+            if(idx > -1) {
+                let item = state.inventory[idx];
+                if(tipe === 'Keluar' && qtyUbah > item.qty) return showToast("Ditolak! Stok tidak cukup.", true);
+                
+                item.qty = tipe === 'Masuk' ? (item.qty + qtyUbah) : (item.qty - qtyUbah);
+                item.lastUpdate = getWaktuNow();
+                
+                state.inventoryLogs.push({
+                    id: 'LOG' + generateID(), waktu: getWaktuNow(), tgl: getTglNow(), idBarang: item.id, namaBarang: item.nama,
+                    jenisMutasi: tipe === 'Masuk' ? 'Stok Masuk' : 'Stok Keluar', qtyPerubahan: qtyUbah, keterangan: ket, userOtoritas: state.currentUser.nama
+                });
+                
+                saveData(); renderInventory(); closeModal('modal-mutasi-inventory'); showToast("Mutasi stok berhasil dicatat.");
+            }
+        }
+
+        // --- LAPORAN & PDF EXPORT ---
         function populateTerapisFilter() {
             const select = document.getElementById('filter-terapis-nama');
             const terapisNames = [...new Set(state.users.filter(u=>u.role==='terapis').map(u=>u.nama))]; 
-            select.innerHTML = `<option value="ALL">Semua Pekerja/Terapis</option>` + terapisNames.map(n => `<option value="${n}">${n}</option>`).join('');
+            select.innerHTML = `<option value="ALL">Semua Pekerja</option>` + terapisNames.map(n => `<option value="${n}">${n}</option>`).join('');
         }
 
         function renderTabelLaporan() {
@@ -1994,15 +2341,23 @@
             const start = document.getElementById('filter-start').value || '1970-01-01';
             const end = document.getElementById('filter-end').value || '2099-12-31';
             const terapisFilter = document.getElementById('filter-terapis-nama').value; 
+            
+            let uangDigital = 0; let uangFisik = 0; let bonusHomecare = 0;
 
-            tTrx.innerHTML = state.transactions.filter(t => t.tgl >= start && t.tgl <= end).reverse().map(t => {
+            const filteredTrx = state.transactions.filter(t => t.tgl >= start && t.tgl <= end);
+            filteredTrx.forEach(t => {
+                if (['QRIS', 'Transfer Bank', 'QRIS / E-Wallet'].includes(t.metodeBayar)) uangDigital += t.totalAkhir;
+                if (t.metodeBayar === 'Tunai') uangFisik += t.totalAkhir;
+            });
+
+            tTrx.innerHTML = filteredTrx.reverse().map(t => {
                 const itemDetails = t.keranjang.map(i => `<span class="bg-gray-100 text-gray-800 px-1.5 sm:px-2 py-0.5 sm:py-1 rounded mr-1 inline-block mb-1 border border-gray-200 shadow-sm text-[9px] sm:text-[10px] font-bold">${i.nama} (x${i.qty})</span>`).join('');
                 return `
                 <tr class="border-b hover:bg-gray-50">
                     <td class="p-3 sm:p-4"><div class="font-bold text-[11px] sm:text-xs">${t.id}</div><div class="text-[9px] sm:text-[10px] text-gray-500 font-semibold">${t.waktu}</div><div class="text-[9px] sm:text-[10px] bg-black text-white px-1 sm:px-1.5 py-0.5 rounded inline-block mt-1"><i class="fas fa-user-circle"></i> ${t.kasir}</div></td>
                     <td class="p-3 sm:p-4 text-[11px] sm:text-xs whitespace-normal min-w-[150px] sm:min-w-[200px]">${itemDetails}</td>
                     <td class="p-3 sm:p-4"><div class="font-black tracking-tight text-sm sm:text-base">${formatRp(t.totalAkhir)}</div><div class="text-[8px] sm:text-[9px] bg-white border border-gray-300 text-gray-600 px-1.5 sm:px-2 py-0.5 sm:py-1 rounded inline-block font-bold uppercase tracking-widest mt-1 shadow-sm">${t.metodeBayar}</div></td>
-                    <td class="p-3 sm:p-4 text-center">
+                    <td class="p-3 sm:p-4 text-center pdf-exclude">
                         <button onclick='cetakStruk(${JSON.stringify(t).replace(/'/g, "\\'")})' class="bg-white border-2 border-gray-200 text-black w-7 h-7 sm:w-8 sm:h-8 rounded-lg shadow-sm hover:bg-gray-100 mr-1"><i class="fas fa-print text-xs"></i></button>
                         <button onclick="mulaiEditTransaksi('${t.id}')" class="bg-white border-2 border-yellow-400 text-yellow-600 font-bold w-7 h-7 sm:w-8 sm:h-8 rounded-lg shadow-sm hover:bg-yellow-50"><i class="fas fa-pen text-xs"></i></button>
                     </td>
@@ -2011,11 +2366,26 @@
             if(tTrx.innerHTML==='') tTrx.innerHTML = '<tr><td colspan="4" class="p-4 sm:p-6 text-center text-gray-400 font-bold text-[10px] sm:text-xs uppercase tracking-widest">Tidak ada transaksi di rentang waktu ini</td></tr>';
 
             let filteredLogs = state.therapistLogs.filter(l => l.waktuLayanan >= start && l.waktuLayanan <= end); 
-            if(terapisFilter !== 'ALL') filteredLogs = filteredLogs.filter(l => l.terapis === terapisFilter); 
             
             let totalKomisi = 0;
-            filteredLogs.forEach(l => { totalKomisi += (parseInt(l.estimasiKomisi) || 0); });
+            filteredLogs.forEach(l => { 
+                let komisi = parseInt(l.estimasiKomisi) || 0;
+                let kgt = (l.kegiatan || '').toLowerCase();
+                if(kgt.includes('home care') || kgt.includes('homecare')) {
+                    bonusHomecare += komisi;
+                }
+                
+                if(terapisFilter === 'ALL' || l.terapis === terapisFilter) {
+                    totalKomisi += komisi; 
+                }
+            });
             document.getElementById('total-komisi-terapis').innerText = formatRp(totalKomisi);
+            
+            document.getElementById('lap-uang-fisik').innerText = formatRp(uangFisik);
+            document.getElementById('lap-uang-digital').innerText = formatRp(uangDigital);
+            document.getElementById('lap-bonus-homecare').innerText = formatRp(bonusHomecare);
+
+            if(terapisFilter !== 'ALL') filteredLogs = filteredLogs.filter(l => l.terapis === terapisFilter); 
 
             tTer.innerHTML = filteredLogs.reverse().map(l => `
                 <tr class="border-b hover:bg-gray-50">
@@ -2321,20 +2691,49 @@
             if(filteredLogs.length === 0) table.innerHTML = '<tr><td colspan="4" class="text-center p-6 sm:p-8 text-gray-400 font-bold text-[10px] sm:text-xs uppercase tracking-widest"><i class="fas fa-folder-open text-xl sm:text-2xl mb-1 sm:mb-2 block opacity-30"></i> Data kosong pada periode ini</td></tr>';
         }
 
-        function exportAreaToPDF(elementId, filename) {
-            const element = document.getElementById(elementId);
-            const opt = { 
-                margin: 10, filename: filename, image: { type: 'jpeg', quality: 0.98 }, 
-                html2canvas: { scale: 2, useCORS: true },  
-                jsPDF: { unit: 'mm', format: 'a4', orientation: 'landscape' },
-                pagebreak: { mode: 'css', avoid: 'tr' }
-            };
-            const wrapper = document.createElement('div');
-            wrapper.style.padding = '20px';
-            wrapper.style.background = 'white';
-            wrapper.innerHTML = `<style>tr{page-break-inside:avoid;}</style><h2 style="font-family:sans-serif; text-align:center; margin-bottom: 20px; text-transform:uppercase;">Klinik SPA Laporan - ${filename.replace('.pdf','')}</h2>` + element.innerHTML;
+        // --- SISTEM CETAK PDF A4 ANTI-TERPOTONG ---
+        function exportAreaToPDF(elementId, filename, tbodyIdToClean) {
+            const sourceElement = document.getElementById(elementId);
+            if(!sourceElement) return showToast("Area cetak tidak ditemukan", true);
             
-            html2pdf().set(opt).from(wrapper).save(); 
+            showToast("Menyiapkan dokumen PDF A4...");
+            
+            let htmlTable = sourceElement.querySelector('table').outerHTML;
+            // Bersihkan kolom 'Aksi' sebelum di print agar tidak ikut di PDF
+            if(tbodyIdToClean) {
+                let tempDiv = document.createElement('div');
+                tempDiv.innerHTML = htmlTable;
+                tempDiv.querySelectorAll('.pdf-exclude').forEach(el => el.remove());
+                htmlTable = tempDiv.innerHTML;
+            }
+
+            const wrapper = document.createElement('div');
+            wrapper.innerHTML = `
+                <div style="font-family: 'Segoe UI', Tahoma, sans-serif; color: #111; width: 100%; padding: 20px; box-sizing: border-box; background: white;">
+                    <div style="text-align: center; border-bottom: 3px solid #000; padding-bottom: 15px; margin-bottom: 25px;">
+                        <h1 style="margin: 0; font-size: 24px; font-weight: 900; letter-spacing: 2px; text-transform: uppercase;">NABILAH PULUNGAN SPA</h1>
+                        <h2 style="margin: 5px 0 0 0; font-size: 14px; font-weight: bold; color: #444;">${filename.replace('.pdf','').replace(/_/g, ' ')}</h2>
+                        <p style="margin: 3px 0 0 0; font-size: 10px; color: #777;">Dicetak pada: ${getWaktuNow()}</p>
+                    </div>
+                    ${htmlTable}
+                    <div style="margin-top: 30px; text-align: center; font-size: 10px; color: #888;">
+                        * Dokumen dihasilkan secara otomatis oleh Sistem Manajemen Nabilah Pulungan SPA
+                    </div>
+                </div>
+            `;
+
+            const opt = { 
+                margin:       10, 
+                filename:     filename, 
+                image:        { type: 'jpeg', quality: 0.98 }, 
+                html2canvas:  { scale: 2, useCORS: true },  
+                jsPDF:        { unit: 'mm', format: 'a4', orientation: 'landscape' },
+                pagebreak:    { mode: 'css', avoid: 'tr' } 
+            };
+            
+            html2pdf().set(opt).from(wrapper).save().then(() => {
+                showToast("Berhasil mendownload PDF.");
+            });
         }
 
         function exportTableToCSV(tbodyId, filenamePrefix) {
@@ -2346,7 +2745,7 @@
             
             const rows = tbody.querySelectorAll('tr'); 
             rows.forEach(row => {
-                const cols = row.querySelectorAll('td');
+                const cols = row.querySelectorAll('td:not(.pdf-exclude)');
                 if(cols.length > 1 && !row.innerText.includes('KOSONG') && !row.innerText.includes('BELUM ADA')) {
                     const rowData = Array.from(cols).map(col => {
                         let text = col.innerText;
@@ -2368,7 +2767,8 @@
         function backupData() {
             const dataToBackup = {
                 users: state.users, products: state.products, transactions: state.transactions,
-                cashFlow: state.cashFlow, therapistLogs: state.therapistLogs, tutupBukuLogs: state.tutupBukuLogs, reservasi: state.reservasi, timestamp: getWaktuNow()
+                cashFlow: state.cashFlow, therapistLogs: state.therapistLogs, tutupBukuLogs: state.tutupBukuLogs, reservasi: state.reservasi,
+                inventory: state.inventory, inventoryLogs: state.inventoryLogs, timestamp: getWaktuNow()
             };
             const blob = new Blob([JSON.stringify(dataToBackup, null, 2)], { type: 'application/json' });
             const url = window.URL.createObjectURL(blob);
@@ -2387,7 +2787,7 @@
                         state.users = restored.users; state.products = restored.products;
                         state.transactions = restored.transactions || []; state.cashFlow = restored.cashFlow || [];
                         state.therapistLogs = restored.therapistLogs || []; state.tutupBukuLogs = restored.tutupBukuLogs || [];
-                        state.reservasi = restored.reservasi || [];
+                        state.reservasi = restored.reservasi || []; state.inventory = restored.inventory || []; state.inventoryLogs = restored.inventoryLogs || [];
                         
                         saveData(); showToast("Restore Data Sukses! Sistem memuat ulang...");
                         setTimeout(()=> location.reload(), 1500); 
@@ -2398,7 +2798,7 @@
         }
 
         function resetAllData() {
-            showDialog("Hapus Seluruh Data?", "INI AKAN MENGHAPUS SEMUA transaksi, produk, karyawan, kas, reservasi, dan log selamanya (Hanya menyisakan 1 Akun Admin default). Anda yakin?", "YAKIN, HAPUS", false, "", (confirm) => {
+            showDialog("Hapus Seluruh Data?", "INI AKAN MENGHAPUS SEMUA transaksi, produk, karyawan, kas, reservasi, stok gudang dan log selamanya (Hanya menyisakan 1 Akun Admin default). Anda yakin?", "YAKIN, HAPUS", false, "", (confirm) => {
                 if(confirm) {
                     state.users = [{ id: 'u1', nama: 'admin', pin: 'admin', role: 'admin' }];
                     state.products = [];
@@ -2407,10 +2807,12 @@
                     state.therapistLogs = [];
                     state.tutupBukuLogs = [];
                     state.reservasi = [];
+                    state.inventory = [];
+                    state.inventoryLogs = [];
                     state.cart = [];
                     
                     saveData();
-                    renderProducts(); renderKeuangan(); renderAdminHomecare(); renderTabelLaporan(); renderSDM(); clearCart();            
+                    renderProducts(); renderKeuangan(); renderAdminHomecare(); renderInventory(); renderTabelLaporan(); renderSDM(); clearCart();            
                     
                     if(chart1) chart1.destroy();
                     if(chart2) chart2.destroy();
