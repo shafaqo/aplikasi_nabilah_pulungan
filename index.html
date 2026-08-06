@@ -198,7 +198,8 @@
                 <h2 class="text-2xl sm:text-3xl font-light tracking-widest uppercase">Nabilah Pulungan</h2>
                 <p class="text-[10px] text-gray-400 mt-2 tracking-widest leading-relaxed">SMART MANAGEMENT
                     (OFFLINE)<br>Silahkan login berdasarkan nama masing masing <br>(contoh: kak Sarina) berarti
-                    <br>username/id : sarina <br>pin/sandi : sarina</p>
+                    <br>username/id : sarina <br>pin/sandi : sarina
+                </p>
 
                 <!-- Indikator Status Jaringan -->
                 <div id="network-status"
@@ -527,7 +528,8 @@
                     <div class="lg:col-span-1 bg-white p-5 sm:p-6 rounded-2xl shadow-sm border border-gray-200">
                         <h3
                             class="font-bold mb-4 border-b pb-2 flex items-center text-sm uppercase tracking-wider text-gray-500">
-                            <i class="fas fa-plus-circle mr-2"></i> Catat Kas Manual</h3>
+                            <i class="fas fa-plus-circle mr-2"></i> Catat Kas Manual
+                        </h3>
                         <div class="space-y-4">
                             <div class="flex gap-2 p-1 bg-gray-100 rounded-xl">
                                 <label class="flex-1 relative text-center">
@@ -848,14 +850,16 @@
                     <div class="lg:col-span-2 bg-white p-4 sm:p-5 rounded-2xl shadow-sm border border-gray-200">
                         <h3
                             class="text-[10px] sm:text-xs uppercase tracking-widest font-bold mb-4 flex items-center text-gray-500">
-                            <i class="fas fa-chart-line mr-2"></i>Tren Pendapatan Harian</h3>
+                            <i class="fas fa-chart-line mr-2"></i>Tren Pendapatan Harian
+                        </h3>
                         <div class="h-48 sm:h-64 relative w-full overflow-hidden"><canvas id="chartPendapatan"></canvas>
                         </div>
                     </div>
                     <div class="lg:col-span-1 bg-white p-4 sm:p-5 rounded-2xl shadow-sm border border-gray-200">
                         <h3
                             class="text-[10px] sm:text-xs uppercase tracking-widest font-bold mb-4 flex items-center text-gray-500">
-                            <i class="fas fa-chart-pie mr-2"></i>Metode Pembayaran</h3>
+                            <i class="fas fa-chart-pie mr-2"></i>Metode Pembayaran
+                        </h3>
                         <div class="h-48 sm:h-64 relative flex justify-center w-full overflow-hidden"><canvas
                                 id="chartMetode"></canvas></div>
                     </div>
@@ -1066,7 +1070,8 @@
                         class="bg-white p-5 sm:p-6 rounded-2xl shadow-sm border border-red-200 relative overflow-hidden">
                         <div
                             class="absolute top-0 right-0 w-12 h-12 sm:w-16 sm:h-16 bg-red-100 rounded-bl-full flex items-start justify-end p-2 sm:p-3">
-                            <i class="fas fa-exclamation-triangle text-red-500 text-sm sm:text-base"></i></div>
+                            <i class="fas fa-exclamation-triangle text-red-500 text-sm sm:text-base"></i>
+                        </div>
                         <h3 class="font-bold mb-1 sm:mb-2 text-base sm:text-lg text-red-600">Danger Zone</h3>
                         <p class="text-[10px] sm:text-xs text-gray-500 mb-4 sm:mb-6 pr-8 sm:pr-10">Tindakan ini akan
                             mengosongkan memori perangkat ini.</p>
@@ -1091,7 +1096,8 @@
             <div class="flex items-center">
                 <div
                     class="w-8 h-8 sm:w-10 sm:h-10 bg-white rounded-full flex items-center justify-center text-black mr-2 sm:mr-3 shadow-inner font-black text-base sm:text-lg">
-                    <i class="fas fa-user-nurse"></i></div>
+                    <i class="fas fa-user-nurse"></i>
+                </div>
                 <div>
                     <h1 class="text-base sm:text-lg font-bold tracking-widest uppercase" id="terapis-nama-header">Nama
                         Terapis</h1>
@@ -1439,7 +1445,8 @@
             <div class="text-center mb-5 sm:mb-6">
                 <div
                     class="w-12 h-12 sm:w-16 sm:h-16 bg-black text-white rounded-full flex items-center justify-center text-xl sm:text-2xl mx-auto mb-2 sm:mb-3 shadow-lg">
-                    <i class="fas fa-lock"></i></div>
+                    <i class="fas fa-lock"></i>
+                </div>
                 <h3 class="font-black text-xl sm:text-2xl text-black tracking-tight uppercase">Tutup Kasir</h3>
                 <p class="text-[9px] sm:text-[10px] font-bold text-gray-500 mt-1 uppercase tracking-widest">Selesaikan
                     shift dan rekap harian</p>
@@ -1505,7 +1512,8 @@
                     class="fas fa-times"></i></button>
             <h3
                 class="font-black text-base sm:text-lg uppercase tracking-wider mb-4 sm:mb-5 flex items-center border-b pb-2 sm:pb-3">
-                <i class="fas fa-edit mr-2 text-brand"></i> Edit Data Reservasi</h3>
+                <i class="fas fa-edit mr-2 text-brand"></i> Edit Data Reservasi
+            </h3>
 
             <input type="hidden" id="ehc-id">
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -1811,11 +1819,103 @@
                 { id: 'u3', nama: 'aisyah', pin: 'aisyah', role: 'terapis' },
                 { id: 'u4', nama: 'sarina', pin: 'sarina', role: 'terapis' },
                 { id: 'u5', nama: 'erlina', pin: 'erlina', role: 'terapis' },
-                { id: 'u6', nama: 'riska', pin: 'riska', role: 'terapis' }
+                { id: 'u6', nama: 'riska', pin: 'riska', role: 'terapis' },
+                { id: 'u7', nama: 'devi', pin: 'devi', role: 'terapis' }
             ],
             products: [ // Data awal bawaan sistem untuk daftar produk/layanan
-                { id: 'p1', nama: 'Baby SPA Reguler', harga: 150000, stok: null, kategori: 'Baby', konsinyasi: false, komisi: 0, komisiTerapis: 30000 },
-                { id: 'p2', nama: 'Mom SPA Relaxing', harga: 250000, stok: null, kategori: 'Mom', konsinyasi: false, komisi: 0, komisiTerapis: 50000 }
+                { id: 'p1', nama: 'Baby Massage 1 Accupressure 0-1 Tahun', harga: 135000, stok: null, kategori: 'Baby', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p2', nama: 'Tambahan Baby Massage Accupressure', harga: 25000, stok: null, kategori: 'Baby', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p3', nama: 'Memandikan Bayi', harga: 70000, stok: null, kategori: 'Baby', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p4', nama: 'Memandikan Bayi with Handuk', harga: 75000, stok: null, kategori: 'Baby', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p5', nama: 'Hydrotherapy Baby Swim', harga: 150000, stok: null, kategori: 'Baby', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p6', nama: 'Hydrotherapy Baby Swim with Pempers Handuk', harga: 162000, stok: null, kategori: 'Baby', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p7', nama: 'Hydrotherapy Baby Swim with Handuk', harga: 155000, stok: null, kategori: 'Baby', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p8', nama: 'Hydrotherapy Baby Swim with Pempers Handuk', harga: 167000, stok: null, kategori: 'Baby', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p9', nama: 'Fun Baby', harga: 280000, stok: null, kategori: 'Baby', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p10', nama: 'Fun Baby with Pempers', harga: 292000, stok: null, kategori: 'Baby', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p11', nama: 'Fun Baby with Handuk', harga: 285000, stok: null, kategori: 'Baby', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p12', nama: 'Fun Baby with Pempers Handuk', harga: 297000, stok: null, kategori: 'Baby', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p13', nama: 'Enjoy Baby', harga: 170000, stok: null, kategori: 'Baby', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p14', nama: 'Enjoy Baby with Pempers', harga: 182000, stok: null, kategori: 'Baby', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p15', nama: 'Enjoy Baby with Handuk', harga: 175000, stok: null, kategori: 'Baby', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p16', nama: 'Enjoy Baby with Pempers Handuk', harga: 187000, stok: null, kategori: 'Baby', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p17', nama: 'Eksklusif Baby', harga: 399000, stok: null, kategori: 'Baby', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p18', nama: 'Eksklusif Baby with Pempers', harga: 411000, stok: null, kategori: 'Baby', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p19', nama: 'Eksklusif Baby with Handuk', harga: 404000, stok: null, kategori: 'Baby', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p20', nama: 'Eksklusif Baby with Pempers Handuk', harga: 416000, stok: null, kategori: 'Baby', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p21', nama: 'Kids Massage 1 Accupressure 1-3 Tahun', harga: 145000, stok: null, kategori: 'Kids', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p22', nama: 'Kids Massage 1 Accupressure 3-6 Tahun', harga: 155000, stok: null, kategori: 'Kids', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p23', nama: 'Kids Massage 1 Accupressure 6-12 Tahun', harga: 165000, stok: null, kategori: 'Kids', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p24', nama: 'Kids Massage 1 Accupressure 12 Tahun ke atas', harga: 185000, stok: null, kategori: 'Kids', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p25', nama: 'Tambahan Kids Massage Accupressure', harga: 25000, stok: null, kategori: 'Kids', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p26', nama: 'Rempah Bath atau Bubble Bath', harga: 130000, stok: null, kategori: 'Kids', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p27', nama: 'Rempah Bath dan Bubble Bath Berendam Rempah Bubble', harga: 150000, stok: null, kategori: 'Kids', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p28', nama: 'Choco Bath Berendam Coklat', harga: 140000, stok: null, kategori: 'Kids', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p29', nama: 'Choco Bath Berendam Coklat plus Bubble atau rempah', harga: 190000, stok: null, kategori: 'Kids', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p30', nama: 'Berendam bubble atau rempah bath plus Massage', harga: 240000, stok: null, kategori: 'Kids', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p31', nama: 'Berendam bubble atau rempah bath plus Massage dan Mask', harga: 260000, stok: null, kategori: 'Kids', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p32', nama: 'Healthy Kids', harga: 335000, stok: null, kategori: 'Kids', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p33', nama: 'Handuk', harga: 5000, stok: null, kategori: 'Treatment', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p34', nama: 'Pempers Baby atau Kids', harga: 14000, stok: null, kategori: 'Treatment', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p35', nama: 'Potong Kuku ', harga: 30000, stok: null, kategori: 'Treatment', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p36', nama: 'Pangkas Rambut', harga: 80000, stok: null, kategori: 'Treatment', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p37', nama: 'Cuci Hidung', harga: 30000, stok: null, kategori: 'Treatment', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p38', nama: 'Cuci Hidung with Physiomer', harga: 40000, stok: null, kategori: 'Treatment', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p39', nama: 'Infra Red', harga: 35000, stok: null, kategori: 'Treatment', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p40', nama: 'Esensial Oil Terapi Humidifier', harga: 25000, stok: null, kategori: 'Treatment', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p41', nama: 'Nebulizer Esensial Oil', harga: 120000, stok: null, kategori: 'Treatment', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p42', nama: 'Oral Cleanser', harga: 30000, stok: null, kategori: 'Treatment', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p43', nama: 'Tuam Pitu Herbal', harga: 50000, stok: null, kategori: 'Treatment', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p44', nama: 'Deteksi Tumbuh Kembang 2 Jam', harga: 250000, stok: null, kategori: 'Treatment', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p45', nama: 'Konsultasi Dokter', harga: 100000, stok: null, kategori: 'Treatment', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p46', nama: 'Konsultasi Bidan', harga: 80000, stok: null, kategori: 'Treatment', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p47', nama: 'Layanan Home Care 0-5 Km', harga: 25000, stok: null, kategori: 'Homecare', konsinyasi: false, komisi: 0, komisiTerapis: 25000 },
+                { id: 'p48', nama: 'Layanan Home Care 5-10 Km', harga: 35000, stok: null, kategori: 'Homecare', konsinyasi: false, komisi: 0, komisiTerapis: 30000 },
+                { id: 'p49', nama: 'Layanan Home Care 10-15 Km', harga: 45000, stok: null, kategori: 'Homecare', konsinyasi: false, komisi: 0, komisiTerapis: 40000 },
+                { id: 'p50', nama: 'Layanan Home Care 15-20 Km', harga: 55000, stok: null, kategori: 'Homecare', konsinyasi: false, komisi: 0, komisiTerapis: 50000 },
+                { id: 'p51', nama: 'Tambahan Home Care Potong Kuku ', harga: 35000, stok: null, kategori: 'Homecare', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p52', nama: 'Tambahan Home Care Pangkas Rambut', harga: 85000, stok: null, kategori: 'Homecare', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p53', nama: 'Tambahan Home Care Cuci Hidung', harga: 35000, stok: null, kategori: 'Homecare', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p54', nama: 'Tambahan Home Care Cuci Hidung with Physiomer', harga: 45000, stok: null, kategori: 'Homecare', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p55', nama: 'Tambahan Home Care Infra Red', harga: 40000, stok: null, kategori: 'Homecare', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p56', nama: 'Tambahan Home Care Esensial Oil Terapi Humidifier', harga: 30000, stok: null, kategori: 'Homecare', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p57', nama: 'Tambahan Home Care Nebulizer Esensial Oil', harga: 125000, stok: null, kategori: 'Homecare', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p58', nama: 'Tambahan Home Care Oral Cleanser', harga: 35000, stok: null, kategori: 'Homecare', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p59', nama: 'Tambahan Home Care Tuam Pitu Herbal', harga: 55000, stok: null, kategori: 'Homecare', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p60', nama: 'Tambahan Home Care Deteksi Tumbuh Kembang 2 Jam', harga: 255000, stok: null, kategori: 'Homecare', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p61', nama: 'Layanan Homecare Full Body Massage Mom 0-5 Km', harga: 0, stok: null, kategori: 'Homecare', konsinyasi: false, komisi: 0, komisiTerapis: 40000 },
+                { id: 'p62', nama: 'Layanan Homecare Full Body Massage Mom 5-10 Km', harga: 0, stok: null, kategori: 'Homecare', konsinyasi: false, komisi: 0, komisiTerapis: 50000 },
+                { id: 'p63', nama: 'Layanan Homecare Full Body Massage Mom 10-15 Km', harga: 0, stok: null, kategori: 'Homecare', konsinyasi: false, komisi: 0, komisiTerapis: 60000 },
+                { id: 'p64', nama: 'Layanan Homecare Full Body Massage Mom 15-20 Km', harga: 0, stok: null, kategori: 'Homecare', konsinyasi: false, komisi: 0, komisiTerapis: 70000 },
+                { id: 'p65', nama: 'Lembur Homecare Baby Kids', harga: 0, stok: null, kategori: 'Homecare', konsinyasi: false, komisi: 0, komisiTerapis: 30000 },
+                { id: 'p66', nama: 'Lembur Baby SPA di Klinik', harga: 0, stok: null, kategori: 'Baby', konsinyasi: false, komisi: 0, komisiTerapis: 20000 },
+                { id: 'p67', nama: 'Lembur Kids SPA di Klinik', harga: 0, stok: null, kategori: 'Kids', konsinyasi: false, komisi: 0, komisiTerapis: 20000 },
+                { id: 'p68', nama: 'Lembur atau Tidak Lembur Full Body Massage Mom di Klinik', harga: 0, stok: null, kategori: 'Mom', konsinyasi: false, komisi: 0, komisiTerapis: 25000 },
+                { id: 'p69', nama: 'Mendampingi Partus', harga: 0, stok: null, kategori: 'Lahiran', konsinyasi: false, komisi: 0, komisiTerapis: 100000 },
+                { id: 'p70', nama: 'Full Body Massage Pijat Ibu Hamil', harga: 175000, stok: null, kategori: 'Mom', konsinyasi: false, komisi: 0, komisiTerapis: 25000 },
+                { id: 'p71', nama: 'Full Body Massage Pijat Ibu Hamil', harga: 185000, stok: null, kategori: 'Mom', konsinyasi: false, komisi: 0, komisiTerapis: 25000 },
+                { id: 'p72', nama: 'Full Body Massage Pijat Ibu Nifas', harga: 195000, stok: null, kategori: 'Mom', konsinyasi: false, komisi: 0, komisiTerapis: 25000 },
+                { id: 'p73', nama: 'Pijat Laktasi Ibu Hamil atau Nifas tanpa Keluhan', harga: 175000, stok: null, kategori: 'Mom', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p74', nama: 'Pijat Laktasi Ibu Hamil atau Nifas dengan Keluhan', harga: 200000, stok: null, kategori: 'Mom', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p75', nama: 'Pijat Oksitosin', harga: 180000, stok: null, kategori: 'Mom', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p76', nama: 'Pijat Perineum', harga: 80000, stok: null, kategori: 'Mom', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p77', nama: 'Ratus V', harga: 95000, stok: null, kategori: 'Mom', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p78', nama: 'USG dan ANC', harga: 250000, stok: null, kategori: 'Mom', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p79', nama: 'Body Scrub', harga: 120000, stok: null, kategori: 'Mom', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p80', nama: 'Cukur Miss V', harga: 80000, stok: null, kategori: 'Mom', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p81', nama: 'Face Treatment Massage dan Mask', harga: 160000, stok: null, kategori: 'Mom', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p82', nama: 'Healing Bath Bumil', harga: 230000, stok: null, kategori: 'Mom', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p83', nama: 'Foot Spa Hydroterapy', harga: 100000, stok: null, kategori: 'Mom', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p84', nama: 'Fun Mom', harga: 400000, stok: null, kategori: 'Mom', konsinyasi: false, komisi: 0, komisiTerapis: 25000 },
+                { id: 'p85', nama: 'Happy Mom', harga: 450000, stok: null, kategori: 'Mom', konsinyasi: false, komisi: 0, komisiTerapis: 25000 },
+                { id: 'p86', nama: 'Enjoy Mom', harga: 285000, stok: null, kategori: 'Mom', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p87', nama: 'Pempers Celana Mom', harga: 25000, stok: null, kategori: 'Mom', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p88', nama: 'Underpad', harga: 10000, stok: null, kategori: 'Mom', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p89', nama: 'Vaksin HB0', harga: 350000, stok: null, kategori: 'Mom', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p90', nama: 'Bengkung tapel Pilis Param', harga: 80000, stok: null, kategori: 'Mom', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p91', nama: 'Paket Bersalin Premium', harga: 4000000, stok: null, kategori: 'Lahiran', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p92', nama: 'Paket Bersalin VIP Farhan Atas', harga: 5000000, stok: null, kategori: 'Lahiran', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p93', nama: 'Paket Bersalin VIP Maryam Bawah', harga: 5500000, stok: null, kategori: 'Lahiran', konsinyasi: false, komisi: 0, komisiTerapis: 0 }
             ],
             transactions: [], // Array untuk menyimpan riwayat transaksi penjualan (POS)
             cashFlow: [], // Array untuk menyimpan arus kas (uang masuk/keluar)
@@ -2362,6 +2462,75 @@
             renderProducts(); // Wajib Meminta sistem menceretak (draw) ulang karena perubahan view memakan layout CSS yg berbeda di render logic
         }
 
+        function cetakKatalogA4() {
+            if (state.products.length === 0) return showToast("Etalase masih kosong!", true);
+            showToast("Menyusun PDF Katalog A4...");
+
+            const opt = {
+                margin: 15,
+                filename: `Katalog_Klinik_${getTglNow()}.pdf`,
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2, useCORS: true },
+                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+                pagebreak: { mode: 'css', avoid: 'tr' }
+            };
+
+            let htmlContent = `
+                <style>
+                    table { page-break-inside: auto; }
+                    tr { page-break-inside: avoid; page-break-after: auto; }
+                    thead { display: table-header-group; }
+                    tfoot { display: table-footer-group; }
+                </style>
+                <div style="font-family: 'Segoe UI', Tahoma, sans-serif; color: #111;">
+                    <div style="text-align: center; border-bottom: 3px solid #000; padding-bottom: 15px; margin-bottom: 25px;">
+                        <h1 style="margin: 0; font-size: 24px; font-weight: 900; letter-spacing: 2px; text-transform: uppercase;">Katalog Layanan & Produk</h1>
+                        <h2 style="margin: 5px 0 0 0; font-size: 14px; font-weight: bold; color: #444;">NABILAH PULUNGAN MOM & BABY SPA</h2>
+                        <p style="margin: 3px 0 0 0; font-size: 10px; color: #777;">Dicetak pada: ${getWaktuNow()}</p>
+                    </div>
+                    <table style="width: 100%; border-collapse: collapse; font-size: 11px;">
+                        <thead>
+                            <tr style="background-color: #111; color: #fff; text-align: left;">
+                                <th style="padding: 10px; border: 1px solid #ddd; width: 5%;">No</th>
+                                <th style="padding: 10px; border: 1px solid #ddd; width: 25%;">Kategori</th>
+                                <th style="padding: 10px; border: 1px solid #ddd; width: 45%;">Nama Layanan / Produk</th>
+                                <th style="padding: 10px; border: 1px solid #ddd; text-align: right; width: 25%;">Tarif / Harga (Rp)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+            `;
+
+            let sortedProducts = [...state.products].sort((a, b) => a.kategori.localeCompare(b.kategori));
+
+            sortedProducts.forEach((p, index) => {
+                let bg = index % 2 === 0 ? '#f9fafb' : '#ffffff';
+                let stokInfo = p.stok !== null && p.stok !== '' ? `<br><span style="font-size: 9px; color: #777; font-weight: normal;">Stok sisa: ${p.stok}</span>` : '';
+                htmlContent += `
+                    <tr style="background-color: ${bg};">
+                        <td style="padding: 10px; border: 1px solid #e5e5e5; text-align: center;">${index + 1}</td>
+                        <td style="padding: 10px; border: 1px solid #e5e5e5; font-weight: bold; color: #555; text-transform: uppercase;">${p.kategori}</td>
+                        <td style="padding: 10px; border: 1px solid #e5e5e5; font-weight: bold;">${p.nama} ${stokInfo}</td>
+                        <td style="padding: 10px; border: 1px solid #e5e5e5; text-align: right; font-weight: bold; font-size: 12px;">${formatRp(p.harga)}</td>
+                    </tr>
+                `;
+            });
+
+            htmlContent += `
+                        </tbody>
+                    </table>
+                    <div style="margin-top: 30px; text-align: center; font-size: 10px; color: #888;">
+                        * Harga dan ketersediaan dapat berubah sewaktu-waktu tanpa pemberitahuan sebelumnya.<br>
+                        * Dicetak otomatis melalui Sistem Manajemen Nabilah Pulungan SPA
+                    </div>
+                </div>
+            `;
+
+            const wrapper = document.createElement('div');
+            wrapper.innerHTML = htmlContent;
+
+            html2pdf().set(opt).from(wrapper).save();
+        }
+
         function renderProducts() { // Menggambar elemen kartu barang dari memori state ke Layar Mesin Kasir HTML
             const grid = document.getElementById('product-grid'); // Seleksi kolom parent/wadahnya
             grid.innerHTML = ''; // Kosongkan dulu supaya tidak bertumpuk ganda (Clear Board)
@@ -2414,6 +2583,90 @@
                             </div>
                         </div>
                     `;
+                }
+            });
+        }
+
+        function bukaModalTambahProduk() {
+            document.getElementById('fp-id').value = '';
+            document.getElementById('fp-nama').value = '';
+            document.getElementById('fp-kategori').value = '';
+            document.getElementById('fp-harga').value = '';
+            document.getElementById('fp-stok').value = '';
+            document.getElementById('fp-komisi-terapis').value = '';
+
+            const cb = document.getElementById('fp-konsinyasi');
+            cb.checked = false;
+            document.getElementById('fp-komisi-area').style.display = 'none';
+            document.getElementById('fp-komisi').value = '';
+
+            document.getElementById('btn-hapus-produk').classList.add('hidden');
+            document.getElementById('fp-title').innerHTML = '<i class="fas fa-plus-circle mr-2 text-black"></i> Tambah Item Katalog';
+
+            openModal('modal-form-produk');
+            cb.onchange = (e) => { document.getElementById('fp-komisi-area').style.display = e.target.checked ? 'block' : 'none'; };
+        }
+
+        function siapkanEditProduk(id) {
+            const p = state.products.find(x => x.id === id);
+            if (!p) return;
+
+            document.getElementById('fp-id').value = p.id;
+            document.getElementById('fp-nama').value = p.nama;
+            document.getElementById('fp-kategori').value = p.kategori || '';
+            document.getElementById('fp-harga').value = p.harga;
+            document.getElementById('fp-stok').value = p.stok === null ? '' : p.stok;
+            document.getElementById('fp-komisi-terapis').value = p.komisiTerapis || 0;
+
+            const cb = document.getElementById('fp-konsinyasi');
+            const area = document.getElementById('fp-komisi-area');
+            cb.checked = p.konsinyasi || false;
+            document.getElementById('fp-komisi').value = p.komisi || 0;
+
+            area.style.display = cb.checked ? 'block' : 'none';
+            cb.onchange = (e) => { area.style.display = e.target.checked ? 'block' : 'none'; };
+
+            document.getElementById('btn-hapus-produk').classList.remove('hidden');
+            document.getElementById('fp-title').innerHTML = '<i class="fas fa-pen mr-2 text-black"></i> Edit Item Katalog';
+            openModal('modal-form-produk');
+        }
+
+        function simpanFormProduk() {
+            const id = document.getElementById('fp-id').value;
+            const nama = document.getElementById('fp-nama').value;
+            const kategori = document.getElementById('fp-kategori').value || 'Umum';
+            const harga = parseInt(document.getElementById('fp-harga').value) || 0;
+
+            const stokVal = document.getElementById('fp-stok').value;
+            const stok = stokVal === '' ? null : parseInt(stokVal);
+
+            const komisiTerapis = parseInt(document.getElementById('fp-komisi-terapis').value) || 0;
+            const konsinyasi = document.getElementById('fp-konsinyasi').checked;
+            const komisi = konsinyasi ? parseInt(document.getElementById('fp-komisi').value) || 0 : 0;
+
+            if (!nama) return showToast("Nama produk wajib diisi!", true);
+
+            if (id) {
+                let p = state.products.find(x => x.id === id);
+                p.nama = nama; p.kategori = kategori; p.harga = harga; p.stok = stok;
+                p.komisiTerapis = komisiTerapis; p.konsinyasi = konsinyasi; p.komisi = komisi;
+                showToast("Data katalog diperbarui");
+            } else {
+                state.products.push({ id: 'P' + generateID(), nama, kategori, harga, stok, komisiTerapis, konsinyasi, komisi });
+                showToast("Produk/Layanan baru ditambahkan");
+            }
+
+            saveData(); renderProducts(); renderCart(); closeModal('modal-form-produk');
+        }
+
+        function hapusProduk() {
+            const id = document.getElementById('fp-id').value;
+            if (!id) return;
+            showDialog("Hapus Katalog Permanen?", "Apakah Anda yakin menghapus item ini dari etalase POS secara permanen?", "Ya, Hapus", false, "", (confirm) => {
+                if (confirm) {
+                    state.products = state.products.filter(p => p.id !== id);
+                    saveData(); renderProducts(); renderCart(); closeModal('modal-form-produk');
+                    showToast("Produk dihapus dari sistem");
                 }
             });
         }
@@ -2640,6 +2893,70 @@
             renderProducts();  // Cetak ulang/Gambar ulang Visual UI Katalog HTML untuk memunculkan Nilai "STOK" terbaru secara real-time
         }
 
+        function cetakStruk(trx) {
+            const pr = document.getElementById('print-receipt-template').cloneNode(true);
+            pr.id = 'print-active'; pr.classList.remove('hidden');
+
+            pr.querySelector('#pr-id').innerText = trx.id;
+            pr.querySelector('#pr-waktu').innerText = trx.waktu;
+            pr.querySelector('#pr-pelanggan').innerText = trx.pelanggan || 'Umum';
+            pr.querySelector('#pr-qr').src = `https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=${trx.id}`;
+
+            pr.querySelector('#pr-items').innerHTML = trx.keranjang.map(i => {
+                let nominalDiskonItem = i.diskonItem.type === 'persen' ? (i.harga * i.diskonItem.value / 100) : i.diskonItem.value;
+                let dInfo = nominalDiskonItem > 0 ? `(Disc -${nominalDiskonItem})` : '';
+                return `<div style="font-weight: bold; margin-top: 6px; font-size:12px;">${i.nama}</div><div style="display: flex; justify-content: space-between; color: #333; font-size:12px; margin-top:2px;"><span>${i.qty} x ${i.harga} ${dInfo}</span><span>${(i.harga - nominalDiskonItem) * i.qty}</span></div>`
+            }).join('');
+
+            pr.querySelector('#pr-subtotal').innerText = formatRp(trx.subtotal);
+            pr.querySelector('#pr-diskon').innerText = "- " + formatRp(trx.diskon);
+            pr.querySelector('#pr-total').innerText = formatRp(trx.totalAkhir);
+
+            if (trx.metodeBayar === 'Tunai') {
+                pr.querySelector('#pr-tunai-area').style.display = 'block';
+                pr.querySelector('#pr-tunai').innerText = formatRp(trx.tunai);
+                pr.querySelector('#pr-kembalian').innerText = formatRp(trx.kembalian);
+            } else { pr.querySelector('#pr-tunai-area').style.display = 'none'; }
+
+            pr.querySelector('#pr-metode').innerText = trx.metodeBayar;
+            pr.querySelector('#pr-kasir').innerText = trx.kasir;
+
+            const iframe = document.getElementById('print-iframe');
+            iframe.contentDocument.body.innerHTML = pr.innerHTML;
+            setTimeout(() => { iframe.contentWindow.print(); }, 500);
+        }
+
+        function mulaiEditTransaksi(id) {
+            const trx = state.transactions.find(t => t.id === id);
+            if (!trx) return showToast("Data transaksi lama tidak ditemukan", true);
+
+            state.editingTrxId = id;
+            state.cart = JSON.parse(JSON.stringify(trx.keranjang));
+            state.cart.forEach(c => { if (!c.diskonItem) c.diskonItem = { type: 'nominal', value: 0 }; });
+            state.cartDiscountGlobal = { type: 'nominal', value: trx.diskon || 0 };
+
+            document.getElementById('edit-trx-id').innerText = id;
+            document.getElementById('banner-edit-trx').classList.remove('hidden');
+
+            const btn = document.getElementById('btn-pay-main');
+            btn.innerHTML = `<i class="fas fa-save mr-2"></i> PERBARUI TRANSAKSI`;
+            btn.className = "w-full bg-yellow-400 text-black py-3 sm:py-4 rounded-xl font-black text-base sm:text-lg hover:bg-yellow-500 transition flex items-center justify-center shadow-lg mt-3 sm:mt-4";
+
+            navAdmin('pos'); renderCart(); showToast("Mode Edit Aktif. Transaksi dimuat ke keranjang.");
+        }
+
+        function batalEditTransaksi() {
+            if (!state.editingTrxId) return;
+            state.editingTrxId = null;
+            document.getElementById('banner-edit-trx').classList.add('hidden');
+
+            const btn = document.getElementById('btn-pay-main');
+            btn.innerHTML = `<i class="fas fa-wallet mr-2"></i> BAYAR SEKARANG`;
+            btn.className = "w-full bg-black text-white py-3 sm:py-4 rounded-xl font-bold text-base sm:text-lg hover:bg-graydark transition flex items-center justify-center shadow-lg";
+
+            clearCart();
+        }
+
         // --- MANAJEMEN KEUANGAN (ARUS KAS) ---
         function renderKeuangan() { // Logika Akutansi Uang Tunai Mutlak dan Dompet (Buku Kasir Besar) 
             const table = document.getElementById('table-kas-body'); // Tarik DOM Element Body Tabel History Kas
@@ -2709,6 +3026,327 @@
             document.getElementById('kas_nominal').value = ''; document.getElementById('kas_keterangan').value = ''; // Mengosongi inputan box HTML
             renderKeuangan(); showToast("Catatan kas telah disimpan."); // Rekalkulasi Ulang (render) Layar panel keuangan dengan data baru, Munculkan Peringatan Hijau di ujung.
         }
+
+        function openTutupBukuModal() {
+            document.getElementById('tb-sistem').innerText = formatRp(state.estimasiKasSekarang);
+            document.getElementById('tb-aktual').value = ''; document.getElementById('tb-diambil').value = ''; document.getElementById('tb-selisih').innerText = 'Rp 0'; document.getElementById('tb-modal').innerText = 'Rp 0';
+            openModal('modal-tutup-buku');
+        }
+
+        function kalkulasiTutupBuku() {
+            const aktual = parseInt(document.getElementById('tb-aktual').value) || 0;
+            const diambil = parseInt(document.getElementById('tb-diambil').value) || 0;
+            const selisih = aktual - state.estimasiKasSekarang;
+            const modalSisa = aktual - diambil;
+
+            const elSelisih = document.getElementById('tb-selisih');
+            elSelisih.innerText = formatRp(selisih);
+            elSelisih.className = `font-black text-base sm:text-lg ${selisih < 0 ? 'text-red-600' : 'text-green-600'}`;
+            document.getElementById('tb-modal').innerText = formatRp(modalSisa > 0 ? modalSisa : 0);
+        }
+
+        function prosesTutupBuku() {
+            const aktual = parseInt(document.getElementById('tb-aktual').value) || 0;
+            const diambil = parseInt(document.getElementById('tb-diambil').value) || 0;
+            const selisih = aktual - state.estimasiKasSekarang;
+            const sisaModal = aktual - diambil;
+
+            const payload = { id: 'TB' + generateID(), waktu: getWaktuNow(), tgl: getTglNow(), admin: state.currentUser.nama, totalSistem: state.estimasiKasSekarang, uangAktual: aktual, selisih: selisih, uangDitarik: diambil, modalEsok: sisaModal };
+            state.tutupBukuLogs.push(payload);
+
+            if (selisih < 0) {
+                state.cashFlow.push({ id: 'KAS' + generateID(), waktu: getWaktuNow(), tgl: getTglNow(), tipe: 'Keluar', kategori: 'Penyesuaian Selisih', nominal: Math.abs(selisih), keterangan: `Penyesuaian kas minus/hilang saat tutup buku.`, refId: payload.id });
+            } else if (selisih > 0) {
+                state.cashFlow.push({ id: 'KAS' + generateID(), waktu: getWaktuNow(), tgl: getTglNow(), tipe: 'Masuk', kategori: 'Penyesuaian Selisih', nominal: selisih, keterangan: `Penyesuaian kas lebih saat tutup buku.`, refId: payload.id });
+            }
+
+            if (diambil > 0) {
+                state.cashFlow.push({ id: 'KAS' + generateID(), waktu: getWaktuNow(), tgl: getTglNow(), tipe: 'Keluar', kategori: 'Setoran Tutup Buku', nominal: diambil, keterangan: `Uang disetorkan/ditarik saat tutup buku kasir.`, refId: payload.id });
+            }
+
+            saveData(); renderKeuangan(); showToast("Tutup Buku Selesai & Sukses Tersimpan."); closeModal('modal-tutup-buku');
+        }
+
+        function renderAdminHomecare() {
+            const tbody = document.getElementById('table-hc-body');
+            tbody.innerHTML = '';
+
+            const start = document.getElementById('filter-start-hc').value || '1970-01-01';
+            const end = document.getElementById('filter-end-hc').value || '2099-12-31';
+
+            const resData = state.reservasi || [];
+            let filtered = resData.filter(r => r.tglReservasi >= start && r.tglReservasi <= end);
+
+            let layananCount = {};
+            let hariCount = {};
+            let stMenunggu = 0, stSelesai = 0;
+
+            filtered.reverse().forEach(r => {
+                layananCount[r.layanan] = (layananCount[r.layanan] || 0) + 1;
+                hariCount[r.tglReservasi] = (hariCount[r.tglReservasi] || 0) + 1;
+
+                let statusBadge = '';
+                if (r.status === 'Menunggu') { statusBadge = '<span class="bg-yellow-100 text-yellow-800 border border-yellow-300 px-2 py-1 rounded font-bold text-[10px]">MENUNGGU</span>'; stMenunggu++; }
+                else if (r.status === 'Selesai') { statusBadge = '<span class="bg-green-100 text-green-800 border border-green-300 px-2 py-1 rounded font-bold text-[10px]">SELESAI</span>'; stSelesai++; }
+                else { statusBadge = '<span class="bg-red-100 text-red-800 border border-red-300 px-2 py-1 rounded font-bold text-[10px]">BATAL</span>'; }
+
+                tbody.innerHTML += `
+                <tr class="border-b hover:bg-gray-50">
+                    <td class="p-3 text-[10px] text-gray-500 font-bold">${r.waktuSubmit}</td>
+                    <td class="p-3">
+                        <div class="font-black text-xs">${r.nama} <span class="text-[10px] text-gray-400 font-normal">(${r.umur} Thn)</span></div>
+                        <div class="text-[10px] text-brand font-bold mt-1"><i class="fab fa-whatsapp"></i> ${r.kontak}</div>
+                    </td>
+                    <td class="p-3">
+                        <div class="font-bold text-xs text-black mb-1">${r.tglReservasi} • ${r.jamReservasi}</div>
+                        <div class="bg-gray-100 text-gray-800 px-2 py-0.5 border rounded inline-block text-[10px] font-bold">${r.layanan}</div>
+                    </td>
+                    <td class="p-3 min-w-[200px] whitespace-normal">
+                        <div class="text-[10px] italic text-gray-600 mb-1 line-clamp-2">${r.alamat}</div>
+                        <div class="flex gap-2">
+                            <a href="${r.maps}" target="_blank" class="text-[10px] text-blue-600 hover:underline font-bold flex items-center"><i class="fas fa-map-marker-alt mr-1"></i> Buka Maps</a>
+                            <span class="text-[10px] text-gray-400">|</span>
+                            <span class="text-[10px] text-gray-500 font-semibold" title="${r.catatan || '-'}"><i class="fas fa-comment-dots mr-1"></i> ${r.catatan ? 'Ada Catatan' : '-'}</span>
+                        </div>
+                    </td>
+                    <td class="p-3 text-center align-middle pdf-exclude">
+                        <div class="mb-2">${statusBadge}</div>
+                        <div class="flex justify-center gap-1">
+                            <button onclick="ubahStatusHC('${r.id}', 'Selesai')" class="bg-green-500 hover:bg-green-600 text-white w-7 h-7 rounded-lg shadow-sm" title="Tandai Selesai"><i class="fas fa-check text-[10px]"></i></button>
+                            <button onclick="ubahStatusHC('${r.id}', 'Batal')" class="bg-red-500 hover:bg-red-600 text-white w-7 h-7 rounded-lg shadow-sm" title="Batalkan"><i class="fas fa-times text-[10px]"></i></button>
+                            <button onclick="siapkanEditHC('${r.id}')" class="bg-blue-500 hover:bg-blue-600 text-white w-7 h-7 rounded-lg shadow-sm" title="Edit Data"><i class="fas fa-pen text-[10px]"></i></button>
+                        </div>
+                    </td>
+                </tr>
+                `;
+            });
+
+            if (tbody.innerHTML === '') tbody.innerHTML = '<tr><td colspan="5" class="text-center p-6 text-gray-400 font-bold text-xs uppercase tracking-widest">Belum ada data reservasi</td></tr>';
+
+            let topLayanan = Object.keys(layananCount).sort((a, b) => layananCount[b] - layananCount[a])[0] || '-';
+            let topHari = Object.keys(hariCount).sort((a, b) => hariCount[b] - hariCount[a])[0] || '-';
+
+            document.getElementById('hc-stat-total').innerText = filtered.length;
+            document.getElementById('hc-stat-menunggu').innerText = stMenunggu;
+            document.getElementById('hc-stat-selesai').innerText = stSelesai;
+            document.getElementById('hc-stat-layanan').innerText = topLayanan;
+            document.getElementById('hc-stat-hari').innerText = topHari;
+        }
+
+        function ubahStatusHC(id, statusBaru) {
+            const index = state.reservasi.findIndex(r => r.id === id);
+            if (index > -1) {
+                state.reservasi[index].status = statusBaru;
+                saveData(); renderAdminHomecare();
+                showToast("Status reservasi diperbarui");
+            }
+        }
+
+        function siapkanEditHC(id) {
+            const r = state.reservasi.find(x => x.id === id);
+            if (!r) return;
+
+            document.getElementById('ehc-id').value = r.id;
+            document.getElementById('ehc-nama').value = r.nama;
+            document.getElementById('ehc-kontak').value = r.kontak;
+            document.getElementById('ehc-tglres').value = r.tglReservasi;
+            document.getElementById('ehc-jamres').value = r.jamReservasi;
+            document.getElementById('ehc-layanan').value = r.layanan;
+            document.getElementById('ehc-alamat').value = r.alamat;
+            document.getElementById('ehc-catatan').value = r.catatan;
+
+            openModal('modal-edit-hc');
+        }
+
+        function simpanEditHC() {
+            const id = document.getElementById('ehc-id').value;
+            const idx = state.reservasi.findIndex(x => x.id === id);
+            if (idx > -1) {
+                state.reservasi[idx].nama = document.getElementById('ehc-nama').value;
+                state.reservasi[idx].kontak = document.getElementById('ehc-kontak').value;
+                state.reservasi[idx].tglReservasi = document.getElementById('ehc-tglres').value;
+                state.reservasi[idx].jamReservasi = document.getElementById('ehc-jamres').value;
+                state.reservasi[idx].layanan = document.getElementById('ehc-layanan').value;
+                state.reservasi[idx].alamat = document.getElementById('ehc-alamat').value;
+                state.reservasi[idx].catatan = document.getElementById('ehc-catatan').value;
+
+                saveData(); renderAdminHomecare(); closeModal('modal-edit-hc');
+                showToast("Data Reservasi berhasil dikoreksi.");
+            }
+        }
+
+        // --- MANAJEMEN INVENTORY GUDANG ---
+        function renderInventory() {
+            const tbody = document.getElementById('table-inv-body');
+            tbody.innerHTML = '';
+            const q = document.getElementById('search-inventory').value.toLowerCase();
+
+            let statTotal = 0; let statMenipis = 0; let statRusak = 0;
+
+            state.inventory.filter(i => i.nama.toLowerCase().includes(q) || (i.kategori || '').toLowerCase().includes(q)).forEach(i => {
+                statTotal++;
+
+                let isMenipis = i.qty <= (i.batasMinimum || 0);
+                if (isMenipis) statMenipis++;
+                if (i.kondisi === 'Rusak') statRusak++;
+
+                let badgeKondisi = i.kondisi === 'Baik' ? `<span class="text-green-600 bg-green-50 px-2 py-0.5 rounded font-bold text-[10px] border border-green-200">BAIK</span>` : `<span class="text-red-600 bg-red-50 px-2 py-0.5 rounded font-bold text-[10px] border border-red-200">RUSAK</span>`;
+                let textColorQty = isMenipis ? 'text-red-600' : 'text-gray-900';
+
+                tbody.innerHTML += `
+                <tr class="border-b hover:bg-gray-50">
+                    <td class="p-3 sm:p-4">
+                        <div class="font-black text-sm text-gray-800">${i.nama}</div>
+                        <div class="text-[10px] font-bold text-gray-500 uppercase tracking-widest mt-1">${i.kategori}</div>
+                    </td>
+                    <td class="p-3 sm:p-4 text-center">
+                        <div class="text-xl sm:text-2xl font-black font-mono tracking-tight ${textColorQty}">${i.qty} <span class="text-[10px] text-gray-400 font-sans">${i.satuan}</span></div>
+                        ${isMenipis ? '<div class="text-[9px] text-red-500 font-bold mt-1 bg-red-50 inline-block px-1 rounded animate-pulse"><i class="fas fa-exclamation-triangle"></i> STOK MENIPIS</div>' : ''}
+                    </td>
+                    <td class="p-3 sm:p-4">
+                        <div class="mb-1">${badgeKondisi}</div>
+                        <div class="text-[10px] text-gray-600 font-semibold"><i class="fas fa-map-marker-alt text-gray-400"></i> ${i.lokasi || '-'}</div>
+                    </td>
+                    <td class="p-3 sm:p-4 text-[10px] font-bold text-gray-400">${i.lastUpdate || '-'}</td>
+                    <td class="p-3 sm:p-4 text-center align-middle pdf-exclude">
+                        <div class="flex justify-center gap-1.5 flex-wrap w-full">
+                            <button onclick="bukaModalMutasi('${i.id}')" class="bg-blue-600 text-white hover:bg-blue-700 px-2 py-1 rounded text-[10px] font-bold shadow-sm" title="Tambah/Kurangi Stok"><i class="fas fa-exchange-alt mr-1"></i>Mutasi</button>
+                            <button onclick="siapkanEditInventory('${i.id}')" class="bg-white border-2 border-gray-300 hover:bg-gray-100 text-gray-700 w-7 h-7 rounded shadow-sm flex items-center justify-center"><i class="fas fa-pen text-[10px]"></i></button>
+                        </div>
+                    </td>
+                </tr>
+                `;
+            });
+
+            if (tbody.innerHTML === '') tbody.innerHTML = '<tr><td colspan="5" class="text-center p-6 text-gray-400 font-bold text-xs uppercase tracking-widest">Barang tidak ditemukan</td></tr>';
+
+            document.getElementById('inv-stat-total').innerText = statTotal;
+            document.getElementById('inv-stat-menipis').innerText = statMenipis;
+            document.getElementById('inv-stat-rusak').innerText = statRusak;
+        }
+
+        function bukaModalInventory() {
+            document.getElementById('fi-id').value = '';
+            document.getElementById('fi-nama').value = '';
+            document.getElementById('fi-kategori').value = '';
+            document.getElementById('fi-satuan').value = '';
+            document.getElementById('fi-qty').value = '';
+            document.getElementById('fi-qty').readOnly = false;
+            document.getElementById('fi-batas').value = '';
+            document.getElementById('fi-kondisi').value = 'Baik';
+            document.getElementById('fi-lokasi').value = '';
+
+            document.getElementById('btn-hapus-inv').classList.add('hidden');
+            document.getElementById('fi-title').innerHTML = '<i class="fas fa-box mr-2 text-black"></i> Tambah Master Barang';
+            openModal('modal-form-inventory');
+        }
+
+        function siapkanEditInventory(id) {
+            const item = state.inventory.find(i => i.id === id);
+            if (!item) return;
+
+            document.getElementById('fi-id').value = item.id;
+            document.getElementById('fi-nama').value = item.nama;
+            document.getElementById('fi-kategori').value = item.kategori || '';
+            document.getElementById('fi-satuan').value = item.satuan || '';
+            document.getElementById('fi-qty').value = item.qty;
+            document.getElementById('fi-qty').readOnly = true;
+            document.getElementById('fi-batas').value = item.batasMinimum || 0;
+            document.getElementById('fi-kondisi').value = item.kondisi || 'Baik';
+            document.getElementById('fi-lokasi').value = item.lokasi || '';
+
+            document.getElementById('btn-hapus-inv').classList.remove('hidden');
+            document.getElementById('fi-title').innerHTML = '<i class="fas fa-pen mr-2 text-black"></i> Edit Data Barang';
+            openModal('modal-form-inventory');
+        }
+
+        function simpanFormInventory() {
+            const id = document.getElementById('fi-id').value;
+            const nama = document.getElementById('fi-nama').value;
+            const qty = parseInt(document.getElementById('fi-qty').value) || 0;
+            const payload = {
+                id: id || ('INV' + generateID()),
+                nama: nama,
+                kategori: document.getElementById('fi-kategori').value,
+                satuan: document.getElementById('fi-satuan').value,
+                qty: qty,
+                batasMinimum: parseInt(document.getElementById('fi-batas').value) || 0,
+                kondisi: document.getElementById('fi-kondisi').value,
+                lokasi: document.getElementById('fi-lokasi').value,
+                lastUpdate: getWaktuNow()
+            };
+
+            if (!nama) return showToast("Nama barang wajib diisi!", true);
+
+            if (id) {
+                const idx = state.inventory.findIndex(i => i.id === id);
+                if (idx > -1) {
+                    payload.qty = state.inventory[idx].qty;
+                    state.inventory[idx] = payload;
+                }
+                showToast("Informasi barang diperbarui.");
+            } else {
+                state.inventory.push(payload);
+                state.inventoryLogs.push({ id: 'LOG' + generateID(), waktu: getWaktuNow(), tgl: getTglNow(), idBarang: payload.id, namaBarang: payload.nama, jenisMutasi: 'Input Awal Master', qtyPerubahan: qty, keterangan: 'Pencatatan data barang pertama kali.', userOtoritas: state.currentUser.nama });
+                showToast("Barang baru ditambahkan ke gudang.");
+            }
+            saveData(); renderInventory(); closeModal('modal-form-inventory');
+        }
+
+        function hapusInventory() {
+            const id = document.getElementById('fi-id').value;
+            showDialog("Hapus Barang?", "Data riwayat log mutasinya tetap ada, tapi barang dihapus dari daftar master. Yakin?", "Hapus", false, "", (confirm) => {
+                if (confirm) {
+                    state.inventory = state.inventory.filter(i => i.id !== id);
+                    saveData(); renderInventory(); closeModal('modal-form-inventory'); showToast("Barang dihapus dari Master.");
+                }
+            });
+        }
+
+        function bukaModalMutasi(id) {
+            const item = state.inventory.find(i => i.id === id);
+            if (!item) return;
+            document.getElementById('fm-id').value = item.id;
+            document.getElementById('fm-nama-barang').innerText = `${item.nama} (Stok Saat Ini: ${item.qty} ${item.satuan})`;
+            document.getElementById('fm-qty').value = '';
+            document.getElementById('fm-ket').value = '';
+            document.querySelector('input[name="mutasi_tipe"][value="Masuk"]').checked = true;
+            openModal('modal-mutasi-inventory');
+        }
+
+        function simpanMutasi() {
+            const id = document.getElementById('fm-id').value;
+            const tipe = document.querySelector('input[name="mutasi_tipe"]:checked').value;
+            const qtyUbah = parseInt(document.getElementById('fm-qty').value) || 0;
+            const ket = document.getElementById('fm-ket').value;
+
+            if (qtyUbah <= 0) return showToast("Jumlah mutasi harus lebih dari 0", true);
+
+            const idx = state.inventory.findIndex(i => i.id === id);
+            if (idx > -1) {
+                let item = state.inventory[idx];
+                if (tipe === 'Keluar' && qtyUbah > item.qty) return showToast("Ditolak! Stok tidak cukup.", true);
+
+                item.qty = tipe === 'Masuk' ? (item.qty + qtyUbah) : (item.qty - qtyUbah);
+                item.lastUpdate = getWaktuNow();
+
+                state.inventoryLogs.push({
+                    id: 'LOG' + generateID(), waktu: getWaktuNow(), tgl: getTglNow(), idBarang: item.id, namaBarang: item.nama,
+                    jenisMutasi: tipe === 'Masuk' ? 'Stok Masuk' : 'Stok Keluar', qtyPerubahan: qtyUbah, keterangan: ket, userOtoritas: state.currentUser.nama
+                });
+
+                saveData(); renderInventory(); closeModal('modal-mutasi-inventory'); showToast("Mutasi stok berhasil dicatat.");
+            }
+        }
+
+        // --- LAPORAN & PDF EXPORT ---
+        function populateTerapisFilter() {
+            const select = document.getElementById('filter-terapis-nama');
+            const terapisNames = [...new Set(state.users.filter(u => u.role === 'terapis').map(u => u.nama))];
+            select.innerHTML = `<option value="ALL">Semua Pekerja</option>` + terapisNames.map(n => `<option value="${n}">${n}</option>`).join('');
+        }
+
+
 
         // --- SISTEM LAPORAN DAN ALUR PENGHITUNGAN UANG ---
         function renderTabelLaporan() { // Menu Dashboard Utama / Modul Laporan Akuntasi & Laporan Pegawai Rekap Harian
@@ -2844,6 +3482,73 @@
             document.getElementById('btn-tab-trx').className = 'flex-1 py-3 sm:py-4 text-xs sm:text-sm font-bold border-b-2 border-black focus:outline-none transition bg-white';
             document.getElementById('btn-tab-terapis').className = 'flex-1 py-3 sm:py-4 text-xs sm:text-sm font-bold text-gray-400 hover:text-black focus:outline-none border-b-2 border-transparent transition bg-gray-50';
             document.getElementById('btn-' + tabId).className = 'flex-1 py-3 sm:py-4 text-xs sm:text-sm font-bold border-b-2 border-black text-black focus:outline-none transition bg-white shadow-inner'; // Eksekusi nyala ke tombol yang bener
+        }
+
+        function renderSDM() {
+            const table = document.getElementById('table-sdm-body');
+            table.innerHTML = state.users.map(u => `
+                <tr class="border-b hover:bg-gray-50">
+                    <td class="p-3 sm:p-4 font-black text-xs sm:text-sm">${u.nama}</td>
+                    <td class="p-3 sm:p-4 font-mono text-gray-500 font-bold text-xs sm:text-sm">${u.pin}</td>
+                    <td class="p-3 sm:p-4"><span class="bg-gray-100 border border-gray-200 px-1.5 sm:px-2 py-0.5 sm:py-1 rounded text-[8px] sm:text-[9px] font-black uppercase tracking-widest text-gray-700">${u.role}</span></td>
+                    <td class="p-3 sm:p-4 text-center whitespace-nowrap">
+                        <button onclick="siapkanEditSDM('${u.id}')" class="bg-white border-2 border-gray-300 text-black hover:bg-gray-100 px-2 sm:px-3 py-1 sm:py-1.5 rounded-lg transition font-bold text-[10px] sm:text-xs mr-1 shadow-sm"><i class="fas fa-pen md:mr-1"></i><span class="hidden md:inline"> Edit</span></button>
+                        <button onclick="hapusSDM('${u.id}')" class="bg-white border-2 border-red-200 text-red-600 hover:bg-red-50 px-2 sm:px-3 py-1 sm:py-1.5 rounded-lg transition font-bold text-[10px] sm:text-xs shadow-sm"><i class="fas fa-trash md:mr-1"></i><span class="hidden md:inline"> Hapus</span></button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function siapkanEditSDM(id) {
+            const u = state.users.find(x => x.id === id);
+            document.getElementById('sdm-id').value = u.id;
+            document.getElementById('sdm-nama').value = u.nama;
+            document.getElementById('sdm-pin').value = u.pin;
+            document.getElementById('sdm-role').value = u.role;
+
+            document.getElementById('sdm-form-title').innerHTML = '<i class="fas fa-user-edit mr-2 text-black"></i> Update Profil Karyawan';
+            document.getElementById('btn-simpan-sdm').innerText = "Update Data";
+            document.getElementById('btn-batal-sdm').classList.remove('hidden');
+        }
+
+        function batalEditSDM() {
+            document.getElementById('sdm-id').value = '';
+            document.getElementById('sdm-nama').value = '';
+            document.getElementById('sdm-pin').value = '';
+            document.getElementById('sdm-form-title').innerHTML = '<i class="fas fa-user-plus mr-2 text-gray-400"></i> Tambah Akses Baru';
+            document.getElementById('btn-simpan-sdm').innerText = "Simpan Data";
+            document.getElementById('btn-batal-sdm').classList.add('hidden');
+        }
+
+        function simpanKaryawan() {
+            const id = document.getElementById('sdm-id').value;
+            const nama = document.getElementById('sdm-nama').value.trim();
+            const pin = document.getElementById('sdm-pin').value.trim();
+            const role = document.getElementById('sdm-role').value;
+
+            if (!nama || !pin) return showToast("Semua field nama dan PIN harus diisi!", true);
+
+            if (id) {
+                const u = state.users.find(x => x.id === id);
+                u.nama = nama; u.pin = pin; u.role = role;
+                showToast("Data karyawan berhasil diupdate");
+            } else {
+                state.users.push({ id: 'U' + generateID(), nama, pin, role });
+                showToast("Karyawan baru sukses ditambahkan");
+            }
+            saveData(); renderSDM(); batalEditSDM();
+        }
+
+        function hapusSDM(id) {
+            if (state.users.find(u => u.id === id).role === 'admin' && state.users.filter(u => u.role === 'admin').length === 1) {
+                return showToast("Ditolak! Harus tersisa minimal 1 Admin.", true);
+            }
+            showDialog("Hapus Akses Pekerja?", "Karyawan tidak akan bisa login kembali. Lanjutkan?", "Ya, Hapus Permanen", false, "", (confirm) => {
+                if (confirm) {
+                    state.users = state.users.filter(x => x.id !== id);
+                    saveData(); renderSDM(); showToast("Akses Karyawan dicabut.");
+                }
+            });
         }
 
         function renderAdminHomecare() { // Modul Manajemen Pemesanan Panggilan Pasien (Bagian Layar Administrator)
@@ -3109,6 +3814,34 @@
             });
         }
 
+        function exportTableToCSV(tbodyId, filenamePrefix) {
+            const tbody = document.getElementById(tbodyId);
+            let csv = [];
+
+            if (tbodyId === 'table-kas-body') csv.push('TanggalWaktu,TipeKategori,Keterangan,Nominal');
+            if (tbodyId === 'table-laporan-terapis') csv.push('Tanggal,Terapis,DetailPasienKegiatan,EstimasiKomisi');
+
+            const rows = tbody.querySelectorAll('tr');
+            rows.forEach(row => {
+                const cols = row.querySelectorAll('td:not(.pdf-exclude)');
+                if (cols.length > 1 && !row.innerText.includes('KOSONG') && !row.innerText.includes('BELUM ADA')) {
+                    const rowData = Array.from(cols).map(col => {
+                        let text = col.innerText;
+                        text = text.replace(/"/g, '""').replace(/\n/g, ' - ');
+                        return `"${text}"`;
+                    });
+                    csv.push(rowData.join(','));
+                }
+            });
+
+            if (csv.length <= 1) return showToast("Tabel kosong, tidak ada data untuk diunduh.", true);
+
+            const blob = new Blob([csv.join('\n')], { type: 'text/csv;charset=utf-8;' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a'); a.setAttribute('href', url); a.setAttribute('download', `${filenamePrefix}_${getTglNow()}.csv`);
+            a.click();
+        }
+
         function backupData() {
             const dataToBackup = {
                 users: state.users, products: state.products, transactions: state.transactions,
@@ -3166,6 +3899,149 @@
 
                     showToast("Sistem Berhasil Direset Total Secara Clean! Memuat ulang...");
                     setTimeout(() => location.reload(), 1500);
+                }
+            });
+        }
+
+        // ============================================================================
+        // FIX: FUNGSI PANEL TERAPIS YANG HILANG
+        // ============================================================================
+
+        // 1. Memuat daftar layanan ke dropdown formulir terapis
+        function populateKegiatanTerapis() {
+            const sel = document.getElementById('t-kegiatan');
+            if (!sel) return;
+
+            // Ambil data dari etalase produk/layanan
+            sel.innerHTML = '<option value="">-- Pilih Layanan / Kegiatan --</option>' +
+                state.products.map(p => `<option value="${p.nama}">${p.nama}</option>`).join('') +
+                '<option value="Lainnya">Lainnya (Ketik Manual)...</option>';
+        }
+
+        // 2. Logika saat dropdown kegiatan dipilih (Auto-fill komisi)
+        function checkCustomKegiatan() {
+            const sel = document.getElementById('t-kegiatan').value;
+            const man = document.getElementById('t-kegiatan-custom');
+            const inputKomisi = document.getElementById('t-komisi');
+
+            if (sel === 'Lainnya') {
+                man.classList.remove('hidden');
+                man.focus();
+                inputKomisi.value = ''; // Kosongkan komisi jika manual
+            } else {
+                man.classList.add('hidden');
+                man.value = '';
+
+                // Auto-fill komisi berdasarkan master produk
+                const prod = state.products.find(p => p.nama === sel);
+                if (prod && prod.komisiTerapis) {
+                    inputKomisi.value = prod.komisiTerapis;
+                } else {
+                    inputKomisi.value = 0;
+                }
+            }
+        }
+
+        // 3. Merender tabel riwayat khusus untuk terapis yang sedang login
+        function renderLogTerapisPribadi() {
+            const tbody = document.getElementById('table-terapis-body');
+            if (!tbody) return;
+            tbody.innerHTML = '';
+
+            // Ambil tanggal filter
+            const start = document.getElementById('t-filter-start').value || '1970-01-01';
+            const end = document.getElementById('t-filter-end').value || '2099-12-31';
+
+            // Filter log hanya untuk Terapis ini dan sesuai rentang tanggal
+            let myLogs = state.therapistLogs.filter(l =>
+                l.terapis === state.currentUser.nama &&
+                l.waktuLayanan >= start && l.waktuLayanan <= end
+            );
+
+            let totalKomisi = 0;
+
+            myLogs.reverse().forEach(l => {
+                totalKomisi += parseInt(l.estimasiKomisi) || 0;
+                tbody.innerHTML += `
+            <tr class="border-b hover:bg-gray-50">
+                <td class="p-3 sm:p-4 text-[10px] sm:text-[11px] font-bold text-gray-500">${l.waktuLayanan}</td>
+                <td class="p-3 sm:p-4"><div class="font-bold text-[11px] sm:text-xs uppercase tracking-wider mb-1">${l.pasien}</div><div class="text-[9px] bg-blue-50 text-blue-700 font-bold px-1.5 py-0.5 rounded inline-block shadow-sm">${l.kegiatan}</div></td>
+                <td class="p-3 sm:p-4 text-right font-black font-mono tracking-tight text-sm text-green-600">${formatRp(l.estimasiKomisi)}</td>
+                <td class="p-3 sm:p-4 text-center">
+                    <button onclick="hapusLogTerapis('${l.id}')" class="bg-white border border-red-200 text-red-500 hover:bg-red-50 w-7 h-7 rounded shadow-sm"><i class="fas fa-trash text-[10px]"></i></button>
+                </td>
+            </tr>
+        `;
+            });
+
+            if (tbody.innerHTML === '') tbody.innerHTML = '<tr><td colspan="4" class="p-4 text-center text-gray-400 font-bold text-[10px] uppercase">Belum ada riwayat kerja</td></tr>';
+
+            // Update Statistik
+            document.getElementById('t-total-komisi-filter').innerText = formatRp(totalKomisi);
+
+            // Statistik Harian & Bulanan
+            const hariIni = getTglNow();
+            const bulanIni = hariIni.substring(0, 7); // Format YYYY-MM
+
+            const countHari = state.therapistLogs.filter(l => l.terapis === state.currentUser.nama && l.waktuLayanan === hariIni).length;
+            const countBulan = state.therapistLogs.filter(l => l.terapis === state.currentUser.nama && l.waktuLayanan.startsWith(bulanIni)).length;
+
+            document.getElementById('t-stat-hari').innerText = countHari;
+            document.getElementById('t-stat-bulan').innerText = countBulan;
+        }
+
+        // 4. Menyimpan data dari formulir laporan terapis
+        function simpanLogTerapis() {
+            const tgl = document.getElementById('t-tgl').value;
+            const pasien = document.getElementById('t-pasien').value.trim();
+            let kegiatan = document.getElementById('t-kegiatan').value;
+            const komisi = parseInt(document.getElementById('t-komisi').value) || 0;
+            const catatan = document.getElementById('t-catatan').value.trim();
+
+            if (kegiatan === 'Lainnya') kegiatan = document.getElementById('t-kegiatan-custom').value.trim();
+
+            if (!tgl || !pasien || !kegiatan) {
+                return showToast("Tanggal, Pasien, dan Kegiatan wajib diisi!", true);
+            }
+
+            const payload = {
+                id: 'LOGT' + generateID(),
+                waktuInput: getWaktuNow(),
+                waktuLayanan: tgl,
+                terapis: state.currentUser.nama,
+                pasien: pasien,
+                kegiatan: kegiatan,
+                estimasiKomisi: komisi,
+                catatan: catatan
+            };
+
+            if (!state.therapistLogs) state.therapistLogs = [];
+            state.therapistLogs.push(payload);
+
+            saveData();
+            batalEditLog(); // Bersihkan form
+            renderLogTerapisPribadi();
+            showToast("Laporan kinerja berhasil disetorkan!");
+        }
+
+        // 5. Membersihkan form log terapis
+        function batalEditLog() {
+            document.getElementById('t-pasien').value = '';
+            document.getElementById('t-kegiatan').value = '';
+            document.getElementById('t-kegiatan-custom').value = '';
+            document.getElementById('t-kegiatan-custom').classList.add('hidden');
+            document.getElementById('t-komisi').value = '';
+            document.getElementById('t-catatan').value = '';
+        }
+
+        // Tambahan: Hapus Log (Bila terapis salah input)
+        function hapusLogTerapis(id) {
+            showDialog("Hapus Laporan?", "Laporan ini akan dihapus dari riwayat Anda.", "Hapus", false, "", (confirm) => {
+                if (confirm) {
+                    state.therapistLogs = state.therapistLogs.filter(l => l.id !== id);
+                    saveData();
+                    renderLogTerapisPribadi();
+                    showToast("Laporan dihapus.");
                 }
             });
         }
