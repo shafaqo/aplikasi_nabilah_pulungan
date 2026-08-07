@@ -1975,17 +1975,30 @@
         // Inisialisasi awal saat aplikasi dijalankan
         function initData() { // Fungsi yang dipanggil saat web pertama kali dibuka
             try {
+                const loadStoredArray = (key, target) => {
+                    const raw = localStorage.getItem(key);
+                    if (!raw) return;
+                    try {
+                        const parsed = JSON.parse(raw);
+                        if (Array.isArray(parsed)) {
+                            target.splice(0, target.length, ...parsed);
+                        }
+                    } catch (e) {
+                        console.warn(`Data ${key} rusak, dilewati.`, e);
+                    }
+                };
+
                 // Membaca dari localStorage browser, jika data ada, masukkan ke state aplikasi
-                if (localStorage.getItem('spa_users')) state.users = JSON.parse(localStorage.getItem('spa_users')); // Muat pengguna
-                if (localStorage.getItem('spa_products')) state.products = JSON.parse(localStorage.getItem('spa_products')); // Muat produk
-                if (localStorage.getItem('spa_trx')) state.transactions = JSON.parse(localStorage.getItem('spa_trx')); // Muat transaksi
-                if (localStorage.getItem('spa_cash')) state.cashFlow = JSON.parse(localStorage.getItem('spa_cash')); // Muat arus kas
-                if (localStorage.getItem('spa_logs')) state.therapistLogs = JSON.parse(localStorage.getItem('spa_logs')); // Muat log
-                if (localStorage.getItem('spa_tutup')) state.tutupBukuLogs = JSON.parse(localStorage.getItem('spa_tutup')); // Muat riwayat tutup buku
-                if (localStorage.getItem('spa_reservasi')) state.reservasi = JSON.parse(localStorage.getItem('spa_reservasi')); // Muat homecare
-                if (localStorage.getItem('spa_inventory')) state.inventory = JSON.parse(localStorage.getItem('spa_inventory')); // Muat gudang
-                if (localStorage.getItem('spa_inventoryLogs')) state.inventoryLogs = JSON.parse(localStorage.getItem('spa_inventoryLogs')); // Muat log mutasi gudang
-                if (localStorage.getItem('spa_memos')) state.memos = JSON.parse(localStorage.getItem('spa_memos')); // Muat catatan memo lokal
+                loadStoredArray('spa_users', state.users); // Muat pengguna
+                loadStoredArray('spa_products', state.products); // Muat produk
+                loadStoredArray('spa_trx', state.transactions); // Muat transaksi
+                loadStoredArray('spa_cash', state.cashFlow); // Muat arus kas
+                loadStoredArray('spa_logs', state.therapistLogs); // Muat log
+                loadStoredArray('spa_tutup', state.tutupBukuLogs); // Muat riwayat tutup buku
+                loadStoredArray('spa_reservasi', state.reservasi); // Muat homecare
+                loadStoredArray('spa_inventory', state.inventory); // Muat gudang
+                loadStoredArray('spa_inventoryLogs', state.inventoryLogs); // Muat log mutasi gudang
+                loadStoredArray('spa_memos', state.memos); // Muat catatan memo lokal
 
                 bersihkanDataWaktuCorrupt();  // Pastikan data lama tidak ada yang error tanggal
 
@@ -2068,7 +2081,7 @@
                 const getResponse = await fetch(GAS_URL); // Meminta data terakhir dari Cloud Google Sheet
                 const getResult = await getResponse.json(); // Membongkar balasan berformat JSON
 
-                let dataToUpload = state;  // Variabel untuk data yang akan dikirim (Awalnya state lokal murni)
+                let dataToUpload = { ...state };  // Variabel untuk data yang akan dikirim (salin state lokal, tapi jangan menimpa runtime state)
 
                 if (getResult.status === 'success' && getResult.data) { // Jika cloud memberikan data sukses
                     const mergedTrx = mergeArrays(getResult.data.transactions, state.transactions); // Gabungkan transaksi
@@ -2081,6 +2094,7 @@
                     const mergedMemos = mergeArrays(getResult.data.memos, state.memos); // Merge data memo
 
                     dataToUpload = { // Persiapkan objek final untuk dikirim
+                        ...state,
                         users: state.users, // Tabel Master Users menimpa penuh cloud
                         products: state.products, // Tabel Master Products menimpa penuh cloud
                         transactions: mergedTrx, // Menggunakan tabel gabungan baru (lokal + awan)
@@ -2093,7 +2107,7 @@
                         memos: mergedMemos // Menggunakan tabel gabungan memo
                     };
 
-                    state = dataToUpload; // Perbarui state memori lokal dengan hasil merge
+                    Object.assign(state, dataToUpload); // Perbarui state memori lokal dengan hasil merge tanpa menghapus runtime property
                     saveData(); // Simpan hasil gabungan ke local storage agar tersimpan permanen
                 }
 
@@ -2136,6 +2150,8 @@
                         const result = await response.json(); // Konversi data kembalian menjadi JSON
 
                         if (result.status === 'success' && result.data) { // Jika API script berhasil mengembalikan data utuh
+                            const currentUserSnapshot = state.currentUser;
+
                             if (result.data.users && result.data.users.length > 0) state.users = result.data.users; // Ganti memori user jika ada
                             if (result.data.products && result.data.products.length > 0) state.products = result.data.products; // Ganti memori produk
 
@@ -2147,6 +2163,7 @@
                             state.inventory = result.data.inventory || []; // Timpa gudang
                             state.inventoryLogs = result.data.inventoryLogs || []; // Timpa history mutasi
                             state.memos = result.data.memos || []; // Timpa memo dari cloud
+                            state.currentUser = currentUserSnapshot;
 
                             bersihkanDataWaktuCorrupt();  // Lakukan validasi anti error Timezone pada JSON yang ditarik
                             saveData();  // Simpan seluruh state yg baru difetch ke localstorage
@@ -2875,12 +2892,16 @@
 
                 state.transactions.push(transaksiData);  // Catat Penjualan ke List Memori Riwayat Transaksi (POS HISTORY)
 
-                // Catat secara paksa/Otomatis ke dalam list Memori "Buku Arus Kas" supaya uang mutlak laci ikut terhitung secara otomatis dari penjualan 
-                state.cashFlow.push({
-                    id: 'KAS' + generateID(), waktu: getWaktuNow(), tgl: getTglNow(), // ID Log Kas & Waktu
-                    tipe: 'Masuk', kategori: `POS - ${transaksiData.metodeBayar}`,  // Label Kas Masuk & Jenis Uangnya
-                    nominal: transaksiData.totalAkhir, keterangan: `Penjualan Kasir. ID: ${transaksiData.id}`, refId: transaksiData.id // Besaran masuk & Relasi ID Transaksi
-                });
+                // Hanya catat arus kas fisik jika pembayaran dalam bentuk Tunai.
+                // Transaksi non-tunai (Transfer/QRIS) tidak menambah uang fisik di laci,
+                // sehingga tidak perlu dimasukkan ke buku kas fisik.
+                if (transaksiData.metodeBayar === 'Tunai') {
+                    state.cashFlow.push({
+                        id: 'KAS' + generateID(), waktu: getWaktuNow(), tgl: getTglNow(), // ID Log Kas & Waktu
+                        tipe: 'Masuk', kategori: `POS - Tunai`,  // Label Kas Masuk Tunai
+                        nominal: transaksiData.totalAkhir, keterangan: `Penjualan Kasir. ID: ${transaksiData.id}`, refId: transaksiData.id // Besaran masuk & Relasi ID Transaksi
+                    });
+                }
 
                 showToast("Pembayaran Berhasil. Mencetak struk..."); // Berikan info hijau
             }
@@ -3384,10 +3405,10 @@
             const filteredTrx = state.transactions.filter(t => t.tgl >= start && t.tgl <= end);
             filteredTrx.forEach(t => { // Mulai mengais data dari setiap order/nota yang lolos filter time range:
                 // Hitung kumulatif pendapatan order digital rekening dll (Tanpa Laci Kasir Tunai) (Transfer, QRIS, dsb)
-                if (['QRIS', 'Transfer Bank', 'QRIS / E-Wallet'].includes(t.metodeBayar)) uangDigital += t.totalAkhir;
+                if (['QRIS', 'Transfer Bank', 'QRIS / E-Wallet'].includes(t.metodeBayar)) uangDigital += parseInt(t.totalAkhir) || 0;
                 // Hitung pendapatan POS hanya yang cash / masuk secara tunai ke kotak laci
-                if (t.metodeBayar === 'Tunai') posTunai += t.totalAkhir;
-            });
+                if (t.metodeBayar === 'Tunai') posTunai += parseInt(t.totalAkhir) || 0;
+});
 
             // STEP 2: Loop Filter Buku Kas / Arus Kas Bebas (Spt Beli Galon, dsb) di rentang waktu yg sama
             const filteredKas = state.cashFlow.filter(k => k.tgl >= start && k.tgl <= end);
@@ -3475,7 +3496,7 @@
             });
 
             labelHari.sort().forEach(tgl => { // Ambil sumbu X line graph tadi
-                dataPendapatan.push(dataTrx.filter(t => t.tgl === tgl).reduce((sum, t) => sum + t.totalAkhir, 0));  // (Sumbu Y nya = Jumlah Pemasukan Tiap Hari (tgl X))
+                dataPendapatan.push(dataTrx.filter(t => t.tgl === tgl).reduce((sum, t) => sum + (parseInt(t.totalAkhir) || 0), 0));  // (Sumbu Y nya = Jumlah Pemasukan Tiap Hari (tgl X))
             });
 
             if (chart1) chart1.destroy(); // Jika gambar lama sudah ada, hapus kanvasnya (Hindari Graphic Bertumpuk Kacau)
