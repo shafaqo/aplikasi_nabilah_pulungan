@@ -3067,50 +3067,66 @@
             saveData(); renderKeuangan(); showToast("Tutup Buku Selesai & Sukses Tersimpan."); closeModal('modal-tutup-buku');
         }
 
-        function renderAdminHomecare() {
-            const tbody = document.getElementById('table-hc-body');
-            tbody.innerHTML = '';
+        function renderAdminHomecare() { // Modul Manajemen Pemesanan Panggilan Pasien (Bagian Layar Administrator)
+            const tbody = document.getElementById('table-hc-body'); // Tabel Data Induk
+            tbody.innerHTML = ''; // Clear Isi List Laporan Homecare
 
-            const start = document.getElementById('filter-start-hc').value || '1970-01-01';
-            const end = document.getElementById('filter-end-hc').value || '2099-12-31';
+            const start = document.getElementById('filter-start-hc').value || '1970-01-01'; // Range inputan Tanggal Awal
+            const end = document.getElementById('filter-end-hc').value || '2099-12-31'; // Tanggal Akhir
 
             const resData = state.reservasi || [];
-            let filtered = resData.filter(r => r.tglReservasi >= start && r.tglReservasi <= end);
+            // Pastikan filtering aman terhadap data tanpa tglReservasi
+            let filtered = resData.filter(r => (r.tglReservasi || '1970-01-01') >= start && (r.tglReservasi || '2099-12-31') <= end); // Potong dan Filter sesuai Range Form Tanggal diatas
 
-            let layananCount = {};
-            let hariCount = {};
-            let stMenunggu = 0, stSelesai = 0;
+            let layananCount = {}; // Penampung untuk Algoritma "Layanan Apa yang Paling Ramai hari ini dipesan?"
+            let hariCount = {}; // Algoritma "Di tanggal Berapa yg sering banyak order Homecare orang?"
+            let stMenunggu = 0, stSelesai = 0, stDiterima = 0, stBatal = 0; // Info UI Statics total
 
-            filtered.reverse().forEach(r => {
-                layananCount[r.layanan] = (layananCount[r.layanan] || 0) + 1;
-                hariCount[r.tglReservasi] = (hariCount[r.tglReservasi] || 0) + 1;
+            // Loop dengan urutan terbaru di atas
+            filtered.slice().reverse().forEach(r => { // Loop setiap Reservasi (Paling Baru Di atas)
+                layananCount[r.layanan] = (layananCount[r.layanan] || 0) + 1; // Tambah Counter statistik jenis layanannya
+                hariCount[r.tglReservasi] = (hariCount[r.tglReservasi] || 0) + 1; // Counter statik harinya
 
+                // Variasi Warna Indikator/Label Status (Menunggu, Selesai, Batal) dengan Tailwind Class
                 let statusBadge = '';
-                if (r.status === 'Menunggu') { statusBadge = '<span class="bg-yellow-100 text-yellow-800 border border-yellow-300 px-2 py-1 rounded font-bold text-[10px]">MENUNGGU</span>'; stMenunggu++; }
-                else if (r.status === 'Selesai') { statusBadge = '<span class="bg-green-100 text-green-800 border border-green-300 px-2 py-1 rounded font-bold text-[10px]">SELESAI</span>'; stSelesai++; }
-                else { statusBadge = '<span class="bg-red-100 text-red-800 border border-red-300 px-2 py-1 rounded font-bold text-[10px]">BATAL</span>'; }
+                if (r.status === 'Menunggu') {
+                    statusBadge = '<span class="bg-yellow-100 text-yellow-800 border border-yellow-300 px-2 py-1 rounded font-bold text-[10px]">MENUNGGU</span>'; stMenunggu++;
+                } else if (r.status === 'Selesai') {
+                    statusBadge = '<span class="bg-green-100 text-green-800 border border-green-300 px-2 py-1 rounded font-bold text-[10px]">SELESAI</span>'; stSelesai++;
+                } else if (r.status === 'Diterima') {
+                    statusBadge = '<span class="bg-green-100 text-green-800 border border-green-300 px-2 py-1 rounded font-bold text-[10px] uppercase">' + (r.status || 'Diterima') + '</span>'; stDiterima++;
+                } else if (r.status === 'Batal') {
+                    statusBadge = '<span class="bg-red-100 text-red-800 border border-red-300 px-2 py-1 rounded font-bold text-[10px]">BATAL</span>'; stBatal++;
+                } else {
+                    statusBadge = `<span class="bg-gray-100 text-gray-800 border border-gray-200 px-2 py-1 rounded font-bold text-[10px]">${r.status || '-'}</span>`;
+                }
 
+                // Tambahkan Label Nama Anak Bidan Kalau Tugas Tsb Sdh diklaim/diambil/dikerjakan
+                // Jika sudah diklaim, tampilkan label terapis
+                let terapisLabel = r.terapisPic ? `<div class="mt-1 text-[9px] text-gray-600">Oleh: <b>${r.terapisPic}</b></div>` : '';
+
+                // Membangun Sintaks HTML Baris Data (Row TR TD) dari data Reservasi (Object 'r')
                 tbody.innerHTML += `
                 <tr class="border-b hover:bg-gray-50">
-                    <td class="p-3 text-[10px] text-gray-500 font-bold">${r.waktuSubmit}</td>
+                    <td class="p-3 text-[10px] text-gray-500 font-bold">${r.waktuSubmit || ''}</td>
                     <td class="p-3">
-                        <div class="font-black text-xs">${r.nama} <span class="text-[10px] text-gray-400 font-normal">(${r.umur} Thn)</span></div>
-                        <div class="text-[10px] text-brand font-bold mt-1"><i class="fab fa-whatsapp"></i> ${r.kontak}</div>
+                        <div class="font-black text-xs">${r.nama || '-'} <span class="text-[10px] text-gray-400 font-normal">(${r.umur || '-'} Thn)</span></div>
+                        <div class="text-[10px] text-brand font-bold mt-1"><i class="fab fa-whatsapp"></i> ${r.kontak || '-'}</div>
                     </td>
                     <td class="p-3">
-                        <div class="font-bold text-xs text-black mb-1">${r.tglReservasi} • ${r.jamReservasi}</div>
-                        <div class="bg-gray-100 text-gray-800 px-2 py-0.5 border rounded inline-block text-[10px] font-bold">${r.layanan}</div>
+                        <div class="font-bold text-xs text-black mb-1">${r.tglReservasi || '-'} • ${r.jamReservasi || '-'}</div>
+                        <div class="bg-gray-100 text-gray-800 px-2 py-0.5 border rounded inline-block text-[10px] font-bold">${r.layanan || '-'}</div>
                     </td>
                     <td class="p-3 min-w-[200px] whitespace-normal">
-                        <div class="text-[10px] italic text-gray-600 mb-1 line-clamp-2">${r.alamat}</div>
+                        <div class="text-[10px] italic text-gray-600 mb-1 line-clamp-2">${r.alamat || '-'}</div>
                         <div class="flex gap-2">
-                            <a href="${r.maps}" target="_blank" class="text-[10px] text-blue-600 hover:underline font-bold flex items-center"><i class="fas fa-map-marker-alt mr-1"></i> Buka Maps</a>
+                            <a href="${r.maps || '#'}" target="_blank" class="text-[10px] text-blue-600 hover:underline font-bold flex items-center"><i class="fas fa-map-marker-alt mr-1"></i> Buka Maps</a>
                             <span class="text-[10px] text-gray-400">|</span>
                             <span class="text-[10px] text-gray-500 font-semibold" title="${r.catatan || '-'}"><i class="fas fa-comment-dots mr-1"></i> ${r.catatan ? 'Ada Catatan' : '-'}</span>
                         </div>
                     </td>
                     <td class="p-3 text-center align-middle pdf-exclude">
-                        <div class="mb-2">${statusBadge}</div>
+                        <div class="mb-2">${statusBadge} ${terapisLabel}</div>
                         <div class="flex justify-center gap-1">
                             <button onclick="ubahStatusHC('${r.id}', 'Selesai')" class="bg-green-500 hover:bg-green-600 text-white w-7 h-7 rounded-lg shadow-sm" title="Tandai Selesai"><i class="fas fa-check text-[10px]"></i></button>
                             <button onclick="ubahStatusHC('${r.id}', 'Batal')" class="bg-red-500 hover:bg-red-600 text-white w-7 h-7 rounded-lg shadow-sm" title="Batalkan"><i class="fas fa-times text-[10px]"></i></button>
@@ -3123,12 +3139,16 @@
 
             if (tbody.innerHTML === '') tbody.innerHTML = '<tr><td colspan="5" class="text-center p-6 text-gray-400 font-bold text-xs uppercase tracking-widest">Belum ada data reservasi</td></tr>';
 
+            // Mencari Nilai Terbanyak / Favorit dari array dictionary Counter tadi pakai Object Keys logic lalu tempel ke DOM Html
             let topLayanan = Object.keys(layananCount).sort((a, b) => layananCount[b] - layananCount[a])[0] || '-';
             let topHari = Object.keys(hariCount).sort((a, b) => hariCount[b] - hariCount[a])[0] || '-';
 
+            // Gabungkan status selesai dan diterima untuk indikator "Selesai/Dikerjakan"
+            const totalSelesai = stSelesai + stDiterima;
+
             document.getElementById('hc-stat-total').innerText = filtered.length;
             document.getElementById('hc-stat-menunggu').innerText = stMenunggu;
-            document.getElementById('hc-stat-selesai').innerText = stSelesai;
+            document.getElementById('hc-stat-selesai').innerText = totalSelesai;
             document.getElementById('hc-stat-layanan').innerText = topLayanan;
             document.getElementById('hc-stat-hari').innerText = topHari;
         }
@@ -3549,78 +3569,6 @@
                     saveData(); renderSDM(); showToast("Akses Karyawan dicabut.");
                 }
             });
-        }
-
-        function renderAdminHomecare() { // Modul Manajemen Pemesanan Panggilan Pasien (Bagian Layar Administrator)
-            const tbody = document.getElementById('table-hc-body'); // Tabel Data Induk
-            tbody.innerHTML = ''; // Clear Isi List Laporan Homecare
-
-            const start = document.getElementById('filter-start-hc').value || '1970-01-01'; // Range inputan Tanggal Awal 
-            const end = document.getElementById('filter-end-hc').value || '2099-12-31'; // Tanggal Akhir
-
-            const resData = state.reservasi || []; // Panggil dari Array Storage
-            let filtered = resData.filter(r => r.tglReservasi >= start && r.tglReservasi <= end); // Potong dan Filter sesuai Range Form Tanggal diatas
-
-            let layananCount = {}; // Penampung untuk Algoritma "Layanan Apa yang Paling Ramai hari ini dipesan?"
-            let hariCount = {}; // Algoritma "Di tanggal Berapa yg sering banyak order Homecare orang?"
-            let stMenunggu = 0, stSelesai = 0; // Info UI Statics total
-
-            filtered.reverse().forEach(r => { // Loop setiap Reservasi (Paling Baru Di atas)
-                layananCount[r.layanan] = (layananCount[r.layanan] || 0) + 1; // Tambah Counter statistik jenis layanannya
-                hariCount[r.tglReservasi] = (hariCount[r.tglReservasi] || 0) + 1; // Counter statik harinya
-
-                // Variasi Warna Indikator/Label Status (Menunggu, Selesai, Batal) dengan Tailwind Class
-                let statusBadge = '';
-                if (r.status === 'Menunggu') { statusBadge = '<span class="bg-yellow-100 text-yellow-800 border border-yellow-300 px-2 py-1 rounded font-bold text-[10px]">MENUNGGU</span>'; stMenunggu++; }
-                else if (r.status === 'Selesai' || r.status === 'Diterima') { statusBadge = '<span class="bg-green-100 text-green-800 border border-green-300 px-2 py-1 rounded font-bold text-[10px] uppercase">' + r.status + '</span>'; stSelesai++; }
-                else { statusBadge = '<span class="bg-red-100 text-red-800 border border-red-300 px-2 py-1 rounded font-bold text-[10px]">BATAL</span>'; }
-
-                // Tambahkan Label Nama Anak Bidan Kalau Tugas Tsb Sdh diklaim/diambil/dikerjakan
-                let terapisLabel = r.terapisPic ? `<div class="mt-1 text-[9px] text-gray-600">Oleh: <b>${r.terapisPic}</b></div>` : '';
-
-                // Membangun Sintaks HTML Baris Data (Row TR TD) dari data Reservasi (Object 'r')
-                tbody.innerHTML += `
-                <tr class="border-b hover:bg-gray-50">
-                    <td class="p-3 text-[10px] text-gray-500 font-bold">${r.waktuSubmit}</td>
-                    <td class="p-3">
-                        <div class="font-black text-xs">${r.nama} <span class="text-[10px] text-gray-400 font-normal">(${r.umur} Thn)</span></div>
-                        <div class="text-[10px] text-brand font-bold mt-1"><i class="fab fa-whatsapp"></i> ${r.kontak}</div>
-                    </td>
-                    <td class="p-3">
-                        <div class="font-bold text-xs text-black mb-1">${r.tglReservasi} • ${r.jamReservasi}</div>
-                        <div class="bg-gray-100 text-gray-800 px-2 py-0.5 border rounded inline-block text-[10px] font-bold">${r.layanan}</div>
-                    </td>
-                    <td class="p-3 min-w-[200px] whitespace-normal">
-                        <div class="text-[10px] italic text-gray-600 mb-1 line-clamp-2">${r.alamat}</div>
-                        <div class="flex gap-2">
-                            <a href="${r.maps}" target="_blank" class="text-[10px] text-blue-600 hover:underline font-bold flex items-center"><i class="fas fa-map-marker-alt mr-1"></i> Buka Maps</a>
-                            <span class="text-[10px] text-gray-400">|</span>
-                            <span class="text-[10px] text-gray-500 font-semibold" title="${r.catatan || '-'}"><i class="fas fa-comment-dots mr-1"></i> ${r.catatan ? 'Ada Catatan' : '-'}</span>
-                        </div>
-                    </td>
-                    <td class="p-3 text-center align-middle pdf-exclude">
-                        <div class="mb-2">${statusBadge} ${terapisLabel}</div>
-                        <div class="flex justify-center gap-1">
-                            <button onclick="ubahStatusHC('${r.id}', 'Selesai')" class="bg-green-500 hover:bg-green-600 text-white w-7 h-7 rounded-lg shadow-sm" title="Tandai Selesai"><i class="fas fa-check text-[10px]"></i></button>
-                            <button onclick="ubahStatusHC('${r.id}', 'Batal')" class="bg-red-500 hover:bg-red-600 text-white w-7 h-7 rounded-lg shadow-sm" title="Batalkan"><i class="fas fa-times text-[10px]"></i></button>
-                            <button onclick="siapkanEditHC('${r.id}')" class="bg-blue-500 hover:bg-blue-600 text-white w-7 h-7 rounded-lg shadow-sm" title="Edit Data"><i class="fas fa-pen text-[10px]"></i></button>
-                        </div>
-                    </td>
-                </tr>
-                `;
-            });
-
-            if (tbody.innerHTML === '') tbody.innerHTML = '<tr><td colspan="5" class="text-center p-6 text-gray-400 font-bold text-xs uppercase tracking-widest">Belum ada data reservasi</td></tr>'; // Render Kosong Info
-
-            // Mencari Nilai Terbanyak / Favorit dari array dictionary Counter tadi pakai Object Keys logic lalu tempel ke DOM Html
-            let topLayanan = Object.keys(layananCount).sort((a, b) => layananCount[b] - layananCount[a])[0] || '-';
-            let topHari = Object.keys(hariCount).sort((a, b) => hariCount[b] - hariCount[a])[0] || '-';
-
-            document.getElementById('hc-stat-total').innerText = filtered.length;
-            document.getElementById('hc-stat-menunggu').innerText = stMenunggu;
-            document.getElementById('hc-stat-selesai').innerText = stSelesai;
-            document.getElementById('hc-stat-layanan').innerText = topLayanan;
-            document.getElementById('hc-stat-hari').innerText = topHari;
         }
 
         // --- MANAJEMEN PORTAL HOMECARE UNTUK TERAPIS (MENGAMBIL TUGAS) ---
