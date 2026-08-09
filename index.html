@@ -221,7 +221,7 @@
                         ID</label>
                     <input type="text" id="login-username"
                         class="w-full bg-black/50 border border-gray-700 rounded-xl focus:border-white p-3 text-white outline-none transition"
-                        placeholder="Contoh: aisyah, erlina, desva, riska">
+                        placeholder="Contoh: aisyah, erlina, desva, riska, devi">
                 </div>
                 <div>
                     <label class="block text-xs text-gray-400 mb-2 uppercase tracking-wider font-semibold">PIN /
@@ -1728,7 +1728,8 @@
     <div id="print-receipt-template" class="hidden">
         <div id="print-receipt-container">
             <div style="text-align: center; margin-bottom: 15px; border-bottom: 2px dashed #000; padding-bottom: 15px;">
-                <h1 style="margin:0 0 5px 0; font-size: 22px; font-weight: 900; letter-spacing: 1px;">RUMAH AMARA HOLISTIC CARE
+                <h1 style="margin:0 0 5px 0; font-size: 22px; font-weight: 900; letter-spacing: 1px;">RUMAH AMARA
+                    HOLISTIC CARE
                 </h1>
                 <p style="margin:0; font-size: 11px; font-weight: bold; letter-spacing: 2px;">MOM & BABY SPA</p>
                 <p style="margin:5px 0 0 0; font-size: 10px; color: #444;">Panyabungan & Sekitarnya</p>
@@ -1825,97 +1826,108 @@
             products: [ // Data awal bawaan sistem untuk daftar produk/layanan
                 { id: 'p1', nama: 'Baby Massage 1 Accupressure 0-1 Tahun', harga: 135000, stok: null, kategori: 'Baby', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
                 { id: 'p2', nama: 'Tambahan Baby Massage Accupressure', harga: 25000, stok: null, kategori: 'Baby', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
-                { id: 'p3', nama: 'Memandikan Bayi', harga: 70000, stok: null, kategori: 'Baby', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
-                { id: 'p4', nama: 'Memandikan Bayi with Handuk', harga: 75000, stok: null, kategori: 'Baby', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
-                { id: 'p5', nama: 'Hydrotherapy Baby Swim', harga: 150000, stok: null, kategori: 'Baby', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
-                { id: 'p6', nama: 'Hydrotherapy Baby Swim with Pempers Handuk', harga: 162000, stok: null, kategori: 'Baby', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
-                { id: 'p7', nama: 'Hydrotherapy Baby Swim with Handuk', harga: 155000, stok: null, kategori: 'Baby', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
-                { id: 'p8', nama: 'Hydrotherapy Baby Swim with Pempers Handuk', harga: 167000, stok: null, kategori: 'Baby', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
-                { id: 'p9', nama: 'Fun Baby', harga: 280000, stok: null, kategori: 'Baby', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
-                { id: 'p10', nama: 'Fun Baby with Pempers', harga: 292000, stok: null, kategori: 'Baby', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
-                { id: 'p11', nama: 'Fun Baby with Handuk', harga: 285000, stok: null, kategori: 'Baby', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
-                { id: 'p12', nama: 'Fun Baby with Pempers Handuk', harga: 297000, stok: null, kategori: 'Baby', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
-                { id: 'p13', nama: 'Enjoy Baby', harga: 170000, stok: null, kategori: 'Baby', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
-                { id: 'p14', nama: 'Enjoy Baby with Pempers', harga: 182000, stok: null, kategori: 'Baby', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
-                { id: 'p15', nama: 'Enjoy Baby with Handuk', harga: 175000, stok: null, kategori: 'Baby', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
-                { id: 'p16', nama: 'Enjoy Baby with Pempers Handuk', harga: 187000, stok: null, kategori: 'Baby', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
-                { id: 'p17', nama: 'Eksklusif Baby', harga: 399000, stok: null, kategori: 'Baby', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
-                { id: 'p18', nama: 'Eksklusif Baby with Pempers', harga: 411000, stok: null, kategori: 'Baby', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
-                { id: 'p19', nama: 'Eksklusif Baby with Handuk', harga: 404000, stok: null, kategori: 'Baby', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
-                { id: 'p20', nama: 'Eksklusif Baby with Pempers Handuk', harga: 416000, stok: null, kategori: 'Baby', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
-                { id: 'p21', nama: 'Kids Massage 1 Accupressure 1-3 Tahun', harga: 145000, stok: null, kategori: 'Kids', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
-                { id: 'p22', nama: 'Kids Massage 1 Accupressure 3-6 Tahun', harga: 155000, stok: null, kategori: 'Kids', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
-                { id: 'p23', nama: 'Kids Massage 1 Accupressure 6-12 Tahun', harga: 165000, stok: null, kategori: 'Kids', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
-                { id: 'p24', nama: 'Kids Massage 1 Accupressure 12 Tahun ke atas', harga: 185000, stok: null, kategori: 'Kids', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
-                { id: 'p25', nama: 'Tambahan Kids Massage Accupressure', harga: 25000, stok: null, kategori: 'Kids', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
-                { id: 'p26', nama: 'Rempah Bath atau Bubble Bath', harga: 130000, stok: null, kategori: 'Kids', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
-                { id: 'p27', nama: 'Rempah Bath dan Bubble Bath Berendam Rempah Bubble', harga: 150000, stok: null, kategori: 'Kids', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
-                { id: 'p28', nama: 'Choco Bath Berendam Coklat', harga: 140000, stok: null, kategori: 'Kids', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
-                { id: 'p29', nama: 'Choco Bath Berendam Coklat plus Bubble atau rempah', harga: 190000, stok: null, kategori: 'Kids', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
-                { id: 'p30', nama: 'Berendam bubble atau rempah bath plus Massage', harga: 240000, stok: null, kategori: 'Kids', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
-                { id: 'p31', nama: 'Berendam bubble atau rempah bath plus Massage dan Mask', harga: 260000, stok: null, kategori: 'Kids', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
-                { id: 'p32', nama: 'Healthy Kids', harga: 335000, stok: null, kategori: 'Kids', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
-                { id: 'p33', nama: 'Handuk', harga: 5000, stok: null, kategori: 'Treatment', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
-                { id: 'p34', nama: 'Pempers Baby atau Kids', harga: 14000, stok: null, kategori: 'Treatment', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
-                { id: 'p35', nama: 'Potong Kuku ', harga: 30000, stok: null, kategori: 'Treatment', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
-                { id: 'p36', nama: 'Pangkas Rambut', harga: 80000, stok: null, kategori: 'Treatment', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
-                { id: 'p37', nama: 'Cuci Hidung', harga: 30000, stok: null, kategori: 'Treatment', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
-                { id: 'p38', nama: 'Cuci Hidung with Physiomer', harga: 40000, stok: null, kategori: 'Treatment', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
-                { id: 'p39', nama: 'Infra Red', harga: 35000, stok: null, kategori: 'Treatment', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
-                { id: 'p40', nama: 'Esensial Oil Terapi Humidifier', harga: 25000, stok: null, kategori: 'Treatment', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
-                { id: 'p41', nama: 'Nebulizer Esensial Oil', harga: 120000, stok: null, kategori: 'Treatment', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
-                { id: 'p42', nama: 'Oral Cleanser', harga: 30000, stok: null, kategori: 'Treatment', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
-                { id: 'p43', nama: 'Tuam Pitu Herbal', harga: 50000, stok: null, kategori: 'Treatment', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
-                { id: 'p44', nama: 'Deteksi Tumbuh Kembang 2 Jam', harga: 250000, stok: null, kategori: 'Treatment', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
-                { id: 'p45', nama: 'Konsultasi Dokter', harga: 100000, stok: null, kategori: 'Treatment', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
-                { id: 'p46', nama: 'Konsultasi Bidan', harga: 80000, stok: null, kategori: 'Treatment', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
-                { id: 'p47', nama: 'Layanan Home Care 0-5 Km', harga: 25000, stok: null, kategori: 'Homecare', konsinyasi: false, komisi: 0, komisiTerapis: 25000 },
-                { id: 'p48', nama: 'Layanan Home Care 5-10 Km', harga: 35000, stok: null, kategori: 'Homecare', konsinyasi: false, komisi: 0, komisiTerapis: 30000 },
-                { id: 'p49', nama: 'Layanan Home Care 10-15 Km', harga: 45000, stok: null, kategori: 'Homecare', konsinyasi: false, komisi: 0, komisiTerapis: 40000 },
-                { id: 'p50', nama: 'Layanan Home Care 15-20 Km', harga: 55000, stok: null, kategori: 'Homecare', konsinyasi: false, komisi: 0, komisiTerapis: 50000 },
-                { id: 'p51', nama: 'Tambahan Home Care Potong Kuku ', harga: 35000, stok: null, kategori: 'Homecare', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
-                { id: 'p52', nama: 'Tambahan Home Care Pangkas Rambut', harga: 85000, stok: null, kategori: 'Homecare', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
-                { id: 'p53', nama: 'Tambahan Home Care Cuci Hidung', harga: 35000, stok: null, kategori: 'Homecare', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
-                { id: 'p54', nama: 'Tambahan Home Care Cuci Hidung with Physiomer', harga: 45000, stok: null, kategori: 'Homecare', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
-                { id: 'p55', nama: 'Tambahan Home Care Infra Red', harga: 40000, stok: null, kategori: 'Homecare', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
-                { id: 'p56', nama: 'Tambahan Home Care Esensial Oil Terapi Humidifier', harga: 30000, stok: null, kategori: 'Homecare', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
-                { id: 'p57', nama: 'Tambahan Home Care Nebulizer Esensial Oil', harga: 125000, stok: null, kategori: 'Homecare', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
-                { id: 'p58', nama: 'Tambahan Home Care Oral Cleanser', harga: 35000, stok: null, kategori: 'Homecare', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
-                { id: 'p59', nama: 'Tambahan Home Care Tuam Pitu Herbal', harga: 55000, stok: null, kategori: 'Homecare', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
-                { id: 'p60', nama: 'Tambahan Home Care Deteksi Tumbuh Kembang 2 Jam', harga: 255000, stok: null, kategori: 'Homecare', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
-                { id: 'p61', nama: 'Layanan Homecare Full Body Massage Mom 0-5 Km', harga: 0, stok: null, kategori: 'Homecare', konsinyasi: false, komisi: 0, komisiTerapis: 40000 },
-                { id: 'p62', nama: 'Layanan Homecare Full Body Massage Mom 5-10 Km', harga: 0, stok: null, kategori: 'Homecare', konsinyasi: false, komisi: 0, komisiTerapis: 50000 },
-                { id: 'p63', nama: 'Layanan Homecare Full Body Massage Mom 10-15 Km', harga: 0, stok: null, kategori: 'Homecare', konsinyasi: false, komisi: 0, komisiTerapis: 60000 },
-                { id: 'p64', nama: 'Layanan Homecare Full Body Massage Mom 15-20 Km', harga: 0, stok: null, kategori: 'Homecare', konsinyasi: false, komisi: 0, komisiTerapis: 70000 },
-                { id: 'p65', nama: 'Lembur Homecare Baby Kids', harga: 0, stok: null, kategori: 'Homecare', konsinyasi: false, komisi: 0, komisiTerapis: 30000 },
-                { id: 'p66', nama: 'Lembur Baby SPA di Klinik', harga: 0, stok: null, kategori: 'Baby', konsinyasi: false, komisi: 0, komisiTerapis: 20000 },
-                { id: 'p67', nama: 'Lembur Kids SPA di Klinik', harga: 0, stok: null, kategori: 'Kids', konsinyasi: false, komisi: 0, komisiTerapis: 20000 },
-                { id: 'p68', nama: 'Lembur atau Tidak Lembur Full Body Massage Mom di Klinik', harga: 0, stok: null, kategori: 'Mom', konsinyasi: false, komisi: 0, komisiTerapis: 25000 },
-                { id: 'p69', nama: 'Mendampingi Partus', harga: 0, stok: null, kategori: 'Lahiran', konsinyasi: false, komisi: 0, komisiTerapis: 100000 },
-                { id: 'p70', nama: 'Full Body Massage Pijat Ibu Hamil', harga: 175000, stok: null, kategori: 'Mom', konsinyasi: false, komisi: 0, komisiTerapis: 25000 },
-                { id: 'p71', nama: 'Full Body Massage Pijat Ibu Hamil', harga: 185000, stok: null, kategori: 'Mom', konsinyasi: false, komisi: 0, komisiTerapis: 25000 },
-                { id: 'p72', nama: 'Full Body Massage Pijat Ibu Nifas', harga: 195000, stok: null, kategori: 'Mom', konsinyasi: false, komisi: 0, komisiTerapis: 25000 },
-                { id: 'p73', nama: 'Pijat Laktasi Ibu Hamil atau Nifas tanpa Keluhan', harga: 175000, stok: null, kategori: 'Mom', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
-                { id: 'p74', nama: 'Pijat Laktasi Ibu Hamil atau Nifas dengan Keluhan', harga: 200000, stok: null, kategori: 'Mom', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
-                { id: 'p75', nama: 'Pijat Oksitosin', harga: 180000, stok: null, kategori: 'Mom', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
-                { id: 'p76', nama: 'Pijat Perineum', harga: 80000, stok: null, kategori: 'Mom', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
-                { id: 'p77', nama: 'Ratus V', harga: 95000, stok: null, kategori: 'Mom', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
-                { id: 'p78', nama: 'USG dan ANC', harga: 250000, stok: null, kategori: 'Mom', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
-                { id: 'p79', nama: 'Body Scrub', harga: 120000, stok: null, kategori: 'Mom', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
-                { id: 'p80', nama: 'Cukur Miss V', harga: 80000, stok: null, kategori: 'Mom', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
-                { id: 'p81', nama: 'Face Treatment Massage dan Mask', harga: 160000, stok: null, kategori: 'Mom', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
-                { id: 'p82', nama: 'Healing Bath Bumil', harga: 230000, stok: null, kategori: 'Mom', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
-                { id: 'p83', nama: 'Foot Spa Hydroterapy', harga: 100000, stok: null, kategori: 'Mom', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
-                { id: 'p84', nama: 'Fun Mom', harga: 400000, stok: null, kategori: 'Mom', konsinyasi: false, komisi: 0, komisiTerapis: 25000 },
-                { id: 'p85', nama: 'Happy Mom', harga: 450000, stok: null, kategori: 'Mom', konsinyasi: false, komisi: 0, komisiTerapis: 25000 },
-                { id: 'p86', nama: 'Enjoy Mom', harga: 285000, stok: null, kategori: 'Mom', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
-                { id: 'p87', nama: 'Pempers Celana Mom', harga: 25000, stok: null, kategori: 'Mom', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
-                { id: 'p88', nama: 'Underpad', harga: 10000, stok: null, kategori: 'Mom', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
-                { id: 'p89', nama: 'Vaksin HB0', harga: 350000, stok: null, kategori: 'Mom', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
-                { id: 'p90', nama: 'Bengkung tapel Pilis Param', harga: 80000, stok: null, kategori: 'Mom', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
-                { id: 'p91', nama: 'Paket Bersalin Premium', harga: 4000000, stok: null, kategori: 'Lahiran', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
-                { id: 'p92', nama: 'Paket Bersalin VIP Farhan Atas', harga: 5000000, stok: null, kategori: 'Lahiran', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
-                { id: 'p93', nama: 'Paket Bersalin VIP Maryam Bawah', harga: 5500000, stok: null, kategori: 'Lahiran', konsinyasi: false, komisi: 0, komisiTerapis: 0 }
+                { id: 'p3', nama: 'Baby Massage 7 Accupressure Lengkap', harga: 275000, stok: null, kategori: 'Baby', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p4', nama: 'Memandikan Bayi', harga: 70000, stok: null, kategori: 'Baby', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p5', nama: 'Memandikan Bayi with Handuk', harga: 75000, stok: null, kategori: 'Baby', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p6', nama: 'Hydrotherapy Baby Swim', harga: 150000, stok: null, kategori: 'Baby', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p7', nama: 'Hydrotherapy Baby Swim with Pempers Handuk', harga: 162000, stok: null, kategori: 'Baby', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p8', nama: 'Hydrotherapy Baby Swim with Handuk', harga: 155000, stok: null, kategori: 'Baby', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p9', nama: 'Hydrotherapy Baby Swim with Pempers Handuk', harga: 167000, stok: null, kategori: 'Baby', konsinyasi: false, komisi: 0, komisiTerapis: 0 }, // Duplicate name in original, keeping it as is
+                { id: 'p10', nama: 'Fun Baby', harga: 280000, stok: null, kategori: 'Baby', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p11', nama: 'Fun Baby with Pempers', harga: 292000, stok: null, kategori: 'Baby', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p12', nama: 'Fun Baby with Handuk', harga: 285000, stok: null, kategori: 'Baby', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p13', nama: 'Fun Baby with Pempers Handuk', harga: 297000, stok: null, kategori: 'Baby', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p14', nama: 'Enjoy Baby', harga: 170000, stok: null, kategori: 'Baby', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p15', nama: 'Enjoy Baby with Pempers', harga: 182000, stok: null, kategori: 'Baby', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p16', nama: 'Enjoy Baby with Handuk', harga: 175000, stok: null, kategori: 'Baby', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p17', nama: 'Enjoy Baby with Pempers Handuk', harga: 187000, stok: null, kategori: 'Baby', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p18', nama: 'Eksklusif Baby', harga: 399000, stok: null, kategori: 'Baby', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p19', nama: 'Eksklusif Baby with Pempers', harga: 411000, stok: null, kategori: 'Baby', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p20', nama: 'Eksklusif Baby with Handuk', harga: 404000, stok: null, kategori: 'Baby', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p21', nama: 'Eksklusif Baby with Pempers Handuk', harga: 416000, stok: null, kategori: 'Baby', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p22', nama: 'Paket Kolik Bapil Baby', harga: 170000, stok: null, kategori: 'Baby', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p23', nama: 'Paket Kombo Bapil Baby', harga: 240000, stok: null, kategori: 'Baby', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p24', nama: 'Paket Lengkap Pijat Baby', harga: 299000, stok: null, kategori: 'Baby', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p25', nama: 'Kids Massage 1 Accupressure 1-3 Tahun', harga: 145000, stok: null, kategori: 'Kids', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p26', nama: 'Kids Massage 1 Accupressure 3-6 Tahun', harga: 155000, stok: null, kategori: 'Kids', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p27', nama: 'Kids Massage 1 Accupressure 6-12 Tahun', harga: 165000, stok: null, kategori: 'Kids', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p28', nama: 'Kids Massage 1 Accupressure 12 Tahun ke atas', harga: 185000, stok: null, kategori: 'Kids', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p29', nama: 'Tambahan Kids Massage 1 Accupressure', harga: 25000, stok: null, kategori: 'Kids', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p30', nama: 'Kids Massage 7 Accupressure Lengkap', harga: 330000, stok: null, kategori: 'Kids', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p31', nama: 'Rempah Bath atau Bubble Bath', harga: 130000, stok: null, kategori: 'Kids', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p32', nama: 'Rempah Bath dan Bubble Bath Berendam Rempah Bubble', harga: 150000, stok: null, kategori: 'Kids', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p33', nama: 'Choco Bath Berendam Coklat', harga: 140000, stok: null, kategori: 'Kids', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p34', nama: 'Choco Bath Berendam Coklat plus Bubble atau rempah', harga: 190000, stok: null, kategori: 'Kids', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p35', nama: 'Berendam bubble atau rempah bath plus Massage', harga: 240000, stok: null, kategori: 'Kids', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p36', nama: 'Berendam bubble atau rempah bath plus Massage dan Mask', harga: 260000, stok: null, kategori: 'Kids', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p37', nama: 'Healthy Kids', harga: 335000, stok: null, kategori: 'Kids', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p38', nama: 'Paket Kolik Bapil Kids', harga: 199000, stok: null, kategori: 'Kids', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p39', nama: 'Paket Kombo Bapil Kids', harga: 275000, stok: null, kategori: 'Kids', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p40', nama: 'Paket Lengkap Pijat Kids', harga: 335000, stok: null, kategori: 'Kids', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p41', nama: 'Potong Kuku', harga: 30000, stok: null, kategori: 'Treatment', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p42', nama: 'Pangkas Rambut', harga: 80000, stok: null, kategori: 'Treatment', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p43', nama: 'Cuci Hidung', harga: 30000, stok: null, kategori: 'Treatment', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p44', nama: 'Cuci Hidung with Physiomer', harga: 40000, stok: null, kategori: 'Treatment', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p45', nama: 'Infra Red', harga: 35000, stok: null, kategori: 'Treatment', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p46', nama: 'Esensial Oil Terapi Humidifier', harga: 25000, stok: null, kategori: 'Treatment', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p47', nama: 'Nebulizer Esensial Oil', harga: 120000, stok: null, kategori: 'Treatment', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p48', nama: 'Oral Cleanser', harga: 30000, stok: null, kategori: 'Treatment', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p49', nama: 'Tuam Pitu Herbal', harga: 50000, stok: null, kategori: 'Treatment', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p50', nama: 'Deteksi Tumbuh Kembang 2 Jam', harga: 250000, stok: null, kategori: 'Treatment', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p51', nama: 'Konsultasi Dokter', harga: 100000, stok: null, kategori: 'Treatment', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p52', nama: 'Konsultasi Bidan', harga: 80000, stok: null, kategori: 'Treatment', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p53', nama: 'Tambahan Home Care Potong Kuku', harga: 35000, stok: null, kategori: 'Homecare', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p54', nama: 'Tambahan Home Care Pangkas Rambut', harga: 85000, stok: null, kategori: 'Homecare', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p55', nama: 'Tambahan Home Care Cuci Hidung', harga: 35000, stok: null, kategori: 'Homecare', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p56', nama: 'Tambahan Home Care Cuci Hidung with Physiomer', harga: 45000, stok: null, kategori: 'Homecare', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p57', nama: 'Tambahan Home Care Infra Red', harga: 40000, stok: null, kategori: 'Homecare', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p58', nama: 'Tambahan Home Care Esensial Oil Terapi Humidifier', harga: 30000, stok: null, kategori: 'Homecare', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p59', nama: 'Tambahan Home Care Nebulizer  Esensial Oil', harga: 125000, stok: null, kategori: 'Homecare', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p60', nama: 'Tambahan Home Care Oral Cleanser', harga: 35000, stok: null, kategori: 'Homecare', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p61', nama: 'Tambahan Home Care Tuam Pitu Herbal', harga: 55000, stok: null, kategori: 'Homecare', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p62', nama: 'Tambahan Home Care Deteksi Tumbuh Kembang 2 Jam', harga: 255000, stok: null, kategori: 'Homecare', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p63', nama: 'Layanan Home Care 0-5 Km', harga: 25000, stok: null, kategori: 'Layanan', konsinyasi: false, komisi: 0, komisiTerapis: 25000 },
+                { id: 'p64', nama: 'Layanan Home Care 5-10 Km', harga: 35000, stok: null, kategori: 'Layanan', konsinyasi: false, komisi: 0, komisiTerapis: 30000 },
+                { id: 'p65', nama: 'Layanan Home Care 10-15 Km', harga: 45000, stok: null, kategori: 'Layanan', konsinyasi: false, komisi: 0, komisiTerapis: 40000 },
+                { id: 'p66', nama: 'Layanan Home Care 15-20 Km', harga: 55000, stok: null, kategori: 'Layanan', konsinyasi: false, komisi: 0, komisiTerapis: 50000 },
+                { id: 'p67', nama: 'Layanan Homecare Full Body Massage Mom 0-5 Km', harga: 0, stok: null, kategori: 'Layanan', konsinyasi: false, komisi: 0, komisiTerapis: 40000 },
+                { id: 'p68', nama: 'Layanan Homecare Full Body Massage Mom 5-10 Km', harga: 0, stok: null, kategori: 'Layanan', konsinyasi: false, komisi: 0, komisiTerapis: 50000 },
+                { id: 'p69', nama: 'Layanan Homecare Full Body Massage Mom 10-15 Km', harga: 0, stok: null, kategori: 'Layanan', konsinyasi: false, komisi: 0, komisiTerapis: 60000 },
+                { id: 'p70', nama: 'Layanan Homecare Full Body Massage Mom 15-20 Km', harga: 0, stok: null, kategori: 'Layanan', konsinyasi: false, komisi: 0, komisiTerapis: 70000 },
+                { id: 'p71', nama: 'Lembur Homecare Baby Kids', harga: 0, stok: null, kategori: 'Layanan', konsinyasi: false, komisi: 0, komisiTerapis: 30000 },
+                { id: 'p72', nama: 'Lembur Baby SPA di Klinik', harga: 0, stok: null, kategori: 'Layanan', konsinyasi: false, komisi: 0, komisiTerapis: 20000 },
+                { id: 'p73', nama: 'Lembur Kids SPA di Klinik', harga: 0, stok: null, kategori: 'Layanan', konsinyasi: false, komisi: 0, komisiTerapis: 20000 },
+                { id: 'p74', nama: 'Lembur atau Tidak Lembur Full Body Massage Mom di Klinik', harga: 0, stok: null, kategori: 'Layanan', konsinyasi: false, komisi: 0, komisiTerapis: 25000 },
+                { id: 'p75', nama: 'Mendampingi Partus', harga: 0, stok: null, kategori: 'Layanan', konsinyasi: false, komisi: 0, komisiTerapis: 100000 },
+                { id: 'p76', nama: 'Full Body Massage Pijat Ibu Hamil', harga: 175000, stok: null, kategori: 'Mom', konsinyasi: false, komisi: 0, komisiTerapis: 25000 },
+                { id: 'p77', nama: 'Full Body Massage Pijat Ibu Hamil', harga: 185000, stok: null, kategori: 'Mom', konsinyasi: false, komisi: 0, komisiTerapis: 25000 }, // Extracted from row with p77 p78
+                { id: 'p78', nama: 'Full Body Massage Pijat Ibu Nifas', harga: 195000, stok: null, kategori: 'Mom', konsinyasi: false, komisi: 0, komisiTerapis: 25000 }, // Extracted from row with p77 p78
+                { id: 'p79', nama: 'Pijat Laktasi Ibu Hamil atau Nifas tanpa Keluhan', harga: 175000, stok: null, kategori: 'Mom', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p80', nama: 'Pijat Laktasi Ibu Hamil atau Nifas dengan Keluhan', harga: 200000, stok: null, kategori: 'Mom', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p81', nama: 'Pijat Oksitosin', harga: 180000, stok: null, kategori: 'Mom', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p82', nama: 'Pijat Perineum', harga: 80000, stok: null, kategori: 'Mom', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p83', nama: 'Ratus V', harga: 95000, stok: null, kategori: 'Mom', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p84', nama: 'USG dan ANC', harga: 250000, stok: null, kategori: 'Mom', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p85', nama: 'Body Scrub', harga: 120000, stok: null, kategori: 'Mom', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p86', nama: 'Cukur Miss V', harga: 80000, stok: null, kategori: 'Mom', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p87', nama: 'Face Treatment Massage dan Mask', harga: 160000, stok: null, kategori: 'Mom', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p88', nama: 'Healing Bath Bumil', harga: 230000, stok: null, kategori: 'Mom', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p89', nama: 'Foot Spa Hydroterapy', harga: 100000, stok: null, kategori: 'Mom', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p90', nama: 'Fun Mom', harga: 400000, stok: null, kategori: 'Mom', konsinyasi: false, komisi: 0, komisiTerapis: 25000 },
+                { id: 'p91', nama: 'Happy Mom', harga: 450000, stok: null, kategori: 'Mom', konsinyasi: false, komisi: 0, komisiTerapis: 25000 },
+                { id: 'p92', nama: 'Enjoy Mom', harga: 285000, stok: null, kategori: 'Mom', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p93', nama: 'Pempers Celana Mom', harga: 25000, stok: null, kategori: 'Mom', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p94', nama: 'Underpad', harga: 10000, stok: null, kategori: 'Mom', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p95', nama: 'Vaksin HBO', harga: 350000, stok: null, kategori: 'Mom', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p96', nama: 'Bengkung tapel Pilis Param', harga: 80000, stok: null, kategori: 'Mom', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p97', nama: 'Paket Bersalin Premium', harga: 4000000, stok: null, kategori: 'Mom', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p98', nama: 'Paket Bersalin VIP Farhan Atas', harga: 5000000, stok: null, kategori: 'Mom', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p99', nama: 'Paket Bersalin VIP Maryam Bawah', harga: 5500000, stok: null, kategori: 'Mom', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p100', nama: 'Tindik dr evoo', harga: 685000, stok: null, kategori: 'Produk', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p101', nama: 'Anting dr evoo', harga: 585000, stok: null, kategori: 'Produk', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p102', nama: 'Tindik Manual', harga: 100000, stok: null, kategori: 'Produk', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p103', nama: 'Handuk', harga: 5000, stok: null, kategori: 'Produk', konsinyasi: false, komisi: 0, komisiTerapis: 0 },
+                { id: 'p104', nama: 'Pempers Baby atau Kids', harga: 14000, stok: null, kategori: 'Produk', konsinyasi: false, komisi: 0, komisiTerapis: 0 }
             ],
             transactions: [], // Array untuk menyimpan riwayat transaksi penjualan (POS)
             cashFlow: [], // Array untuk menyimpan arus kas (uang masuk/keluar)
@@ -2317,10 +2329,14 @@
             document.getElementById('view-homecare-public').classList.remove('hidden'); // Tampilkan Form
             document.getElementById('view-homecare-public').classList.add('flex'); // Sesuaikan class bloknya
 
-            // Mengambil opsi produk apa saja yang ada di daftar admin dan jadikan pilihan/dropdown bagi konsumen (Dinamis)
+            // Hanya tampilkan layanan yang masuk kategori Homecare di form reservasi publik
+            const homecareProducts = (state.products || []).filter(p =>
+                String(p.kategori || '').toLowerCase() === 'homecare'
+            );
+
             const sel = document.getElementById('hc-layanan'); // Ambil Select HTML
             sel.innerHTML = '<option value="">-- Pilih Layanan Tersedia --</option>' + // Tag opsi kosong pertama
-                state.products.map(p => `<option value="${p.nama}">${p.nama} (${formatRp(p.harga)})</option>`).join('') + // Iterasi opsi dari produk
+                homecareProducts.map(p => `<option value="${p.nama}">${p.nama} (${formatRp(p.harga)})</option>`).join('') + // Iterasi opsi dari produk homecare
                 '<option value="lainnya">Lainnya (Ketik Manual)...</option>'; // Opsi untuk input kustom
 
             // Memastikan ulang form kosong karena form bekas orang lain bisa saja membekas (jika tablet dipakai bareng)
@@ -3410,7 +3426,7 @@
                 if (['QRIS', 'Transfer Bank', 'QRIS / E-Wallet'].includes(t.metodeBayar)) uangDigital += parseInt(t.totalAkhir) || 0;
                 // Hitung pendapatan POS hanya yang cash / masuk secara tunai ke kotak laci
                 if (t.metodeBayar === 'Tunai') posTunai += parseInt(t.totalAkhir) || 0;
-});
+            });
 
             // STEP 2: Loop Filter Buku Kas / Arus Kas Bebas (Spt Beli Galon, dsb) di rentang waktu yg sama
             const filteredKas = state.cashFlow.filter(k => k.tgl >= start && k.tgl <= end);
@@ -3883,9 +3899,11 @@
             const sel = document.getElementById('t-kegiatan');
             if (!sel) return;
 
-            // Ambil data dari etalase produk/layanan
+            // Hanya tampilkan layanan yang punya komisi untuk terapis
+            const terapisProducts = (state.products || []).filter(p => parseInt(p.komisiTerapis) > 0);
+
             sel.innerHTML = '<option value="">-- Pilih Layanan / Kegiatan --</option>' +
-                state.products.map(p => `<option value="${p.nama}">${p.nama}</option>`).join('') +
+                terapisProducts.map(p => `<option value="${p.nama}">${p.nama}</option>`).join('') +
                 '<option value="Lainnya">Lainnya (Ketik Manual)...</option>';
         }
 
