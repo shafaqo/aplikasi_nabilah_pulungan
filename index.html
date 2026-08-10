@@ -2401,6 +2401,20 @@
             document.addEventListener("DOMContentLoaded", () => { initData(); });
 
             // --- LOGIKA LOGIN DAN ROUTING ---
+            function safeSetView(id, visible, displayClass = '') {
+                const el = document.getElementById(id);
+                if (!el) return;
+                if (visible) {
+                    el.classList.remove('hidden');
+                    el.style.display = displayClass === 'flex' ? 'flex' : (displayClass === 'block' ? 'block' : '');
+                    if (displayClass) el.classList.add(displayClass);
+                } else {
+                    el.classList.add('hidden');
+                    el.style.display = 'none';
+                    if (displayClass) el.classList.remove(displayClass);
+                }
+            }
+
             function handleLogin() { // Eksekusi saat klik tombol di UI form Login
                 const user = document.getElementById('login-username').value.trim(); // Ambil input Username (tanpa spasi depan blkg)
                 const pass = document.getElementById('login-password').value.trim(); // Ambil input PIN / Password
@@ -2416,20 +2430,20 @@
 
             function routeUser() { // Mengarahkan Halaman (Sebagai pengganti navigasi URL)
                 // Sembunyikan layar login awal dan form homecare publik (Bersih-bersih layer atas)
-                document.getElementById('view-login').classList.add('hidden');
-                document.getElementById('view-homecare-public').classList.add('hidden');
+                safeSetView('view-login', false);
+                safeSetView('view-homecare-public', false);
 
-                if (state.currentUser.role === 'admin') {  // Jika di database status dia Administrator/Owner
+                if (state.currentUser?.role === 'admin') {  // Jika di database status dia Administrator/Owner
                     // Tampilkan panel raksasa admin
-                    document.getElementById('view-admin').classList.remove('hidden');
-                    document.getElementById('view-admin').classList.add('flex'); // Tampilkan dalam format grid
-                    document.getElementById('admin-logged-name').innerText = state.currentUser.nama;  // Nama profil pojok
+                    safeSetView('view-admin', true, 'flex');
+                    const adminName = document.getElementById('admin-logged-name');
+                    if (adminName) adminName.innerText = state.currentUser.nama;  // Nama profil pojok
                     navAdmin('pos'); // Secara default buka modul Mesin Kasir POS pertama kali masuk
                 } else {  // Jika peran/role adalah Terapis/Bidan
                     // Tampilkan halaman mobile untuk bidan/terapis saja (Layar penuh)
-                    document.getElementById('view-terapis').classList.remove('hidden');
-                    document.getElementById('view-terapis').classList.add('flex'); // <--- TAMBAHKAN BARIS INI
-                    document.getElementById('terapis-nama-header').innerText = state.currentUser.nama; // Ganti header profil atas
+                    safeSetView('view-terapis', true, 'flex');
+                    const terapisName = document.getElementById('terapis-nama-header');
+                    if (terapisName) terapisName.innerText = state.currentUser.nama; // Ganti header profil atas
                     populateKegiatanTerapis();  // Siapkan form pilihan produk yang ada di etalase sebagai kegiatan laporan
                     switchTabPanelTerapis('panel-t-kinerja'); // Pilih tab input laporan secara bawaan
                     renderLogTerapisPribadi();  // Munculkan hanya riwayat (history) terapis ini saja di tabel bawah
@@ -2448,15 +2462,15 @@
                 if (typeof batalEditLog === 'function') batalEditLog(); // Kosongkan mode edit form log pekerja
 
                 // Perintah mengganti UI DOM
-                document.getElementById('view-admin').classList.add('hidden'); // Sembunyikan blok admin
-                document.getElementById('view-admin').classList.remove('flex'); // Hapus class display dari admin
-                document.getElementById('view-terapis').classList.add('hidden'); // Sembunyikan modul terapis
-                document.getElementById('view-terapis').classList.remove('flex'); // <--- TAMBAHKAN BARIS INI
-                document.getElementById('view-homecare-public').classList.add('hidden'); // Sembunyikan portal pasien
+                safeSetView('view-admin', false, 'flex');
+                safeSetView('view-terapis', false, 'flex');
+                safeSetView('view-homecare-public', false, 'flex');
+                safeSetView('view-login', true);
 
-                document.getElementById('view-login').classList.remove('hidden'); // Menampilkan ulang Jendela halaman login
-                document.getElementById('login-username').value = ''; // Kosongkan bekas input form id/nama
-                document.getElementById('login-password').value = ''; // Kosongkan bekas form PIN (keamanan)
+                const usernameInput = document.getElementById('login-username');
+                const passwordInput = document.getElementById('login-password');
+                if (usernameInput) usernameInput.value = ''; // Kosongkan bekas input form id/nama
+                if (passwordInput) passwordInput.value = ''; // Kosongkan bekas form PIN (keamanan)
             }
 
             // --- SISTEM MODUL ADMIN NAVIGASI ---
@@ -3779,31 +3793,44 @@
 
             // --- MANAJEMEN PORTAL HOMECARE UNTUK TERAPIS (MENGAMBIL TUGAS) ---
             function switchTabPanelTerapis(tabId) { // Pindah Tab Layar Menu Terapis/Bidan (Form Kinerja VS List Tugas Datang Kerumah Pasien)
-                document.getElementById('panel-t-kinerja').classList.add('hidden'); // Matikan Layar Kinerja Harian Bidan
-                document.getElementById('panel-t-homecare').classList.add('hidden'); // Matikan Layar List Order Publik
+                const panelKinerja = document.getElementById('panel-t-kinerja');
+                const panelHomecare = document.getElementById('panel-t-homecare');
+                const btnKinerja = document.getElementById('btn-panel-t-kinerja');
+                const btnHomecare = document.getElementById('btn-panel-t-homecare');
+                const targetPanel = document.getElementById(tabId);
 
-                document.getElementById(tabId).classList.remove('hidden'); // Tampilkan spesifik tab yg dipanggil lewat UI OnClick 
+                if (panelKinerja) panelKinerja.classList.add('hidden');
+                if (panelHomecare) panelHomecare.classList.add('hidden');
+                if (targetPanel) targetPanel.classList.remove('hidden');
 
-                // Ubah class styling visual css tab/tombol di header aplikasinya
-                document.getElementById('btn-panel-t-kinerja').className = 'flex-1 py-3 text-xs sm:text-sm font-bold border-b-2 border-transparent text-gray-500 focus:outline-none transition';
-                document.getElementById('btn-panel-t-homecare').className = 'flex-1 py-3 text-xs sm:text-sm font-bold border-b-2 border-transparent text-gray-500 focus:outline-none transition relative';
+                if (btnKinerja) {
+                    btnKinerja.className = 'flex-1 py-3 text-xs sm:text-sm font-bold border-b-2 border-transparent text-gray-500 focus:outline-none transition';
+                }
+                if (btnHomecare) {
+                    btnHomecare.className = 'flex-1 py-3 text-xs sm:text-sm font-bold border-b-2 border-transparent text-gray-500 focus:outline-none transition relative';
+                }
 
-                if (tabId === 'panel-t-kinerja') { // Jika tabnya = Panel Utama (Kinerja)
-                    document.getElementById('btn-panel-t-kinerja').classList.add('border-brand', 'text-brand'); // Beri Underline Emas Orange Aktif
-                    document.getElementById('btn-panel-t-kinerja').classList.remove('text-gray-500', 'border-transparent');
-                } else { // Jika Bidan buka list Tugas Homecare Publik order
-                    document.getElementById('btn-panel-t-homecare').classList.add('border-brand', 'text-brand'); // Beri underline emas Orange
-                    document.getElementById('btn-panel-t-homecare').classList.remove('text-gray-500', 'border-transparent');
-                    renderTerapisHomecare('Menunggu');  // Load list orderan dari internet yg statusnya fresh (Blm diambil temen bidan yg lain)
+                if (tabId === 'panel-t-kinerja') {
+                    if (btnKinerja) {
+                        btnKinerja.classList.add('border-brand', 'text-brand');
+                        btnKinerja.classList.remove('text-gray-500', 'border-transparent');
+                    }
+                } else {
+                    if (btnHomecare) {
+                        btnHomecare.classList.add('border-brand', 'text-brand');
+                        btnHomecare.classList.remove('text-gray-500', 'border-transparent');
+                    }
+                    renderTerapisHomecare('Menunggu');
                 }
             }
 
             function cekHomecareBaruUntukTerapis() { // Alarm (Indikator titik Badge Merah) kalau ada order publik baru yg blm diclaim 
                 // Cek apakah ada satupun Array HC (Pesanan online web pelanggan) yang statusnya "Menunggu" / Pending
-                const adaMenunggu = state.reservasi.some(r => r.status === 'Menunggu');
+                const adaMenunggu = (state.reservasi || []).some(r => r.status === 'Menunggu');
                 const badge = document.getElementById('badge-hc-baru'); // UI titik notifikasi Merah
-                if (adaMenunggu) badge.classList.remove('hidden'); // Jikalau ada, timbulkan titik tersebut agar Bidan notice
-                else badge.classList.add('hidden'); // Matikan bila sudah diclear/diambil
+                if (!badge) return;
+                if (adaMenunggu) badge.classList.remove('hidden');
+                else badge.classList.add('hidden');
             }
 
             function filterTerapisHC(mode) { // Menu Toggle didalam Jendela "Tugas Homecare" si Bidan
@@ -4066,9 +4093,7 @@
                 const sel = document.getElementById('t-kegiatan');
                 if (!sel) return;
 
-                // Hanya tampilkan layanan yang punya komisi untuk terapis
                 const terapisProducts = (state.products || []).filter(p => parseInt(p.komisiTerapis) > 0);
-
                 sel.innerHTML = '<option value="">-- Pilih Layanan / Kegiatan --</option>' +
                     terapisProducts.map(p => `<option value="${p.nama}">${p.nama}</option>`).join('') +
                     '<option value="Lainnya">Lainnya (Ketik Manual)...</option>';
@@ -4076,20 +4101,20 @@
 
             // 2. Logika saat dropdown kegiatan dipilih (Auto-fill komisi)
             function checkCustomKegiatan() {
-                const sel = document.getElementById('t-kegiatan').value;
+                const select = document.getElementById('t-kegiatan');
                 const man = document.getElementById('t-kegiatan-custom');
                 const inputKomisi = document.getElementById('t-komisi');
+                if (!select || !man || !inputKomisi) return;
 
+                const sel = select.value;
                 if (sel === 'Lainnya') {
                     man.classList.remove('hidden');
                     man.focus();
-                    inputKomisi.value = ''; // Kosongkan komisi jika manual
+                    inputKomisi.value = '';
                 } else {
                     man.classList.add('hidden');
                     man.value = '';
-
-                    // Auto-fill komisi berdasarkan master produk
-                    const prod = state.products.find(p => p.nama === sel);
+                    const prod = (state.products || []).find(p => p.nama === sel);
                     if (prod && prod.komisiTerapis) {
                         inputKomisi.value = prod.komisiTerapis;
                     } else {
@@ -4104,18 +4129,17 @@
                 if (!tbody) return;
                 tbody.innerHTML = '';
 
-                // Ambil tanggal filter
-                const start = document.getElementById('t-filter-start').value || '1970-01-01';
-                const end = document.getElementById('t-filter-end').value || '2099-12-31';
+                const start = document.getElementById('t-filter-start')?.value || '1970-01-01';
+                const end = document.getElementById('t-filter-end')?.value || '2099-12-31';
 
-                // Filter log hanya untuk Terapis ini dan sesuai rentang tanggal
-                let myLogs = state.therapistLogs.filter(l =>
+                if (!state.currentUser?.nama) return;
+
+                const myLogs = (state.therapistLogs || []).filter(l =>
                     l.terapis === state.currentUser.nama &&
                     l.waktuLayanan >= start && l.waktuLayanan <= end
                 );
 
                 let totalKomisi = 0;
-
                 myLogs.reverse().forEach(l => {
                     totalKomisi += parseInt(l.estimasiKomisi) || 0;
                     tbody.innerHTML += `
@@ -4130,20 +4154,22 @@
         `;
                 });
 
-                if (tbody.innerHTML === '') tbody.innerHTML = '<tr><td colspan="4" class="p-4 text-center text-gray-400 font-bold text-[10px] uppercase">Belum ada riwayat kerja</td></tr>';
+                if (tbody.innerHTML === '') {
+                    tbody.innerHTML = '<tr><td colspan="4" class="p-4 text-center text-gray-400 font-bold text-[10px] uppercase">Belum ada riwayat kerja</td></tr>';
+                }
 
-                // Update Statistik
-                document.getElementById('t-total-komisi-filter').innerText = formatRp(totalKomisi);
+                const totalKomisiEl = document.getElementById('t-total-komisi-filter');
+                if (totalKomisiEl) totalKomisiEl.innerText = formatRp(totalKomisi);
 
-                // Statistik Harian & Bulanan
                 const hariIni = getTglNow();
-                const bulanIni = hariIni.substring(0, 7); // Format YYYY-MM
+                const bulanIni = hariIni.substring(0, 7);
+                const countHari = (state.therapistLogs || []).filter(l => l.terapis === state.currentUser.nama && l.waktuLayanan === hariIni).length;
+                const countBulan = (state.therapistLogs || []).filter(l => l.terapis === state.currentUser.nama && l.waktuLayanan.startsWith(bulanIni)).length;
 
-                const countHari = state.therapistLogs.filter(l => l.terapis === state.currentUser.nama && l.waktuLayanan === hariIni).length;
-                const countBulan = state.therapistLogs.filter(l => l.terapis === state.currentUser.nama && l.waktuLayanan.startsWith(bulanIni)).length;
-
-                document.getElementById('t-stat-hari').innerText = countHari;
-                document.getElementById('t-stat-bulan').innerText = countBulan;
+                const statHari = document.getElementById('t-stat-hari');
+                const statBulan = document.getElementById('t-stat-bulan');
+                if (statHari) statHari.innerText = countHari;
+                if (statBulan) statBulan.innerText = countBulan;
             }
 
             // 4. Menyimpan data dari formulir laporan terapis
@@ -4182,12 +4208,20 @@
 
             // 5. Membersihkan form log terapis
             function batalEditLog() {
-                document.getElementById('t-pasien').value = '';
-                document.getElementById('t-kegiatan').value = '';
-                document.getElementById('t-kegiatan-custom').value = '';
-                document.getElementById('t-kegiatan-custom').classList.add('hidden');
-                document.getElementById('t-komisi').value = '';
-                document.getElementById('t-catatan').value = '';
+                const pasien = document.getElementById('t-pasien');
+                const kegiatan = document.getElementById('t-kegiatan');
+                const custom = document.getElementById('t-kegiatan-custom');
+                const komisi = document.getElementById('t-komisi');
+                const catatan = document.getElementById('t-catatan');
+
+                if (pasien) pasien.value = '';
+                if (kegiatan) kegiatan.value = '';
+                if (custom) {
+                    custom.value = '';
+                    custom.classList.add('hidden');
+                }
+                if (komisi) komisi.value = '';
+                if (catatan) catatan.value = '';
             }
 
             // Tambahan: Hapus Log (Bila terapis salah input)
