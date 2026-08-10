@@ -1200,7 +1200,7 @@
 
         <!-- VIEW TERAPIS / BIDAN -->
         <!-- UI FIX: Overflow diatur sedemikian rupa agar konten di dalam panel bisa di-scroll tanpa menghilangkan header tab -->
-        <div id="view-terapis" class="flex-1 flex hidden flex-col bg-gray-100 h-full overflow-hidden relative">
+        <div id="view-terapis" class="flex-1 hidden flex-col bg-gray-100 h-full overflow-hidden relative">
             <div class="bg-black text-white p-3 sm:p-4 flex justify-between items-center shadow-lg z-50 shrink-0">
                 <div class="flex items-center">
                     <div
@@ -2073,7 +2073,7 @@
             };
 
             let chart1, chart2; // Variabel global untuk menyimpan objek grafik Chart.js
-            let unlockedProtectedModules = {karyawan: false, pengaturan: false }; // Modul yang sudah dibuka dalam sesi ini
+            let unlockedProtectedModules = {karyawan: false}; // Modul yang sudah dibuka dalam sesi ini contoh : {karyawan: false, pengaturan: false }
             const protectedModulePasswords = ['admin', '112211', 'rafahshafaqo']; // Kata sandi untuk akses tab tersembunyi
             let posViewMode = 'grid'; // Mode tampilan default untuk katalog POS
 
@@ -2428,6 +2428,7 @@
                 } else {  // Jika peran/role adalah Terapis/Bidan
                     // Tampilkan halaman mobile untuk bidan/terapis saja (Layar penuh)
                     document.getElementById('view-terapis').classList.remove('hidden');
+                    document.getElementById('view-terapis').classList.add('flex'); // <--- TAMBAHKAN BARIS INI
                     document.getElementById('terapis-nama-header').innerText = state.currentUser.nama; // Ganti header profil atas
                     populateKegiatanTerapis();  // Siapkan form pilihan produk yang ada di etalase sebagai kegiatan laporan
                     switchTabPanelTerapis('panel-t-kinerja'); // Pilih tab input laporan secara bawaan
@@ -2450,6 +2451,7 @@
                 document.getElementById('view-admin').classList.add('hidden'); // Sembunyikan blok admin
                 document.getElementById('view-admin').classList.remove('flex'); // Hapus class display dari admin
                 document.getElementById('view-terapis').classList.add('hidden'); // Sembunyikan modul terapis
+                document.getElementById('view-terapis').classList.remove('flex'); // <--- TAMBAHKAN BARIS INI
                 document.getElementById('view-homecare-public').classList.add('hidden'); // Sembunyikan portal pasien
 
                 document.getElementById('view-login').classList.remove('hidden'); // Menampilkan ulang Jendela halaman login
