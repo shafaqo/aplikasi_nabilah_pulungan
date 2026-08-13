@@ -2158,8 +2158,8 @@
 
         // --- MANAJEMEN CLOUD SINKRONISASI ---
         async function cloudUpload() { // Fungsi gabung data lokal dan simpan ke Cloud
-            if (!navigator.onLine) return showToast("Gagal: Anda sedang offline!", true); // Cek koneksi internet
-            if (GAS_URL.includes('XXXXXXXXXXXXXXXXXXXXXXXXX')) return showToast("Gagal: URL Google Script belum disetting!", true); // Cek URL Cloud
+            if (!navigator.onLine) { showToast("Gagal: Anda sedang offline!", true); return false; } // Cek koneksi internet
+            if (GAS_URL.includes('XXXXXXXXXXXXXXXXXXXXXXXXX')) { showToast("Gagal: URL Google Script belum disetting!", true); return false; } // Cek URL Cloud
 
             showToast("Mensinkronisasikan data dengan Cloud..."); // Info proses
             const btn = document.getElementById('btn-cloud-upload'); // Elemen tombol upload
@@ -2213,13 +2213,16 @@
                 if (postResult.status === 'success') { // Jika script server mengatakan berhasil
                     showToast("Sinkronisasi Cloud Berhasil Terpadu!"); // Peringatan hijau
                     if (stat) stat.innerText = "Status: Terhubung " + getWaktuNow().split(' ')[1]; // Tampilkan jam update
+                    return true;
                 } else { // Jika server gagal menulis (misal database sheet dihapus)
                     showToast("Server menolak: " + postResult.message, true); // Peringatan error merah
                     if (stat) stat.innerText = "Status: Gagal Upload"; // Tulisan error status
+                    return false;
                 }
             } catch (e) { // Tangkap jika CORS policy atau internet mati tiba-tiba
                 showToast("Terjadi kesalahan jaringan/CORS", true); // Peringatan
                 if (stat) stat.innerText = "Status: Error Jaringan"; // Tampilkan status error
+                return false;
             } finally { // Jalankan apapun hasilnya
                 if (btn) btn.innerHTML = `<i class="fas fa-cloud-upload-alt text-xl sm:text-2xl mb-1"></i><span class="text-sm sm:text-base">SIMPAN KE CLOUD</span><span class="text-[8px] sm:text-[9px] font-normal opacity-80 mt-1">(Gabung Data Lokal ke Cloud)</span>`; // Kembalikan UI tombol ke semula
             }
@@ -3839,26 +3842,31 @@
         }
 
         function tandaiHomecareSelesai(id) { // Jika Bidan menekan tombol Selesai Kerjakan setelah pulang merawat klien
-            showDialog("Tugas Selesai?", "Apakah tugas homecare ini sudah selesai dikerjakan?", "Ya, Selesai", false, "", (confirm) => { // Konfirm Modal 
+            // PERBAIKAN: Tambahkan async pada callback fungsi showDialog
+            showDialog("Tugas Selesai?", "Apakah tugas homecare ini sudah selesai dikerjakan?", "Ya, Selesai", false, "", async (confirm) => { 
                 if (confirm) {
                     const idx = state.reservasi.findIndex(r => r.id === id); // Query Array
                     if (idx > -1) {
+                        showToast("Memproses dan menyinkronkan data ke Cloud..."); // Beri tahu user proses sedang berjalan
                         state.reservasi[idx].status = 'Selesai'; // Finalisasi Status Selesai / Close.
                         saveData(); // Simpan Local Storage Permanen
-                        filterTerapisHC('Saya');  // Reload UI Tab Layar nya (Agar tombol Selesai nya ganti UI Label Mati)
-                        cloudUpload(); // Sync / Update Cloud Sheet untuk dibaca Admin Pemilik bahwa orderan klien telah kelar (Selesai).
+                        filterTerapisHC('Saya');  // Reload UI Tab Layar nya
+                        
+                        // PERBAIKAN: Tambahkan await agar proses upload selesai sebelum form log muncul
+                        await cloudUpload(); 
 
-                        // Menawarkan Bidan untuk mencatat riwayat gaji laporan kinerja langsung pakai form Autofiil! (Kemudahan UI/UX)
+                        // Menawarkan Bidan untuk mencatat riwayat gaji laporan kinerja langsung pakai form Autofiil! 
                         showDialog("Laporan Kinerja", "Tugas selesai! Ingin memasukkan ini ke Laporan Kinerja Harian Anda sekarang?", "Ya, Masukkan Log", false, "", (logConfirm) => {
                             if (logConfirm) { // Jika Bidan klik 'Ya' dari penawaran sistem
                                 switchTabPanelTerapis('panel-t-kinerja'); // Switch Tab layar utama HP ke Menu Lapor Form
-                                document.getElementById('t-pasien').value = state.reservasi[idx].nama; // Autofill isi otomatis input kotak 'Pasien' HTML dengan data Orderan
+                                document.getElementById('t-pasien').value = state.reservasi[idx].nama; // Autofill isi otomatis
                                 document.getElementById('t-kegiatan').value = 'Home Care'; // Autofill Dropdown Opsi kegiatan
-                                checkCustomKegiatan(); // Eksekusi logic kustom trigger logic ui form (seolah user sedang ngetik)
-                                // Autofill (Menebak) besaran komisi gaji secara paksa jika layanan/jasa dia memang terdaftar resmi di Harga Master Klinik etalase!
-                                const prod = state.products.find(p => p.nama === state.reservasi[idx].layanan); // Cari layanan di gudang 
-                                if (prod && prod.komisiTerapis) document.getElementById('t-komisi').value = prod.komisiTerapis; // Jika layanan tsb punya "Setingan Standar Gaji Terapis", auto isi form gajinya sejumlah itu.
-                                document.getElementById('t-catatan').value = `(Auto-fill Homecare) Klien: ${state.reservasi[idx].nama}`; // Beri Pesan Log
+                                checkCustomKegiatan(); // Eksekusi logic kustom trigger
+                                
+                                // Autofill komisi jika layanan terdaftar resmi di Harga Master Klinik etalase
+                                const prod = state.products.find(p => p.nama === state.reservasi[idx].layanan);  
+                                if (prod && prod.komisiTerapis) document.getElementById('t-komisi').value = prod.komisiTerapis; 
+                                document.getElementById('t-catatan').value = `(Auto-fill Homecare) Klien: ${state.reservasi[idx].nama}`; 
                             }
                         });
                     }
@@ -4089,7 +4097,8 @@
         }
 
         // 4. Menyimpan data dari formulir laporan terapis
-        function simpanLogTerapis() {
+        async function simpanLogTerapis() {
+            const btn = document.getElementById('btn-simpan-log');
             const tgl = document.getElementById('t-tgl').value;
             const pasien = document.getElementById('t-pasien').value.trim();
             let kegiatan = document.getElementById('t-kegiatan').value;
@@ -4102,24 +4111,48 @@
                 return showToast("Tanggal, Pasien, dan Kegiatan wajib diisi!", true);
             }
 
-            const payload = {
-                id: 'LOGT' + generateID(),
-                waktuInput: getWaktuNow(),
-                waktuLayanan: tgl,
-                terapis: state.currentUser.nama,
-                pasien: pasien,
-                kegiatan: kegiatan,
-                estimasiKomisi: komisi,
-                catatan: catatan
-            };
+            // PERBAIKAN: Kunci tombol & berikan indikator loading mencegah double-klik
+            const originalBtnText = btn.innerHTML;
+            btn.disabled = true;
+            btn.innerHTML = `<i class="fas fa-spinner fa-spin mr-2"></i> MENGIRIM...`;
+            btn.classList.add('opacity-50', 'cursor-not-allowed');
 
-            if (!state.therapistLogs) state.therapistLogs = [];
-            state.therapistLogs.push(payload);
+            try {
+                const payload = {
+                    id: 'LOGT' + generateID(),
+                    waktuInput: getWaktuNow(),
+                    waktuLayanan: tgl,
+                    terapis: state.currentUser.nama,
+                    pasien: pasien,
+                    kegiatan: kegiatan,
+                    estimasiKomisi: komisi,
+                    catatan: catatan
+                };
 
-            saveData();
-            batalEditLog(); // Bersihkan form
-            renderLogTerapisPribadi();
-            showToast("Laporan kinerja berhasil disetorkan!");
+                if (!state.therapistLogs) state.therapistLogs = [];
+                state.therapistLogs.push(payload);
+
+                saveData(); // Simpan ke storage lokal HP
+                
+                // Kirim ke database cloud & tunggu sampai benar-benar selesai
+                const tersinkron = await cloudUpload();
+                
+                if (tersinkron) {
+                    batalEditLog(); // Bersihkan form hanya jika sukses
+                    renderLogTerapisPribadi();
+                    showToast("Laporan kinerja berhasil disetorkan ke Database Cloud!");
+                } else {
+                    renderLogTerapisPribadi();
+                    showToast("Laporan tersimpan di HP, tapi belum terkirim ke Cloud. Cek koneksi Anda.", true);
+                }
+            } catch (error) {
+                showToast("Terjadi kesalahan sistem saat menyimpan data.", true);
+            } finally {
+                // PERBAIKAN: Buka kembali kunci tombol setelah selesai
+                btn.disabled = false;
+                btn.innerHTML = originalBtnText;
+                btn.classList.remove('opacity-50', 'cursor-not-allowed');
+            }
         }
 
         // 5. Membersihkan form log terapis
